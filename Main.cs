@@ -26,7 +26,7 @@ public partial class Main : Node
 		GetNode<Timer>("StartTimer").Start();
 
 		var hud = GetNode<Hud>("HUD");
-		hud.ShowMessage("Get Ready!");
+		hud.ShowToast("Get Ready!");
 		hud.UpdateScore(score);
 	}
 	

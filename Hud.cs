@@ -26,10 +26,16 @@ public partial class Hud : CanvasLayer
 		label.Show();
 	}
 
+	public void ShowToast(string message)
+	{
+		ShowMessage(message);
+		
+		GetNode<Timer>("MessageTimer").Start();
+	}
+
 	async public void GameOver()
 	{
-		ShowMessage("Game Over!");
-		GetNode<Timer>("MessageTimer").Start();
+		ShowToast("Game Over!");
 
 		var messageTimer = GetNode<Timer>("MessageTimer");
 		await ToSignal(messageTimer, Timer.SignalName.Timeout);
