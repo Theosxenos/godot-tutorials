@@ -13,6 +13,9 @@ public partial class Main : Node
 		GetNode<Timer>("ScoreTimer").Stop();
 		
 		GetNode<Hud>("HUD").GameOver();
+		
+		GetNode<AudioStreamPlayer>("Music").Stop();
+		GetNode<AudioStreamPlayer>("DeathSound").Play();
 	}
 
 	public void NewGame()
@@ -29,6 +32,8 @@ public partial class Main : Node
 		var hud = GetNode<Hud>("HUD");
 		hud.ShowToast("Get Ready!");
 		hud.UpdateScore(score);
+		
+		GetNode<AudioStreamPlayer>("Music").Play();
 	}
 	
 	public void OnMobTimerTimeout()
