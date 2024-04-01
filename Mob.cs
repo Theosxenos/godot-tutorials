@@ -8,11 +8,16 @@ public partial class Mob : RigidBody2D
 	{
 		var animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		var animations = animatedSprite.SpriteFrames.GetAnimationNames();
-		animatedSprite.Animation = animations[GD.Randi() % animations.Length];
+		animatedSprite.Play(animations[GD.Randi() % animations.Length]);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+	
+	private void OnVisibleOnScreenNotifier2DScreenExited()
+	{
+		QueueFree();
 	}
 }
