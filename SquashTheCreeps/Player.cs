@@ -11,6 +11,13 @@ public partial class Player : CharacterBody3D
 	// The downward acceleration when in the air, in meters per second squared.
 	[Export]
 	public int FallAcceleration { get; set; } = 75;
+	
+	// Vertical impulse applied to the character upon jumping in meters per second.
+	[Export] public int JumpImpulse { get; set; } = 20;
+	
+	// Vertical impulse applied to the character upon bouncing over a mob in meters per second.
+	[Export]
+	public int BounceImpulse { get; set; } = 16;
 
 	private Vector3 targetVelocity = Vector3.Zero;
 
@@ -33,6 +40,12 @@ public partial class Player : CharacterBody3D
 		targetVelocity.X = direction.X * Speed;
 		targetVelocity.Z = direction.Z * Speed;
 		
+		// Jumping.
+		if (IsOnFloor() && Input.IsActionJustPressed("jump"))
+		{
+			targetVelocity.Y = JumpImpulse;
+		}
+		
 		// Vertical velocity
 		if (!IsOnFloor()) // If in the air, fall towards the floor. Literally gravity
 		{
@@ -42,5 +55,20 @@ public partial class Player : CharacterBody3D
 		// Moving the character
 		Velocity = targetVelocity;
 		MoveAndSlide();
+
+		for (var i = 0; i < GetSlideCollisionCount(); i++)
+		{
+			var kinematicCollision3D = GetSlideCollision(i);
+
+			if (kinematicCollision3D.GetCollider() is Mob mob)
+			{
+				if (Vector3.Up.Dot(kinematicCollision3D.GetNormal()) > 0.1f)
+				{
+					mob.Squash();
+					targetVelocity.Y = BounceImpulse;
+					break;
+				}
+			}
+		}
 	}
 }
