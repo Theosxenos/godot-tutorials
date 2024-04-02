@@ -1,74 +1,108 @@
 using Godot;
-using System;
 
 public partial class Player : CharacterBody3D
 {
-	// Don't forget to rebuild the project so the editor knows about the new export variable.
+    // Emitted when the player was hit by a mob.
+    [Signal]
+    public delegate void HitEventHandler();
 
-	// How fast the player moves in meters per second.
-	[Export]
-	public int Speed { get; set; } = 14;
-	// The downward acceleration when in the air, in meters per second squared.
-	[Export]
-	public int FallAcceleration { get; set; } = 75;
-	
-	// Vertical impulse applied to the character upon jumping in meters per second.
-	[Export] public int JumpImpulse { get; set; } = 20;
-	
-	// Vertical impulse applied to the character upon bouncing over a mob in meters per second.
-	[Export]
-	public int BounceImpulse { get; set; } = 16;
+    // How fast the player moves in meters per second.
+    [Export]
+    public int Speed { get; set; } = 14;
+    // The downward acceleration when in the air, in meters per second squared.
+    [Export]
+    public int FallAcceleration { get; set; } = 75;
+    // Vertical impulse applied to the character upon jumping in meters per second.
+    [Export]
+    public int JumpImpulse { get; set; } = 20;
+    // Vertical impulse applied to the character upon bouncing over a mob in meters per second.
+    [Export]
+    public int BounceImpulse { get; set; } = 16;
 
-	private Vector3 targetVelocity = Vector3.Zero;
+    private Vector3 _targetVelocity = Vector3.Zero;
 
-	public override void _PhysicsProcess(double delta)
-	{
-		var direction = new Vector3(
-			(Input.IsActionPressed("move_right") ? 1.0f : 0) - (Input.IsActionPressed("move_left") ? 1.0f : 0),
-			0, // Assuming you're not modifying the Y axis for up/down movement in this snippet
-			(Input.IsActionPressed("move_back") ? 1.0f : 0) - (Input.IsActionPressed("move_forward") ? 1.0f : 0)
-		);
+    public override void _PhysicsProcess(double delta)
+    {
+        // We create a local variable to store the input direction.
+        var direction = Vector3.Zero;
 
-		if (direction != Vector3.Zero)
-		{
-			direction = direction.Normalized();
-			// Setting the basis property will affect the rotation of the node.
-			GetNode<Node3D>("Pivot").Basis = Basis.LookingAt(direction);
-		}
-		
-		// Ground velocity
-		targetVelocity.X = direction.X * Speed;
-		targetVelocity.Z = direction.Z * Speed;
-		
-		// Jumping.
-		if (IsOnFloor() && Input.IsActionJustPressed("jump"))
-		{
-			targetVelocity.Y = JumpImpulse;
-		}
-		
-		// Vertical velocity
-		if (!IsOnFloor()) // If in the air, fall towards the floor. Literally gravity
-		{
-			targetVelocity.Y -= FallAcceleration * (float)delta;
-		}
-		
-		// Moving the character
-		Velocity = targetVelocity;
-		MoveAndSlide();
+        // We check for each move input and update the direction accordingly.
+        if (Input.IsActionPressed("move_right"))
+        {
+            direction.X += 1.0f;
+        }
+        if (Input.IsActionPressed("move_left"))
+        {
+            direction.X -= 1.0f;
+        }
+        if (Input.IsActionPressed("move_back"))
+        {
+            // Notice how we are working with the vector's X and Z axes.
+            // In 3D, the XZ plane is the ground plane.
+            direction.Z += 1.0f;
+        }
+        if (Input.IsActionPressed("move_forward"))
+        {
+            direction.Z -= 1.0f;
+        }
 
-		for (var i = 0; i < GetSlideCollisionCount(); i++)
-		{
-			var kinematicCollision3D = GetSlideCollision(i);
+        // Prevent diagonal moving fast af
+        if (direction != Vector3.Zero)
+        {
+            direction = direction.Normalized();
+            GetNode<Node3D>("Pivot").LookAt(Position + direction, Vector3.Up);
+        }
 
-			if (kinematicCollision3D.GetCollider() is Mob mob)
-			{
-				if (Vector3.Up.Dot(kinematicCollision3D.GetNormal()) > 0.1f)
-				{
-					mob.Squash();
-					targetVelocity.Y = BounceImpulse;
-					break;
-				}
-			}
-		}
-	}
+        // Ground Velocity
+        _targetVelocity.X = direction.X * Speed;
+        _targetVelocity.Z = direction.Z * Speed;
+
+        // Vertical Velocity
+        if (!IsOnFloor()) // If in the air, fall towards the floor. Literally gravity
+        {
+            _targetVelocity.Y -= FallAcceleration * (float)delta;
+        }
+
+        // Jumping.
+        if (IsOnFloor() && Input.IsActionJustPressed("jump"))
+        {
+            _targetVelocity.Y = JumpImpulse;
+        }
+
+        // Iterate through all collisions that occurred this frame.
+        for (int index = 0; index < GetSlideCollisionCount(); index++)
+        {
+            // We get one of the collisions with the player.
+            KinematicCollision3D collision = GetSlideCollision(index);
+
+            // If the collision is with a mob.
+            if (collision.GetCollider() is Mob mob)
+            {
+                // We check that we are hitting it from above.
+                if (Vector3.Up.Dot(collision.GetNormal()) > 0.1f)
+                {
+                    // If so, we squash it and bounce.
+                    mob.Squash();
+                    _targetVelocity.Y = BounceImpulse;
+                    // Prevent further duplicate calls.
+                    break;
+                }
+            }
+        }
+
+        // Moving the Character
+        Velocity = _targetVelocity;
+        MoveAndSlide();
+    }
+
+    private void Die()
+    {
+        EmitSignal(SignalName.Hit);
+        QueueFree();
+    }
+
+    private void OnMobDetectorBodyEntered(Node3D body)
+    {
+        Die();
+    }
 }
