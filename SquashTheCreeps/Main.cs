@@ -19,6 +19,8 @@ public partial class Main : Node
 		Vector3 playerPosition = GetNode<Player>("Player").Position;
 		mob.Initialize(mobSpawnLocation.Position, playerPosition);
 
+		mob.Squashed += GetNode<ScoreLabel>("UserInterface/ScoreLabel").OnMobSquashed;
+
 		// Spawn the mob by adding it to the Main scene.
 		AddChild(mob);
 	}
@@ -26,5 +28,20 @@ public partial class Main : Node
 	private void OnPlayerHit()
 	{
 		GetNode<Timer>("MobTimer").Stop();
+		GetNode<Control>("UserInterface/Retry").Show();
+	}
+
+	public override void _Ready()
+	{
+		GetNode<Control>("UserInterface/Retry").Hide();
+	}
+	
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (@event.IsActionPressed("ui_accept") && GetNode<Control>("UserInterface/Retry").Visible)
+		{
+			// This restarts the current scene.
+			GetTree().ReloadCurrentScene();
+		}
 	}
 }
