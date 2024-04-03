@@ -77,6 +77,7 @@ collision_mask = 6
 script = ExtResource("1_arrrf")
 
 [node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="Character" parent="Pivot" instance=ExtResource("1_gq3cu")]
 
