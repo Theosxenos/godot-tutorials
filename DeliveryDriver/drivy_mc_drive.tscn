@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://c4hcdch0csiys"]
 
+[ext_resource type="Script" path="res://drivy_mc_drive.cs" id="1_p2ee2"]
 [ext_resource type="Texture2D" uid="uid://b5wfcwf2uc8mq" path="res://icon.svg" id="1_x2oy4"]
-[ext_resource type="Script" path="res://drivy_mc_drive.gd" id="2_krxmd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsarf"]
 size = Vector2(128, 128)
 
-[node name="Drivy McDrive" type="Area2D"]
-position = Vector2(64, 64)
-script = ExtResource("2_krxmd")
+[node name="Drivy McDrive" type="CharacterBody2D"]
+script = ExtResource("1_p2ee2")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_x2oy4")

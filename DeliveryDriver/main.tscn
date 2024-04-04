@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdj1616dkt4wt"]
+
+[ext_resource type="PackedScene" uid="uid://c4hcdch0csiys" path="res://drivy_mc_drive.tscn" id="1_slw83"]
+[ext_resource type="Script" path="res://Circle.gd" id="2_y6g8t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ywpl4"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6gdys"]
+radius = 50.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_35kr7"]
+radius = 2.0
+
+[node name="Main" type="Node2D"]
+
+[node name="Drivy McDrive" parent="." instance=ExtResource("1_slw83")]
+position = Vector2(220, 480)
+
+[node name="Circle" type="StaticBody2D" parent="."]
+position = Vector2(661, 451)
+script = ExtResource("2_y6g8t")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Circle"]
+shape = SubResource("CircleShape2D_ywpl4")
+
+[node name="Circle2" type="RigidBody2D" parent="."]
+position = Vector2(229, 295)
+mass = 0.1
+gravity_scale = 0.0
+script = ExtResource("2_y6g8t")
+color = Color(0.639216, 0.517647, 0.211765, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Circle2"]
+shape = SubResource("CircleShape2D_6gdys")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(228, 296)
+scale = Vector2(25.2442, 100.929)
+mesh = SubResource("SphereMesh_35kr7")

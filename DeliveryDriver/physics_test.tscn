@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://cymxfqyprerny"]
+
+[ext_resource type="Texture2D" uid="uid://b5wfcwf2uc8mq" path="res://icon.svg" id="1_2pjer"]
+[ext_resource type="Script" path="res://platformer.gd" id="1_51gxs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qudh0"]
+size = Vector2(128, 128)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mn3ea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_teuva"]
+size = Vector2(128, 128)
+
+[node name="PhysicsTest" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(265, 348)
+script = ExtResource("1_51gxs")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_qudh0")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_2pjer")
+
+[node name="Floor" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
+position = Vector2(119, 672)
+physics_material_override = SubResource("PhysicsMaterial_mn3ea")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
+shape = SubResource("RectangleShape2D_teuva")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Floor/StaticBody2D"]
+modulate = Color(1, 0, 1, 1)
+texture = ExtResource("1_2pjer")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Floor"]
+position = Vector2(249, 672)
+physics_material_override = SubResource("PhysicsMaterial_mn3ea")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_teuva")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Floor/StaticBody2D2"]
+modulate = Color(1, 0, 1, 1)
+texture = ExtResource("1_2pjer")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Floor"]
+position = Vector2(380, 672)
+physics_material_override = SubResource("PhysicsMaterial_mn3ea")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_teuva")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Floor/StaticBody2D3"]
+modulate = Color(1, 0, 1, 1)
+texture = ExtResource("1_2pjer")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Floor"]
+position = Vector2(508, 672)
+physics_material_override = SubResource("PhysicsMaterial_mn3ea")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_teuva")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Floor/StaticBody2D4"]
+modulate = Color(1, 0, 1, 1)
+texture = ExtResource("1_2pjer")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Floor"]
+position = Vector2(638, 672)
+physics_material_override = SubResource("PhysicsMaterial_mn3ea")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D5"]
+shape = SubResource("RectangleShape2D_teuva")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Floor/StaticBody2D5"]
+modulate = Color(1, 0, 1, 1)
+texture = ExtResource("1_2pjer")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Floor"]
+position = Vector2(769, 672)
+physics_material_override = SubResource("PhysicsMaterial_mn3ea")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D6"]
+shape = SubResource("RectangleShape2D_teuva")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Floor/StaticBody2D6"]
+modulate = Color(1, 0, 1, 1)
+texture = ExtResource("1_2pjer")

@@ -11,10 +11,15 @@ config_version=5
 [application]
 
 config/name="DeliveryDriver"
-run/main_scene="res://drivy_mc_drive.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=1024
 
 [dotnet]
 
-project/assembly_name="Test"
+project/assembly_name="DeliveryDriver"
