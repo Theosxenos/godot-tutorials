@@ -18,9 +18,9 @@ public partial class Player : Area2D
 		if (Input.IsActionJustPressed("fire_weapon"))
 		{
 			var projectile = ProjectileScene.Instantiate<PlayerProjectile>();
-			projectile.Position = GetNode<Marker2D>("Weapon").Position;
+			projectile.GlobalPosition = GetNode<Marker2D>("Weapon").GlobalPosition;
 			
-			AddChild(projectile);
+			GetTree().CurrentScene.AddChild(projectile);
 		}
 	}
 

@@ -18,5 +18,3 @@ public partial class PlayerProjectile : Area2D
 		QueueFree();
 	}
 }
-
-
