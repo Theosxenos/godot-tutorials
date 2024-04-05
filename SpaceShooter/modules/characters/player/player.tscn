@@ -7,7 +7,7 @@
 [node name="Player" type="Area2D"]
 collision_mask = 10
 script = ExtResource("1_iqrbn")
-Projectile = ExtResource("2_wco0k")
+ProjectileScene = ExtResource("2_wco0k")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
