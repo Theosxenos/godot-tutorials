@@ -1,8 +1,10 @@
 extends Node
 
+@export var cactus_scene : PackedScene
 @export var coin_scene : PackedScene
-@export var play_time = 30
 @export var powerup_scene : PackedScene
+
+@export var play_time = 30
 
 var level = 1
 var score = 0
@@ -23,6 +25,7 @@ func _process(delta):
 		level += 1
 		time_left += 5
 		spawn_coins()
+		spawn_cactusses()
 		$LevelSound.play()
 		$PowerUpTimer.wait_time = randf_range(5, 10)
 		$PowerUpTimer.start()
@@ -35,6 +38,8 @@ func new_game():
 	$Player.start()
 	$Player.show()
 	$GameTimer.start()
+	
+	spawn_cactusses()
 	spawn_coins()
 
 func spawn_coins():
@@ -43,6 +48,16 @@ func spawn_coins():
 		add_child(c)
 		c.screen_size = screen_size
 		c.position = Vector2(randi_range(0, screen_size.x), randi_range(0, screen_size.y))
+
+func spawn_cactusses():
+	get_tree().call_group("obstacles","queue_free")
+	for i in level + 2:
+		var c = cactus_scene.instantiate()
+		add_child(c)
+		while true:
+			c.position = Vector2(randi_range(0, screen_size.x), randi_range(0, screen_size.y))
+			if not c.overlaps_area($Player):
+				break
 
 func _on_game_timer_timeout():
 	time_left -= 1
@@ -55,6 +70,8 @@ func game_over():
 	playing = false
 	$GameTimer.stop()
 	get_tree().call_group("coins","queue_free")
+	get_tree().call_group("obstacles","queue_free")
+	get_tree().call_group("powerups","queue_free")
 	$HUD.show_game_over()
 	$Player.die()
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkkj4dp6f7jqm"]
+[gd_scene load_steps=12 format=3 uid="uid://dkkj4dp6f7jqm"]
 
 [ext_resource type="PackedScene" uid="uid://dqd4ct1cxjbpg" path="res://player.tscn" id="1_evxw7"]
 [ext_resource type="Script" path="res://main.gd" id="1_urivs"]
 [ext_resource type="Texture2D" uid="uid://cnwflem7jhq4n" path="res://assets/grass.png" id="2_5epn7"]
-[ext_resource type="PackedScene" uid="uid://c2w2rnrwsfc4x" path="res://coin.tscn" id="2_bs2fp"]
-[ext_resource type="PackedScene" uid="uid://c0cs4aetr3etx" path="res://powerup.tscn" id="3_qacrs"]
+[ext_resource type="PackedScene" uid="uid://c2w2rnrwsfc4x" path="res://coin.tscn" id="2_dmob7"]
+[ext_resource type="PackedScene" uid="uid://c0cs4aetr3etx" path="res://powerup.tscn" id="3_bsbjm"]
+[ext_resource type="PackedScene" uid="uid://cjcjt0w4i5v75" path="res://cactus.tscn" id="4_gx4nd"]
 [ext_resource type="PackedScene" uid="uid://cffu5wb8vf48s" path="res://hud.tscn" id="5_y11pc"]
 [ext_resource type="AudioStream" uid="uid://dipsph4s7oe78" path="res://assets/audio/Coin.wav" id="6_tu37o"]
 [ext_resource type="AudioStream" uid="uid://dq75bvt4ty0j6" path="res://assets/audio/Level.wav" id="7_n5awp"]
@@ -13,8 +14,9 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_urivs")
-coin_scene = ExtResource("2_bs2fp")
-powerup_scene = ExtResource("3_qacrs")
+cactus_scene = ExtResource("4_gx4nd")
+coin_scene = ExtResource("2_dmob7")
+powerup_scene = ExtResource("3_bsbjm")
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
