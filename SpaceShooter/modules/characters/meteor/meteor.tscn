@@ -10,6 +10,8 @@ radius = 49.0102
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_5e2f0")
+Speed = 50
+Lives = 5
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -18,3 +20,5 @@ texture = ExtResource("1_i6jbs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -3)
 shape = SubResource("CircleShape2D_otla3")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

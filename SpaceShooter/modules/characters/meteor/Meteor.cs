@@ -1,13 +1,7 @@
 using Godot;
 using System;
+using SpaceShooter.modules.characters.shared;
 
-public partial class Meteor : Area2D
+public partial class Meteor : Enemy
 {
-	[Export] public int Speed { get; set; } = 100;
-	[Export] public int Lives { get; set; } = 5;
-
-	public override void _Process(double delta)
-	{
-		Position += Vector2.Left * Speed * (float)delta;
-	}
 }
