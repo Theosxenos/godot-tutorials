@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7hgj004tknaq"]
+[gd_scene load_steps=4 format=3 uid="uid://c7hgj004tknaq"]
 
 [ext_resource type="Script" path="res://modules/characters/player/Player.cs" id="1_iqrbn"]
 [ext_resource type="Texture2D" uid="uid://3nl0e86ql0op" path="res://modules/characters/player/playerShip1_green.png" id="1_yjth8"]
+[ext_resource type="PackedScene" uid="uid://2uy2mgucgp2k" path="res://modules/projectiles/player/player_projectile.tscn" id="2_wco0k"]
 
 [node name="Player" type="Area2D"]
+collision_mask = 10
 script = ExtResource("1_iqrbn")
+Projectile = ExtResource("2_wco0k")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -16,5 +19,8 @@ region_rect = Rect2(346, 75, 97, 75)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
 polygon = PackedVector2Array(-37, -8, -28, -14, -20, -42, -25, -42, -25, -47, 5, -50, 7, -45, 0, -40, -2, -36, 12, -12, 37, -9, 37, 8, 12, 12, -2, 35, 1, 41, 6, 44, 6, 49, -24, 46, -23, 41, -19, 41, -23, 36, -28, 13, -37, 8)
+
+[node name="Weapon" type="Marker2D" parent="."]
+position = Vector2(44, 0)
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]
