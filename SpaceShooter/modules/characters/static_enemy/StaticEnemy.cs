@@ -1,15 +1,7 @@
 using Godot;
-using System;
-using SpaceShooter.modules.shared.interfaces;
 
-public partial class StaticEnemy : Area2D, IHitable
+public partial class StaticEnemy : Area2D
 {
     [Signal]
-    public delegate void EnemyHitEventHandler();
-
-    public void Hit()
-    {
-        QueueFree();
-        EmitSignal(nameof(EnemyHitEventHandler));
-    }
+    public delegate void HitEventHandler();
 }
