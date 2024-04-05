@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://x5ov2h1e5ed6"]
+[gd_scene load_steps=5 format=3 uid="uid://x5ov2h1e5ed6"]
 
 [ext_resource type="Texture2D" uid="uid://dh3v3aqudnjn1" path="res://modules/controllers/main/background.png" id="1_4r6sc"]
+[ext_resource type="Script" path="res://modules/controllers/main/MainController.cs" id="1_ictwc"]
 [ext_resource type="PackedScene" uid="uid://c7hgj004tknaq" path="res://modules/characters/player/player.tscn" id="2_ur4f0"]
+[ext_resource type="PackedScene" uid="uid://dhsrk57y2meac" path="res://modules/controllers/enemy_spawner/enemy_spawner.tscn" id="4_m51nb"]
 
 [node name="Main" type="Node"]
+script = ExtResource("1_ictwc")
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -16,3 +19,7 @@ stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_ur4f0")]
 position = Vector2(80, 256)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_m51nb")]
+
+[connection signal="Hit" from="Player" to="." method="OnPlayerHit"]

@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7i7wx"]
 radius = 47.0
 
-[node name="StaticEnemy" type="Area2D"]
+[node name="StaticEnemy" type="Area2D" groups=["enemies"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_dk5ss")
