@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8bbgwjedhtew"]
+
+[ext_resource type="Texture2D" uid="uid://bh66gbry3nfb1" path="res://modules/characters/static_enemy/enemyRed5.png" id="1_abhnr"]
+
+[node name="StaticEnemy" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_abhnr")

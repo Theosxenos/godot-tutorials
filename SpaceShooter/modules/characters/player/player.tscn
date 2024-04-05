@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7hgj004tknaq"]
+
+[ext_resource type="Script" path="res://modules/characters/player/Player.cs" id="1_iqrbn"]
+[ext_resource type="Texture2D" uid="uid://3nl0e86ql0op" path="res://modules/characters/player/playerShip1_green.png" id="1_yjth8"]
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_iqrbn")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 1.5708
+texture = ExtResource("1_yjth8")
+region_rect = Rect2(346, 75, 97, 75)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-37, -8, -28, -14, -20, -42, -25, -42, -25, -47, 5, -50, 7, -45, 0, -40, -2, -36, 12, -12, 37, -9, 37, 8, 12, 12, -2, 35, 1, 41, 6, 44, 6, 49, -24, 46, -23, 41, -19, 41, -23, 36, -28, 13, -37, 8)
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
