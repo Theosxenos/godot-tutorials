@@ -31,6 +31,6 @@ public partial class Player : Area2D
 			QueueFree();
 		}
 
-		EmitSignal(nameof(HitEventHandler));
+		EmitSignal("Hit");
 	}
 }
