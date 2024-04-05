@@ -10,13 +10,15 @@ func update_timer(time):
 
 func show_message(text):
 	$Message.text = text
+	$Message.show()
+	$MessageTimer.start()
 
 func show_game_over():
+	$Retry.show()	
 	show_message("Game Over!")
 	
-	await $Timer.timeout
+	await $MessageTimer.timeout
 	
-	$Retry.show()
 	$StartButton.show()
 	
 	$Message.text = "Coin Dash!"
@@ -27,3 +29,7 @@ func _on_start_button_pressed():
 	$Message.hide()
 	$Retry.hide()
 	start_game.emit()
+
+
+func _on_message_timer_timeout():
+	$Message.hide()

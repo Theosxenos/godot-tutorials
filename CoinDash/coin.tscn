@@ -52,7 +52,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11_30yyw")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 12.0
 }]
@@ -66,5 +66,9 @@ shape = SubResource("CircleShape2D_8e3qg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_j6hl0")
-frame = 2
-frame_progress = 0.82775
+frame = 10
+frame_progress = 1.0
+
+[node name="AnimationTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="AnimationTimer" to="." method="_on_animation_timer_timeout"]
