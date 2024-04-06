@@ -7,22 +7,43 @@ public partial class MainController : Node
 	[Export] public int Score { get; set; }
 
 	private UiController uiController;
-	
+	private Player player;
+	private Vector2 playerSpawnPosition;
+
 	public override void _Ready()
 	{
 		uiController = GetNode<UiController>("UiController");
+		
+		player = GetNode<Player>("Player");
+		playerSpawnPosition = player.Position;
+
+		UpdateHud();
+	}
+
+	private void UpdateHud()
+	{
 		uiController.SetLives(Lives);
+		uiController.SetScore(Score);
 	}
 
 	private void StartGame()
 	{
 		GetNode<EnemySpawner>("EnemySpawner").Start();
-		GetNode<Player>("Player").SetProcess(true);
+
+		player.Position = playerSpawnPosition;
+		player.SetProcess(true);
+		player.Show();
+
+		Lives = 3;
+		Score = 0;
+		
+		UpdateHud();
 	}
 
 	private void OnPlayerHit()
 	{
-		uiController.SetLives(--Lives);
+		Lives--;
+		UpdateHud();
 		
 		if (Lives <= 0)
 		{
@@ -32,14 +53,18 @@ public partial class MainController : Node
 
 	private void GameOver()
 	{
-		GetNode<Player>("Player").QueueFree();
+		player.Hide();
+		player.SetProcess(false);
+
 		GetNode<EnemySpawner>("EnemySpawner").Stop();
 		GetTree().CallGroup("enemies", "queue_free");
+
 		uiController.GameOver();
 	}
 
 	private void OnEnemySpawnerEnemyKilled()
 	{
-		uiController.SetScore(++Score);
+		Score++;
+		UpdateHud();
 	}
 }
