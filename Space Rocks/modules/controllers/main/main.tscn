@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcwpuymx0mwtx"]
+
+[ext_resource type="Texture2D" uid="uid://be6s4c6ukjvbs" path="res://modules/controllers/main/space_background.png" id="1_0ncub"]
+[ext_resource type="PackedScene" uid="uid://q77fnofeghm" path="res://modules/characters/player/player.tscn" id="2_kk45a"]
+
+[node name="Main" type="Node"]
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0ncub")
+expand_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_kk45a")]
+position = Vector2(118, 259)

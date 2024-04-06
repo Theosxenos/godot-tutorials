@@ -3,6 +3,13 @@ extends RigidBody2D
 @export var engine_power : int = 500
 @export var spin_power : int = 8000
 
+@export var bullet_scene : PackedScene
+@export_range(0, 5, 0.05) var fire_rate : float = 0.25
+
+@onready var muzzle : Marker2D = $Muzzle
+
+var can_shoot = true
+
 var thrust: Vector2 = Vector2.ZERO
 var rotation_dir: float = 0
 
@@ -14,6 +21,8 @@ var screensize: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	change_state(player_state.ALIVE)
 	screensize = get_viewport_rect().size
+	
+	$GunCooldown.wait_time = fire_rate
 
 func change_state(new_state : player_state) -> void:
 	match new_state:
@@ -40,6 +49,9 @@ func get_input() -> void:
 	if Input.is_action_pressed("thrust"):
 		thrust = transform.x * engine_power
 	rotation_dir = Input.get_axis("rotate_left","rotate_right")
+	
+	if Input.is_action_pressed("shoot") and can_shoot:
+		shoot()
 
 func _physics_process(delta: float):
 	constant_force = thrust
@@ -50,3 +62,16 @@ func _integrate_forces(physics_state):
 	xform.origin.x = wrapf(xform.origin.x, 0, screensize.x)
 	xform.origin.y = wrapf(xform.origin.y, 0, screensize.y)
 	physics_state.transform = xform
+
+func shoot():
+	if state == player_state.INVUNERABLE:
+		return
+
+	can_shoot = false
+	$GunCooldown.start()
+	var bullet: Bullet = bullet_scene.instantiate() as Bullet
+	get_tree().root.add_child(bullet)
+	bullet.start(muzzle.global_transform)
+
+func _on_gun_cooldown_timeout():
+	can_shoot = true
