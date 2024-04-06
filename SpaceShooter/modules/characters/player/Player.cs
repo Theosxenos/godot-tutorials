@@ -13,6 +13,7 @@ public partial class Player : Area2D
 	{
 		var direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		Position += direction * Speed * (float)delta;
+		Position = GetClampedPosition(Position);
 
 		if (Input.IsActionJustPressed("fire_weapon"))
 		{
@@ -21,6 +22,11 @@ public partial class Player : Area2D
 			
 			GetTree().CurrentScene.AddChild(projectile);
 		}
+	}
+	
+	private Vector2 GetClampedPosition(Vector2 direction)
+	{
+		return new Vector2(Mathf.Clamp(direction.X, 0, 960), Mathf.Clamp(direction.Y, 0, 512));
 	}
 
 	private void OnAreaEntered(Area2D area)
