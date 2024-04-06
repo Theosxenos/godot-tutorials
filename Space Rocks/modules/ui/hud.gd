@@ -17,7 +17,7 @@ func update_score(value : int):
 
 func update_lives(value : int):
 	for item : int in 3:
-		lives_counter[item] = value > item
+		lives_counter[item].visible = value > item
 
 func game_over():
 	show_message("Game Over")

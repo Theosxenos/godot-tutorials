@@ -60,3 +60,7 @@ func _process(delta):
 		return
 	if get_tree().get_nodes_in_group("rocks").size() == 0:
 		new_level()
+
+func game_over():
+	playing = false
+	$HUD.game_over()
