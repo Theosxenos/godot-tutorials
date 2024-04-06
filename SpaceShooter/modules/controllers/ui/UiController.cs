@@ -18,7 +18,7 @@ public partial class UiController : Node
 
 	public void SetLives(int lives)
 	{
-		var lifePosition = GetNode<Marker2D>("LifePosition");
+		var lifePosition = GetNode<Marker2D>("CanvasLayer/LifePosition");
 		
 		if(lifePosition.GetChildren().Count > 0)
 			GetTree().CallGroup("lives", "queue_free");
