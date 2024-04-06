@@ -60,6 +60,8 @@ public partial class MainController : Node
 		GetTree().CallGroup("enemies", "queue_free");
 
 		uiController.GameOver();
+
+		GetNode<AudioStreamPlayer>("LoseSound").Play();
 	}
 
 	private void OnEnemySpawnerEnemyKilled()

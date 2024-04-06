@@ -10,9 +10,12 @@ public partial class Player : Area2D
 	[Export] public int Speed { get; set; } = 400;
 	[Export] public PackedScene ProjectileScene { get; set; }
 
+	private AudioStreamPlayer shootSound;
+	
 	public override void _Ready()
 	{
 		SetProcess(false);
+		shootSound = GetNode<AudioStreamPlayer>("ShootSound");
 	}
 
 	public override void _Process(double delta)
@@ -27,6 +30,8 @@ public partial class Player : Area2D
 			projectile.GlobalPosition = GetNode<Marker2D>("Weapon").GlobalPosition;
 			
 			GetTree().CurrentScene.AddChild(projectile);
+			
+			shootSound.Play();
 		}
 	}
 	
@@ -40,6 +45,8 @@ public partial class Player : Area2D
 		if(area is Enemy enemy)
 			enemy.Hit();
 
+		GetNode<AudioStreamPlayer>("HitSound").Play();
+		
 		EmitSignal("Hit");
 	}
 }

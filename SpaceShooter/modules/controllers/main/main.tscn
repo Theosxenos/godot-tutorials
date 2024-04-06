@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://x5ov2h1e5ed6"]
+[gd_scene load_steps=7 format=3 uid="uid://x5ov2h1e5ed6"]
 
 [ext_resource type="Texture2D" uid="uid://dh3v3aqudnjn1" path="res://modules/controllers/main/background.png" id="1_4r6sc"]
 [ext_resource type="Script" path="res://modules/controllers/main/MainController.cs" id="1_ictwc"]
 [ext_resource type="PackedScene" uid="uid://c7hgj004tknaq" path="res://modules/characters/player/player.tscn" id="2_ur4f0"]
 [ext_resource type="PackedScene" uid="uid://dhsrk57y2meac" path="res://modules/controllers/enemy_spawner/enemy_spawner.tscn" id="4_m51nb"]
 [ext_resource type="PackedScene" uid="uid://c0ypucu4kyxpp" path="res://modules/controllers/ui/ui_controller.tscn" id="5_q5owf"]
+[ext_resource type="AudioStream" uid="uid://cmmw1eqby4rv8" path="res://modules/controllers/main/sfx_lose.ogg" id="6_i0pts"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ictwc")
@@ -24,6 +25,9 @@ position = Vector2(80, 256)
 [node name="EnemySpawner" parent="." instance=ExtResource("4_m51nb")]
 
 [node name="UiController" parent="." instance=ExtResource("5_q5owf")]
+
+[node name="LoseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_i0pts")
 
 [connection signal="Hit" from="Player" to="." method="OnPlayerHit"]
 [connection signal="EnemyEscaped" from="EnemySpawner" to="." method="OnPlayerHit"]
