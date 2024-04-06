@@ -11,7 +11,7 @@ public partial class EnemySpawner : Node2D
 	public delegate void EnemyEscapedEventHandler();
 
 	[Export] public PackedScene[] Enemies { get; set; }
-	
+
 	public void Start()
 	{
 		GetNode<Timer>("SpawnTimer").Start();
@@ -40,6 +40,11 @@ public partial class EnemySpawner : Node2D
 	void OnEnemyKilled()
 	{
 		EmitSignal(SignalName.EnemyKilled);
+	}
+
+	public void Stop()
+	{
+		GetNode<Timer>("SpawnTimer").Stop();
 	}
 }
 

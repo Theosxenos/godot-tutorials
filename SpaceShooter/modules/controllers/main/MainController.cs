@@ -3,17 +3,23 @@ using System;
 
 public partial class MainController : Node
 {
-		
 	[Export] public int Lives { get; set; } = 3;
+	[Export] public int Score { get; set; }
 
+	private UiController uiController;
+	
 	public override void _Ready()
 	{
 		GetNode<EnemySpawner>("EnemySpawner").Start();
+		uiController = GetNode<UiController>("UiController");
+		uiController.SetLives(Lives);
 	}
 
 	private void OnPlayerHit()
 	{
-		if (--Lives <= 0)
+		uiController.SetLives(--Lives);
+		
+		if (Lives <= 0)
 		{
 			GameOver();
 		}
@@ -22,10 +28,12 @@ public partial class MainController : Node
 	private void GameOver()
 	{
 		GetNode<Player>("Player").QueueFree();
+		GetNode<EnemySpawner>("EnemySpawner").Stop();
+		GetTree().CallGroup("enemies", "queue_free");
 	}
 
 	private void OnEnemySpawnerEnemyKilled()
 	{
-		// Replace with function body.
+		uiController.SetScore(++Score);
 	}
 }
