@@ -20,12 +20,17 @@ public partial class Enemy : Area2D
 	
 	private void OnAreaEntered(Area2D area)
 	{
+		Hit();
+	}
+
+	public void Hit()
+	{
 		if (--Lives > 0) return;
 		
 		EmitSignal(SignalName.Killed);
 		QueueFree();
 	}
-	
+
 	private void OnVisibleOnScreenNotifier2dScreenExited()
 	{
 		EmitSignal(SignalName.Escaped);

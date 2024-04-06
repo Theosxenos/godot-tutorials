@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using SpaceShooter.modules.characters.shared;
 
 public partial class Player : Area2D
 {
@@ -36,6 +37,9 @@ public partial class Player : Area2D
 
 	private void OnAreaEntered(Area2D area)
 	{
+		if(area is Enemy enemy)
+			enemy.Hit();
+
 		EmitSignal("Hit");
 	}
 }
