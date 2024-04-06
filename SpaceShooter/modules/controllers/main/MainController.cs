@@ -35,6 +35,7 @@ public partial class MainController : Node
 		GetNode<Player>("Player").QueueFree();
 		GetNode<EnemySpawner>("EnemySpawner").Stop();
 		GetTree().CallGroup("enemies", "queue_free");
+		uiController.GameOver();
 	}
 
 	private void OnEnemySpawnerEnemyKilled()

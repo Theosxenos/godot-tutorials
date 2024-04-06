@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class UiController : Node
 {
@@ -43,9 +44,13 @@ public partial class UiController : Node
 		EmitSignal(SignalName.StartGame);
 	}
 
-	public void GameOver()
+	public async Task GameOver()
 	{
 		gameMenu.Show();
+		var label = GetNode<Label>("CanvasLayer/GameMenu/Panel/Message");
+		label.Text = "Game Over";
+		await ToSignal(GetTree().CreateTimer(1.5f), Timer.SignalName.Timeout);
+		label.Text = "Space Shooter";
 	}
 }
 
