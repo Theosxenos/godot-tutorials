@@ -4,11 +4,16 @@ using System;
 public partial class UiController : Node
 {
 	private Label scoreLabel;
+	private Control gameMenu;
 
+	[Signal]
+	public delegate void StartGameEventHandler();
+	
 	[Export] public PackedScene LifeScene { get; set; }
 	public override void _Ready()
 	{
-		scoreLabel = GetNode<Label>("CanvasLayer/Score");
+		gameMenu = GetNode<Control>("CanvasLayer/GameMenu");
+		scoreLabel = GetNode<Label>("CanvasLayer/HUD/Score");
 	}
 
 	public void SetScore(int score)
@@ -18,7 +23,7 @@ public partial class UiController : Node
 
 	public void SetLives(int lives)
 	{
-		var lifePosition = GetNode<Marker2D>("CanvasLayer/LifePosition");
+		var lifePosition = GetNode<Marker2D>("CanvasLayer/HUD/LifePosition");
 		
 		if(lifePosition.GetChildren().Count > 0)
 			GetTree().CallGroup("lives", "queue_free");
@@ -31,4 +36,17 @@ public partial class UiController : Node
 			life.Position = new Vector2(i * life.Texture.GetWidth() + margin, 0);
 		}
 	}
+	
+	private void OnStartButtonPressed()
+	{
+		gameMenu.Hide();
+		EmitSignal(SignalName.StartGame);
+	}
+
+	public void GameOver()
+	{
+		gameMenu.Show();
+	}
 }
+
+

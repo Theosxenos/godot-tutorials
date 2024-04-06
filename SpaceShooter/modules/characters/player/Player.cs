@@ -8,7 +8,12 @@ public partial class Player : Area2D
 
 	[Export] public int Speed { get; set; } = 400;
 	[Export] public PackedScene ProjectileScene { get; set; }
-	
+
+	public override void _Ready()
+	{
+		SetProcess(false);
+	}
+
 	public override void _Process(double delta)
 	{
 		var direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");

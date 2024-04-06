@@ -10,9 +10,14 @@ public partial class MainController : Node
 	
 	public override void _Ready()
 	{
-		GetNode<EnemySpawner>("EnemySpawner").Start();
 		uiController = GetNode<UiController>("UiController");
 		uiController.SetLives(Lives);
+	}
+
+	private void StartGame()
+	{
+		GetNode<EnemySpawner>("EnemySpawner").Start();
+		GetNode<Player>("Player").SetProcess(true);
 	}
 
 	private void OnPlayerHit()

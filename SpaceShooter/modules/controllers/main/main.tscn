@@ -28,3 +28,4 @@ position = Vector2(80, 256)
 [connection signal="Hit" from="Player" to="." method="OnPlayerHit"]
 [connection signal="EnemyEscaped" from="EnemySpawner" to="." method="OnPlayerHit"]
 [connection signal="EnemyKilled" from="EnemySpawner" to="." method="OnEnemySpawnerEnemyKilled"]
+[connection signal="StartGame" from="UiController" to="." method="StartGame"]
