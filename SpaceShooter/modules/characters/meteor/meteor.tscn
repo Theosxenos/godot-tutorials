@@ -21,4 +21,7 @@ texture = ExtResource("1_i6jbs")
 position = Vector2(-2, -3)
 shape = SubResource("CircleShape2D_otla3")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreenNotifier2dScreenExited"]

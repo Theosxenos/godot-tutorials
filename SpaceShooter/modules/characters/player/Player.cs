@@ -5,8 +5,7 @@ public partial class Player : Area2D
 {
 	[Signal]
 	public delegate void HitEventHandler();
-	
-	[Export] public int Lives { get; set; } = 3;
+
 	[Export] public int Speed { get; set; } = 400;
 	[Export] public PackedScene ProjectileScene { get; set; }
 	
@@ -26,11 +25,6 @@ public partial class Player : Area2D
 
 	private void OnAreaEntered(Area2D area)
 	{
-		if (--Lives <= 0)
-		{
-			QueueFree();
-		}
-
 		EmitSignal("Hit");
 	}
 }
