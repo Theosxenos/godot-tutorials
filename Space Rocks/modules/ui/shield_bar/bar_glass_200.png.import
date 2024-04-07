@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1i3ijwh7snc"
-path="res://.godot/imported/bar_yellow_200.png-a66e5e072479259e8df3d473be2c72e5.ctex"
+uid="uid://dmpka84x32a03"
+path="res://.godot/imported/bar_glass_200.png-d98547fa5afb3322edde044ef63da257.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bar_yellow_200.png"
-dest_files=["res://.godot/imported/bar_yellow_200.png-a66e5e072479259e8df3d473be2c72e5.ctex"]
+source_file="res://modules/ui/shield_bar/bar_glass_200.png"
+dest_files=["res://.godot/imported/bar_glass_200.png-d98547fa5afb3322edde044ef63da257.ctex"]
 
 [params]
 

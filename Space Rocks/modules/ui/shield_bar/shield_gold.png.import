@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bysgfx7ryitf4"
-path="res://.godot/imported/bar_green_200.png-15a2640ac2d69e3765885d1624a94b25.ctex"
+uid="uid://c51f2pkgx6n2"
+path="res://.godot/imported/shield_gold.png-c3fab975e758a3d50837d9aaf82d7dbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bar_green_200.png"
-dest_files=["res://.godot/imported/bar_green_200.png-15a2640ac2d69e3765885d1624a94b25.ctex"]
+source_file="res://modules/ui/shield_bar/shield_gold.png"
+dest_files=["res://.godot/imported/shield_gold.png-c3fab975e758a3d50837d9aaf82d7dbe.ctex"]
 
 [params]
 

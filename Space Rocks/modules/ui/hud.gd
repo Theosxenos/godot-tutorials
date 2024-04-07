@@ -7,6 +7,14 @@ signal start_game
 @onready var message : Label = $VBoxContainer/Message
 @onready var start_button : TextureButton = $VBoxContainer/StartButton
 
+@onready var shield_bar = $MarginContainer/HBoxContainer/ShieldBar
+
+var bar_textures : Dictionary = {
+	"green" : preload("res://modules/ui/shield_bar/bar_green_200.png"),
+	"yellow": preload("res://modules/ui/shield_bar/bar_yellow_200.png"),
+	"red": preload("res://modules/ui/shield_bar/bar_red_200.png")
+}
+
 func show_message(text : String):
 	message.text = text
 	message.show()
@@ -18,6 +26,14 @@ func update_score(value : int):
 func update_lives(value : int):
 	for item : int in 3:
 		lives_counter[item].visible = value > item
+
+func update_shield(value: float) -> void:
+	shield_bar.texture_progress = bar_textures["green"]
+	if value < 0.4:
+		shield_bar.texture_progress = bar_textures["red"]
+	elif value < 0.7:
+		shield_bar.texture_progress = bar_textures["yellow"]
+	shield_bar.value = value	
 
 func game_over():
 	show_message("Game Over")

@@ -2,12 +2,21 @@ extends RigidBody2D
 
 signal lives_changed(value : int)
 signal dead
+signal shield_changed
 
+@export_group("Speed")
 @export var engine_power : int = 500
 @export var spin_power : int = 8000
 
+@export_group("Weapon")
 @export var bullet_scene : PackedScene
 @export_range(0, 5, 0.05) var fire_rate : float = 0.25
+
+@export_group("Shield")
+@export var max_shield = 100.0
+@export var shield_regen = 5.0
+
+var shield = 0: set = set_shield
 
 @onready var muzzle : Marker2D = $Muzzle
 
@@ -51,6 +60,8 @@ func change_state(new_state : player_state) -> void:
 
 func _process(delta: float):
 	get_input()
+	
+	shield += shield_regen * delta
 
 func get_input() -> void:
 	thrust = Vector2.ZERO
@@ -99,6 +110,8 @@ func set_lives(value : int) -> void:
 		change_state(player_state.DEAD)
 	else:
 		change_state(player_state.INVUNERABLE)
+	
+	shield = max_shield
 
 func reset() -> void:
 	reset_pos = true
@@ -112,9 +125,8 @@ func _on_invulnerability_timer_timeout():
 
 func _on_body_entered(body : Node):
 	if body.is_in_group("rocks"):
+		shield -= body.size * 25
 		body.explode()
-		lives -= 1
-		explode()
 
 func explode() -> void:
 	var animation_player : AnimationPlayer = $Explosion/AnimationPlayer as AnimationPlayer
@@ -122,3 +134,11 @@ func explode() -> void:
 	animation_player.play("explosion")
 	await animation_player.animation_finished
 	$Explosion.hide()
+
+func set_shield(value):
+	value = min(value, max_shield)
+	shield = value
+	shield_changed.emit(shield / max_shield)
+	if shield <= 0:
+		lives -= 1
+		explode()
