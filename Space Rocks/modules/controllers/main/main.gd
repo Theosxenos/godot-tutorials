@@ -31,6 +31,7 @@ func spawn_rock(size: int, pos = null, vel = null) -> void:
 	r.exploded.connect(self._on_rock_exploded)
 
 func _on_rock_exploded(size : int, radius : int, pos : Vector2, vel : Vector2) -> void:
+	$ExplosionSound.play()
 	if size <= 1:
 		return
 	var player : RigidBody2D = $Player as RigidBody2D
@@ -52,8 +53,11 @@ func new_game():
 	$Player.reset()
 	await hud.get_node("Timer").timeout
 	playing = true
+	
+	$Music.play()
 
 func new_level():
+	$LevelupSound.play()
 	level += 1
 	($HUD as Hud).show_message("Wave %s" % level)
 	for i in level:
@@ -70,6 +74,7 @@ func _process(_delta):
 func game_over():
 	playing = false
 	$HUD.game_over()
+	($Music as AudioStreamPlayer).stop()
 
 func _input(event):
 	if event.is_action_pressed("pause"):

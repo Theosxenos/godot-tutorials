@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b26213ag0ck37"
-path="res://.godot/imported/enemy_laser.wav-b43357d9ebc8f27d9b668eef45d837b9.sample"
+path="res://.godot/imported/enemy_laser.wav-bac711d20027faef8fecdb96343c2a0e.sample"
 
 [deps]
 
-source_file="res://assets/sounds/enemy_laser.wav"
-dest_files=["res://.godot/imported/enemy_laser.wav-b43357d9ebc8f27d9b668eef45d837b9.sample"]
+source_file="res://modules/characters/enemy/enemy_laser.wav"
+dest_files=["res://.godot/imported/enemy_laser.wav-bac711d20027faef8fecdb96343c2a0e.sample"]
 
 [params]
 

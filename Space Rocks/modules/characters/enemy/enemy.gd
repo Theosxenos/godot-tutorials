@@ -32,6 +32,7 @@ func shoot():
 	var b : EnemyBullet = bullet_scene.instantiate() as EnemyBullet
 	get_tree().root.add_child(b)
 	b.start(global_position, dir)
+	$ShootSound.play()
 
 func shoot_pulse(n, delay):
 	for i in n:
@@ -49,9 +50,15 @@ func explode():
 	$GunCooldown.stop()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Sprite2D.hide()
+	
 	$Explosion.show()
 	$Explosion/AnimationPlayer.play("explosion")
-	await $Explosion/AnimationPlayer.animation_finished
+	#await $Explosion/AnimationPlayer.animation_finished
+
+	var sound = $ExplodeSound as AudioStreamPlayer
+	sound.play()
+	await sound.finished
+
 	queue_free()
 
 func _on_body_entered(body):
