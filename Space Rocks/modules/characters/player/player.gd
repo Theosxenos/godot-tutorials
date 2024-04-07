@@ -33,12 +33,19 @@ func change_state(new_state : player_state) -> void:
 	match new_state:
 		player_state.INIT:
 			$CollisionShape2D.set_deferred("disabled", true)
+			$Sprite2D.modulate.a = 0.5
 		player_state.ALIVE:
 			$CollisionShape2D.set_deferred("disabled", false)
+			$Sprite2D.modulate.a = 1.0
 		player_state.INVUNERABLE:
 			$CollisionShape2D.set_deferred("disabled", true)
+			$Sprite2D.modulate.a = 0.5
+			$InvulnerabilityTimer.start()
 		player_state.DEAD:
 			$CollisionShape2D.set_deferred("disabled", true)
+			$Sprite2D.hide()
+			linear_velocity = Vector2.ZERO
+			dead.emit()
 
 	state = new_state
 
@@ -72,7 +79,7 @@ func _integrate_forces(physics_state : PhysicsDirectBodyState2D):
 		physics_state.transform.origin = screensize / 2
 		reset_pos = false
 
-func shoot():
+func shoot() -> void:
 	if state == player_state.INVUNERABLE:
 		return
 
@@ -85,7 +92,7 @@ func shoot():
 func _on_gun_cooldown_timeout():
 	can_shoot = true
 
-func set_lives(value : int):
+func set_lives(value : int) -> void:
 	lives = value
 	lives_changed.emit(lives)
 	if lives <= 0:
@@ -93,8 +100,12 @@ func set_lives(value : int):
 	else:
 		change_state(player_state.INVUNERABLE)
 
-func reset():
+func reset() -> void:
 	reset_pos = true
 	$Sprite2D.show()
 	lives = 3
+	change_state(player_state.ALIVE)
+
+
+func _on_invulnerability_timer_timeout():
 	change_state(player_state.ALIVE)
