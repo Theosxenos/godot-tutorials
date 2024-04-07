@@ -67,6 +67,8 @@ func _process(delta: float):
 func get_input() -> void:
 	thrust = Vector2.ZERO
 	
+	$Exhaust.emitting = false
+	
 	if state in [player_state.DEAD, player_state.INIT]:
 		return
 	
@@ -74,8 +76,9 @@ func get_input() -> void:
 		thrust = transform.x * engine_power
 		if not $EngineSound.playing:
 			$EngineSound.play()
-		else:
-			$EngineSound.stop()
+		$Exhaust.emitting = true
+	else:
+		$EngineSound.stop()
 	rotation_dir = Input.get_axis("rotate_left","rotate_right")
 	
 	if Input.is_action_pressed("shoot") and can_shoot:

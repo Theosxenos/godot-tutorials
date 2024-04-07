@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmbl6ijpcb3e8"
-path="res://.godot/imported/corona.png-0d864ff185c27162e530fe744dfcfb59.ctex"
+path="res://.godot/imported/corona.png-1d6cd87484296fb0586613e0d52d1587.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/corona.png"
-dest_files=["res://.godot/imported/corona.png-0d864ff185c27162e530fe744dfcfb59.ctex"]
+source_file="res://modules/characters/enemy/corona.png"
+dest_files=["res://.godot/imported/corona.png-1d6cd87484296fb0586613e0d52d1587.ctex"]
 
 [params]
 
