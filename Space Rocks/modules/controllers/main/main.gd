@@ -3,6 +3,9 @@ extends Node
 @export var enemy_scene : PackedScene
 @export var rock_scene : PackedScene
 
+@export var enemy_wait_min = 20
+@export var enemy_wait_max = 40
+
 var screensize = Vector2.ZERO
 
 var level : int = 0
@@ -86,4 +89,4 @@ func _on_enemy_timer_timeout():
 	var e : Enemy = enemy_scene.instantiate() as Enemy
 	add_child(e)
 	e.target = $Player
-	$EnemyTimer.start(randf_range(20, 40))
+	$EnemyTimer.start(randf_range(enemy_wait_min, enemy_wait_max))
