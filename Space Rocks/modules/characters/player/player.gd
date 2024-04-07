@@ -109,3 +109,16 @@ func reset() -> void:
 
 func _on_invulnerability_timer_timeout():
 	change_state(player_state.ALIVE)
+
+func _on_body_entered(body : Node):
+	if body.is_in_group("rocks"):
+		body.explode()
+		lives -= 1
+		explode()
+
+func explode() -> void:
+	var animation_player : AnimationPlayer = $Explosion/AnimationPlayer as AnimationPlayer
+	$Explosion.show()
+	animation_player.play("explosion")
+	await animation_player.animation_finished
+	$Explosion.hide()
