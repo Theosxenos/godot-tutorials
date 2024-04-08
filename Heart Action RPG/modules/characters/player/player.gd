@@ -8,10 +8,27 @@ extends CharacterBody2D
 @onready var animation_tree: AnimationTree = $AnimationTree as AnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
 
+enum player_state {
+	MOVE,
+	ROLL,
+	ATTACK
+}
+
+var state: player_state = player_state.MOVE
+
 func _ready():
 	pass
 
 func _physics_process(delta):
+	match state:
+		player_state.MOVE:
+			move_state(delta)
+		player_state.ROLL:
+			pass
+		player_state.ATTACK:
+			attack_state(delta)
+
+func move_state(delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	if direction.length() > 0:
@@ -28,3 +45,9 @@ func _physics_process(delta):
 
 	#move_and_collide(velocity * delta)
 	move_and_slide()
+	
+	if Input.is_action_just_pressed("attack"):
+		state = player_state.ATTACK
+
+func attack_state(delta):
+	pass
