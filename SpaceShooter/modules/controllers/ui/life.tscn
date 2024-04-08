@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://nvnwxvnmqgn4"]
+
+[ext_resource type="Texture2D" uid="uid://b8obe2slf6nff" path="res://modules/controllers/ui/playerLife2_green.png" id="1_qxeq8"]
+
+[node name="Life" type="Sprite2D" groups=["lives"]]
+texture_filter = 1
+texture = ExtResource("1_qxeq8")

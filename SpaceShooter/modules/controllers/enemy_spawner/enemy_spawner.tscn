@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhsrk57y2meac"]
+
+[ext_resource type="Script" path="res://modules/controllers/enemy_spawner/EnemySpawner.cs" id="1_402r4"]
+[ext_resource type="PackedScene" uid="uid://bqvs6nqaystff" path="res://modules/characters/meteor/meteor.tscn" id="2_o7bqd"]
+[ext_resource type="PackedScene" uid="uid://b8bbgwjedhtew" path="res://modules/characters/static_enemy/static_enemy.tscn" id="3_fg72m"]
+
+[node name="EnemySpawner" type="Node2D"]
+position = Vector2(-1, 0)
+script = ExtResource("1_402r4")
+Enemies = Array[PackedScene]([ExtResource("2_o7bqd"), ExtResource("3_fg72m")])
+metadata/_edit_group_ = true
+
+[node name="TopPosition" type="Marker2D" parent="."]
+position = Vector2(965, 30)
+
+[node name="BottomPosition" type="Marker2D" parent="."]
+position = Vector2(965, 482)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="SpawnTimer" to="." method="OnSpawnTimerTimeout"]

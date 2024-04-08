@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqvs6nqaystff"]
+
+[ext_resource type="Script" path="res://modules/characters/meteor/Meteor.cs" id="1_5e2f0"]
+[ext_resource type="Texture2D" uid="uid://d3mx0f4sodake" path="res://modules/characters/meteor/meteorBrown_big1.png" id="1_i6jbs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_otla3"]
+radius = 49.0102
+
+[node name="Meteor" type="Area2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_5e2f0")
+Speed = 50
+Lives = 5
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_i6jbs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -3)
+shape = SubResource("CircleShape2D_otla3")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreenNotifier2dScreenExited"]
