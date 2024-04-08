@@ -1,19 +1,23 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckv0e1uhtbgnl"]
 
-[ext_resource type="Texture2D" uid="uid://ctjm4lnfn1b88" path="res://assets/World/Bush.png" id="1_a5bte"]
+[ext_resource type="PackedScene" uid="uid://fe6tco7jrrq8" path="res://modules/world/bush/bush.tscn" id="2_f63fi"]
 [ext_resource type="PackedScene" uid="uid://gmblljtkmskq" path="res://modules/characters/player/player.tscn" id="2_mo0u0"]
 
-[node name="Main" type="Node"]
-
-[node name="Bush" type="Sprite2D" parent="."]
-position = Vector2(28, 25)
-texture = ExtResource("1_a5bte")
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_mo0u0")]
-position = Vector2(184, 56)
+position = Vector2(104, 72)
 metadata/_edit_group_ = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Bush" parent="." instance=ExtResource("2_f63fi")]
+position = Vector2(56, 72)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(0, 0, 64, 0, 80, 48, 48, 72, 80, 96, 128, 88, 112, 136, 176, 144, 232, 104, 304, 136, 384, 104, 320, 40, 376, 32, 432, 56, 440, 0, 480, 0, 480, 168, 0, 168)
+[node name="Bush2" parent="." instance=ExtResource("2_f63fi")]
+position = Vector2(176, 32)
+
+[node name="Bush3" parent="." instance=ExtResource("2_f63fi")]
+position = Vector2(200, 112)
+
+[node name="Bush4" parent="." instance=ExtResource("2_f63fi")]
+position = Vector2(112, 128)
