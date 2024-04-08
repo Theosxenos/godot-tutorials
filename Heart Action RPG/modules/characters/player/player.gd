@@ -32,6 +32,7 @@ func move_state(delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	if direction.length() > 0:
+		animation_tree.set("parameters/Attack/blend_position", direction)
 		animation_tree.set("parameters/Idle/blend_position", direction)
 		animation_tree.set("parameters/Run/blend_position", direction)
 		animation_state.travel("Run")
@@ -50,4 +51,8 @@ func move_state(delta):
 		state = player_state.ATTACK
 
 func attack_state(delta):
-	pass
+	velocity = Vector2.ZERO
+	animation_state.travel("Attack")
+
+func attack_animation_finished():
+	state = player_state.MOVE
