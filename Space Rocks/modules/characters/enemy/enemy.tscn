@@ -1,0 +1,107 @@
+[gd_scene load_steps=15 format=3 uid="uid://bmffi0bllm0kv"]
+
+[ext_resource type="Script" path="res://modules/characters/enemy/enemy.gd" id="1_katl4"]
+[ext_resource type="Texture2D" uid="uid://ccgq7o3613qu2" path="res://modules/characters/enemy/enemy_saucer.png" id="1_pyxrs"]
+[ext_resource type="PackedScene" uid="uid://v32oinpm5bch" path="res://modules/effects/explosion/explosion.tscn" id="2_635pd"]
+[ext_resource type="PackedScene" uid="uid://btmh8f2vblini" path="res://modules/characters/enemy/projectile/enemy_bullet.tscn" id="2_n4m2o"]
+[ext_resource type="PackedScene" uid="uid://clw41umc25yna" path="res://modules/characters/enemy/paths/enemy_paths.tscn" id="4_ivi83"]
+[ext_resource type="AudioStream" uid="uid://b26213ag0ck37" path="res://modules/characters/enemy/enemy_laser.wav" id="6_iwn88"]
+[ext_resource type="AudioStream" uid="uid://cg0dhxim2hvjm" path="res://assets/sounds/explosion.wav" id="7_7fjmp"]
+[ext_resource type="Texture2D" uid="uid://dmbl6ijpcb3e8" path="res://modules/characters/enemy/corona.png" id="8_raj0f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onmek"]
+radius = 40.0
+
+[sub_resource type="Animation" id="Animation_qiv7q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.668412, 0.0629974, 0.00449262, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5fk45"]
+resource_name = "flash"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.668412, 0.0629974, 0.00449262, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(0.666667, 0.0627451, 0.00392157, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_11qlr"]
+_data = {
+"RESET": SubResource("Animation_qiv7q"),
+"flash": SubResource("Animation_5fk45")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gij1g"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_dcp1r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.340659), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+script = ExtResource("1_katl4")
+bullet_scene = ExtResource("2_n4m2o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.668412, 0.0629974, 0.00449262, 1)
+texture_filter = 1
+texture = ExtResource("1_pyxrs")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_onmek")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_11qlr")
+}
+
+[node name="Explosion" parent="." instance=ExtResource("2_635pd")]
+visible = false
+
+[node name="GunCooldown" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="EnemyPaths" parent="." instance=ExtResource("4_ivi83")]
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_iwn88")
+
+[node name="ExplodeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_7fjmp")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_gij1g")
+amount = 20
+texture = ExtResource("8_raj0f")
+emission_shape = 1
+emission_sphere_radius = 25.0
+gravity = Vector2(0, 0)
+scale_amount_min = 0.0
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_dcp1r")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
