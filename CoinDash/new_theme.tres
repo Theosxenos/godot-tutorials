@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cs4fla4ppqe63"]
+
+[ext_resource type="FontFile" uid="uid://dqrmqwaqtmniv" path="res://assets/Kenney Bold.ttf" id="1_fudot"]
+
+[resource]
+default_font = ExtResource("1_fudot")
