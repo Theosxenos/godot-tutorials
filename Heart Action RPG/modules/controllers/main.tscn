@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckv0e1uhtbgnl"]
+[gd_scene load_steps=10 format=3 uid="uid://ckv0e1uhtbgnl"]
 
 [ext_resource type="TileSet" uid="uid://d3tk0v1ikv4rv" path="res://modules/world/tilesets/dirt_road.tres" id="2_angjh"]
 [ext_resource type="PackedScene" uid="uid://fe6tco7jrrq8" path="res://modules/world/bush/bush.tscn" id="2_f63fi"]
 [ext_resource type="PackedScene" uid="uid://gmblljtkmskq" path="res://modules/characters/player/player.tscn" id="2_mo0u0"]
 [ext_resource type="Texture2D" uid="uid://oxuro1wmlvyc" path="res://assets/World/CliffTileset.png" id="3_7mkph"]
 [ext_resource type="Texture2D" uid="uid://4xm082hvu55n" path="res://assets/World/GrassBackground.png" id="3_yskxl"]
+[ext_resource type="PackedScene" uid="uid://c835wqacjdwlj" path="res://modules/world/grass/grass.tscn" id="6_i4y8x"]
+[ext_resource type="PackedScene" uid="uid://dbtkbamup68k3" path="res://modules/characters/bat/bat.tscn" id="7_v1yme"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wb3kj"]
 texture = ExtResource("3_7mkph")
@@ -482,6 +484,7 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_lopsr"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(1, 0, 0, 1)
@@ -495,6 +498,7 @@ position = Vector2(160, 90)
 texture = ExtResource("3_yskxl")
 region_enabled = true
 region_rect = Rect2(0, 0, 320, 180)
+metadata/_edit_lock_ = true
 
 [node name="TextureRectBackground" type="TextureRect" parent="."]
 visible = false
@@ -510,11 +514,13 @@ stretch_mode = 1
 tile_set = ExtResource("2_angjh")
 format = 2
 layer_0/tile_data = PackedInt32Array(524288, 65536, 2, 458752, 65536, 0, 458753, 65536, 0, 458754, 65536, 0, 458755, 65536, 0, 458756, 458752, 2, 524292, 589824, 0, 524293, 131072, 0, 589829, 589824, 0, 589830, 131072, 0, 524289, 65536, 2, 524290, 65536, 2, 524291, 65536, 2, 589828, 0, 2, 655365, 0, 2, 655366, 327680, 3, 655367, 393216, 0, 720903, 0, 2, 720904, 131072, 2, 655368, 131072, 0, 8, 0, 1, 9, 131072, 1, 65545, 131072, 1, 65544, 0, 1, 131080, 0, 1, 131081, 131072, 1, 196617, 327680, 2, 196618, 65536, 0, 196619, 131072, 0, 262155, 327680, 3, 262154, 65536, 2, 262153, 65536, 2, 196616, 393216, 2, 262156, 65536, 3, 327693, 589824, 2, 393230, 589824, 0, 458767, 589824, 0, 393229, 0, 2, 327694, 131072, 0, 262157, 458752, 0, 458766, 0, 2, 458768, 65536, 0, 524304, 65536, 2, 458769, 65536, 0, 458770, 65536, 0, 458771, 65536, 0, 524305, 65536, 2, 524306, 65536, 2, 524307, 65536, 2, 393231, 131072, 0, 524303, 0, 2, 655373, 0, 0, 655374, 65536, 0, 655375, 131072, 0, 720911, 327680, 3, 720910, 65536, 2, 720909, 393216, 3, 720908, 0, 3, 720912, 131072, 3, 262150, 393216, 3, 262151, 65536, 2, 262152, 65536, 2, 196615, 65536, 0, 196614, 0, 0, 393220, 196608, 1, 327684, 262144, 0, 262149, 262144, 0, 327685, 458752, 3, -65528, 0, 0, -65527, 131072, 0, 458772, 131072, 0, 524308, 131072, 2, 524287, 0, 0, 589823, 0, 2)
+metadata/_edit_lock_ = true
 
 [node name="CliffTiles" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_lopsr")
 format = 2
 layer_0/tile_data = PackedInt32Array(65537, 131073, 2, 65536, 327681, 1, 1, 327681, 1, -65535, 65537, 0, 0, 65537, 1, -65536, 65537, 0, 3, 131073, 2, 2, 65537, 2, -65533, 131073, 0, -65534, 65537, 0, 131071, 1, 1, 65535, 1, 1, -1, 1, 0, 131072, 131073, 2, 196607, 1, 2, 393216, 65537, 2, 327680, 65537, 0, 458751, 1, 2, 393215, 1, 0, 393217, 131073, 2, 327681, 131073, 0, 10, 131073, 1, -65526, 131073, 0, 9, 393217, 1, -65527, 65537, 0, 8, 1, 2, -65528, 393217, 0, -65529, 1, 3, 65546, 655361, 3, 65545, 1, 2, 131082, 196609, 2)
+metadata/_edit_lock_ = true
 
 [node name="Level" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -523,17 +529,100 @@ y_sort_enabled = true
 position = Vector2(104, 72)
 metadata/_edit_group_ = true
 
-[node name="Bush" parent="Level" instance=ExtResource("2_f63fi")]
+[node name="Bushes" type="Node2D" parent="Level"]
+y_sort_enabled = true
+metadata/_edit_group_ = true
+
+[node name="Bush" parent="Level/Bushes" instance=ExtResource("2_f63fi")]
 position = Vector2(56, 72)
 
-[node name="Bush2" parent="Level" instance=ExtResource("2_f63fi")]
+[node name="Bush2" parent="Level/Bushes" instance=ExtResource("2_f63fi")]
 position = Vector2(176, 32)
 
-[node name="Bush3" parent="Level" instance=ExtResource("2_f63fi")]
+[node name="Bush3" parent="Level/Bushes" instance=ExtResource("2_f63fi")]
 position = Vector2(200, 112)
 
-[node name="Bush4" parent="Level" instance=ExtResource("2_f63fi")]
+[node name="Bush4" parent="Level/Bushes" instance=ExtResource("2_f63fi")]
 position = Vector2(112, 128)
 
-[node name="Bush5" parent="Level" instance=ExtResource("2_f63fi")]
+[node name="Bush5" parent="Level/Bushes" instance=ExtResource("2_f63fi")]
 position = Vector2(247, 88)
+
+[node name="Grass" type="Node2D" parent="Level"]
+y_sort_enabled = true
+metadata/_edit_group_ = true
+
+[node name="Grass" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(67, 33)
+
+[node name="Grass2" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(85, 33)
+
+[node name="Grass3" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(237, 1)
+
+[node name="Grass4" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(237, 19)
+
+[node name="Grass5" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(218, 19)
+
+[node name="Grass6" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(218, 2)
+
+[node name="Grass7" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(154, 85)
+
+[node name="Grass8" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(154, 103)
+
+[node name="Grass9" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(135, 103)
+
+[node name="Grass10" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(135, 86)
+
+[node name="Grass11" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(154, 119)
+
+[node name="Grass12" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(154, 137)
+
+[node name="Grass13" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(135, 137)
+
+[node name="Grass14" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(135, 120)
+
+[node name="Grass15" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(47, 143)
+
+[node name="Grass16" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(30, 143)
+
+[node name="Grass17" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(13, 143)
+
+[node name="Grass18" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(-3, 143)
+
+[node name="Grass19" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(300, 95)
+
+[node name="Grass20" parent="Level/Grass" instance=ExtResource("6_i4y8x")]
+position = Vector2(282, 95)
+
+[node name="Bat" parent="Level" instance=ExtResource("7_v1yme")]
+position = Vector2(19, 129)
+knockback_friction = 200
+knockback_force = 110
+
+[node name="Bat2" parent="Level" instance=ExtResource("7_v1yme")]
+position = Vector2(144, 28)
+knockback_friction = 200
+knockback_force = 110
+
+[node name="Bat3" parent="Level" instance=ExtResource("7_v1yme")]
+position = Vector2(73, 105)
+knockback_friction = 200
+knockback_force = 110
