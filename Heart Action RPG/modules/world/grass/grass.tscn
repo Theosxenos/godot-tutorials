@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c835wqacjdwlj"]
+[gd_scene load_steps=5 format=3 uid="uid://c835wqacjdwlj"]
 
 [ext_resource type="Script" path="res://modules/world/grass/grass.gd" id="1_0n8ac"]
 [ext_resource type="Texture2D" uid="uid://cr0gi0mqeww52" path="res://assets/World/Grass.png" id="1_ohxj3"]
-[ext_resource type="PackedScene" uid="uid://ddepfwdvyng1b" path="res://modules/effects/grass/grass_effect.tscn" id="2_wr1ks"]
 [ext_resource type="PackedScene" uid="uid://cvpaw6cwr0jyc" path="res://modules/collission_boxes/hurtbox.tscn" id="3_244c5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puanr"]
@@ -10,7 +9,6 @@ size = Vector2(14, 14)
 
 [node name="Grass" type="Node2D"]
 script = ExtResource("1_0n8ac")
-effect_scene = ExtResource("2_wr1ks")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ohxj3")

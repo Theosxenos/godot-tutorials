@@ -614,15 +614,12 @@ position = Vector2(282, 95)
 
 [node name="Bat" parent="Level" instance=ExtResource("7_v1yme")]
 position = Vector2(19, 129)
-knockback_friction = 200
 knockback_force = 110
 
 [node name="Bat2" parent="Level" instance=ExtResource("7_v1yme")]
 position = Vector2(144, 28)
-knockback_friction = 200
 knockback_force = 110
 
 [node name="Bat3" parent="Level" instance=ExtResource("7_v1yme")]
 position = Vector2(73, 105)
-knockback_friction = 200
 knockback_force = 110

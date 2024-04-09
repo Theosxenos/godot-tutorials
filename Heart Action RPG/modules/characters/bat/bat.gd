@@ -5,9 +5,7 @@ extends CharacterBody2D
 
 @onready var stats = $Stats as Stats
 
-func _ready():
-	print(stats.health)
-	print(stats.max_health)
+const DEATH_SCENE: PackedScene = preload("res://modules/effects/enemy/enemy_death_effect.tscn")
 
 func _physics_process(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -20,4 +18,11 @@ func _on_hurtbox_area_entered(area: Area2D):
 	velocity = knockback_direction.normalized() * knockback_force
 
 func _on_stats_no_health():
+	await create_effect()	
 	queue_free()
+	
+func create_effect():
+	$AnimatedSprite.hide()
+	var death_instance = DEATH_SCENE.instantiate() as Effect
+	add_child(death_instance)
+	await death_instance.animation_finished
