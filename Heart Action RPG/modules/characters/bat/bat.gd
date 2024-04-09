@@ -16,11 +16,16 @@ func _on_hurtbox_area_entered(area: Area2D):
 	stats.health -= (area as Hitbox).damage
 	var knockback_direction = (position - area.owner.position) as Vector2
 	velocity = knockback_direction.normalized() * knockback_force
+	create_hit_effect()
+
+func create_hit_effect():
+	if stats.health > 0:
+		($Hurtbox as Hurtbox).create_hit_effect()
 
 func _on_stats_no_health():
 	await create_effect()	
 	queue_free()
-	
+
 func create_effect():
 	$AnimatedSprite.hide()
 	var death_instance = DEATH_SCENE.instantiate() as Effect
