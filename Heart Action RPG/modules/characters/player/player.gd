@@ -10,6 +10,9 @@ extends CharacterBody2D
 @onready var animation_tree: AnimationTree = $AnimationTree as AnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
 
+@onready var hurtbox: Hurtbox = $Hurtbox as Hurtbox
+
+
 #@onready var sword_hitbox = $SwordPivot/SwordHitbox
 
 enum player_state {
@@ -22,9 +25,11 @@ var state: player_state = player_state.MOVE
 
 var roll_vector: Vector2 = Vector2.DOWN
 
+var stats: Stats = PlayerStats as Stats
+
 func _ready():
 	#sword_hitbox.knockback_vector = roll_vector
-	pass
+	stats.no_health.connect(die)
 
 func _physics_process(delta):
 	match state:
@@ -78,3 +83,15 @@ func roll_animation_finished():
 	#velocity = Vector2.ZERO
 	velocity = velocity * roll_slide_speed_modifier
 	state = player_state.MOVE
+
+
+func _on_hurtbox_area_entered(area):
+	hurtbox.create_hit_effect(Vector2.UP * 10)
+	hurtbox.start_invincibility(.5)
+	stats.health -= 1
+	print(stats.health)
+
+func die():
+	var animation = hurtbox.get_node("HitEffect") as AnimatedSprite2D
+	await animation.animation_finished
+	queue_free()
