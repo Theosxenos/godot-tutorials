@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckv0e1uhtbgnl"]
+[gd_scene load_steps=11 format=3 uid="uid://ckv0e1uhtbgnl"]
 
+[ext_resource type="Script" path="res://modules/controllers/main.gd" id="1_a826j"]
 [ext_resource type="TileSet" uid="uid://d3tk0v1ikv4rv" path="res://modules/world/tilesets/dirt_road.tres" id="2_angjh"]
 [ext_resource type="PackedScene" uid="uid://fe6tco7jrrq8" path="res://modules/world/bush/bush.tscn" id="2_f63fi"]
 [ext_resource type="PackedScene" uid="uid://gmblljtkmskq" path="res://modules/characters/player/player.tscn" id="2_mo0u0"]
@@ -491,6 +492,7 @@ terrain_set_0/terrain_0/color = Color(1, 0, 0, 1)
 sources/1 = SubResource("TileSetAtlasSource_wb3kj")
 
 [node name="Main" type="Node"]
+script = ExtResource("1_a826j")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -523,7 +525,6 @@ layer_0/tile_data = PackedInt32Array(65537, 131073, 2, 65536, 327681, 1, 1, 3276
 metadata/_edit_lock_ = true
 
 [node name="Level" type="Node2D" parent="."]
-y_sort_enabled = true
 
 [node name="Player" parent="Level" instance=ExtResource("2_mo0u0")]
 position = Vector2(104, 72)
@@ -623,3 +624,4 @@ knockback_force = 110
 [node name="Bat3" parent="Level" instance=ExtResource("7_v1yme")]
 position = Vector2(73, 105)
 knockback_force = 110
+stop_distance = 0.99

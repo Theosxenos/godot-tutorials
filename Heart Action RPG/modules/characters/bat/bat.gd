@@ -3,13 +3,55 @@ extends CharacterBody2D
 @export var knockback_friction = 200
 @export var knockback_force = 110
 
+@export var movement_friction = 200
+@export var acceleration = 300
+@export var max_speed = 50
+
+@export var stop_distance: float = 2 # 2 == Vector2.ONE.length_squared()
+
 @onready var stats = $Stats as Stats
+@onready var player_detection_zone: PlayerDetectionZone = $PlayerDetectionZone as PlayerDetectionZone
+@onready var animated_sprite = $AnimatedSprite
 
 const DEATH_SCENE: PackedScene = preload("res://modules/effects/enemy/enemy_death_effect.tscn")
+
+enum bat_state {
+	IDLE,
+	WANDER,
+	CHASE
+}
+
+var state: bat_state = bat_state.CHASE as bat_state
 
 func _physics_process(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
 	move_and_slide()
+
+	match state:
+		bat_state.IDLE:
+			velocity = get_real_velocity()
+			velocity = velocity.move_toward(Vector2.ZERO, movement_friction * delta)
+			seek_player()
+		bat_state.WANDER:
+			pass
+		bat_state.CHASE:
+			var player = player_detection_zone.player
+			if player != null :
+				var direction: Vector2 = player.global_position - global_position
+				#var direction: Vector2 = position.direction_to(player.global_position)
+				if direction.length_squared() > stop_distance:
+					velocity = velocity.move_toward(direction.normalized() * max_speed, acceleration * delta)
+					animated_sprite.flip_h = velocity.x < 0
+				else:
+					velocity = Vector2.ZERO
+			else:
+				state = bat_state.IDLE
+			
+	move_and_slide()
+
+func seek_player():
+	if player_detection_zone.can_see_player():
+		state = bat_state.CHASE
 
 func _on_hurtbox_area_entered(area: Area2D):
 	#velocity = area.knockback_vector * knockback_force
