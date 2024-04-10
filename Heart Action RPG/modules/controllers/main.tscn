@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckv0e1uhtbgnl"]
+[gd_scene load_steps=13 format=3 uid="uid://ckv0e1uhtbgnl"]
 
 [ext_resource type="Script" path="res://modules/controllers/main.gd" id="1_a826j"]
 [ext_resource type="TileSet" uid="uid://d3tk0v1ikv4rv" path="res://modules/world/tilesets/dirt_road.tres" id="2_angjh"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://4xm082hvu55n" path="res://assets/World/GrassBackground.png" id="3_yskxl"]
 [ext_resource type="PackedScene" uid="uid://c835wqacjdwlj" path="res://modules/world/grass/grass.tscn" id="6_i4y8x"]
 [ext_resource type="PackedScene" uid="uid://dbtkbamup68k3" path="res://modules/characters/bat/bat.tscn" id="7_v1yme"]
+[ext_resource type="PackedScene" uid="uid://bjo8gysur13nt" path="res://modules/world/tree/tree.tscn" id="9_t8mfk"]
+[ext_resource type="PackedScene" uid="uid://5nikspiavd8l" path="res://modules/controllers/health_ui/health_Ui.tscn" id="9_whaoq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wb3kj"]
 texture = ExtResource("3_7mkph")
@@ -623,6 +625,17 @@ position = Vector2(144, 28)
 knockback_force = 110
 
 [node name="Bat3" parent="Level" instance=ExtResource("7_v1yme")]
-position = Vector2(73, 105)
+position = Vector2(40, 129)
 knockback_force = 110
 stop_distance = 0.99
+
+[node name="Trees" type="Node2D" parent="Level"]
+
+[node name="Tree" parent="Level/Trees" instance=ExtResource("9_t8mfk")]
+position = Vector2(300, 158)
+
+[node name="Tree2" parent="Level/Trees" instance=ExtResource("9_t8mfk")]
+position = Vector2(273, 158)
+
+[node name="HealthUi" parent="." instance=ExtResource("9_whaoq")]
+metadata/_edit_lock_ = true

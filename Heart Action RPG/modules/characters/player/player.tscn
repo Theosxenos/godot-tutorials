@@ -1,7 +1,8 @@
-[gd_scene load_steps=56 format=3 uid="uid://gmblljtkmskq"]
+[gd_scene load_steps=57 format=3 uid="uid://gmblljtkmskq"]
 
 [ext_resource type="Script" path="res://modules/characters/player/player.gd" id="1_ghokg"]
 [ext_resource type="Texture2D" uid="uid://cgrl2j2mr06us" path="res://assets/Player/Player.png" id="1_m12qg"]
+[ext_resource type="Texture2D" uid="uid://dhqsyefmtdchx" path="res://assets/Shadows/MediumShadow.png" id="2_5qd0l"]
 [ext_resource type="PackedScene" uid="uid://cf8r38powf2yk" path="res://modules/collission_boxes/hitbox.tscn" id="3_rk2mv"]
 [ext_resource type="Script" path="res://modules/characters/player/sword_hitbox.gd" id="4_l5cch"]
 [ext_resource type="PackedScene" uid="uid://cvpaw6cwr0jyc" path="res://modules/collission_boxes/hurtbox.tscn" id="5_kd17x"]
@@ -712,6 +713,10 @@ max_speed = 100
 roll_speed = 80
 roll_slide_speed_modifier = 0.3
 friction = 500
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("2_5qd0l")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -9)

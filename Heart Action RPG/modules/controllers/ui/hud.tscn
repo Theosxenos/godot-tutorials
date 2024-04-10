@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bai4w0vnypj0k"]
+
+[ext_resource type="Script" path="res://modules/controllers/ui/hud.gd" id="1_amscu"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_amscu")
+
+[node name="LiveCounter" type="HBoxContainer" parent="."]
+offset_right = 53.0
+offset_bottom = 11.0

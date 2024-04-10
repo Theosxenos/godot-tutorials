@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://fe6tco7jrrq8"]
+[gd_scene load_steps=4 format=3 uid="uid://fe6tco7jrrq8"]
 
+[ext_resource type="Texture2D" uid="uid://dkv6ha44gaqtg" path="res://assets/Shadows/LargeShadow.png" id="1_dwbtr"]
 [ext_resource type="Texture2D" uid="uid://ctjm4lnfn1b88" path="res://assets/World/Bush.png" id="1_fc4lv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bpdnl"]
@@ -7,6 +8,10 @@ radius = 7.0
 height = 26.0
 
 [node name="Bush" type="StaticBody2D"]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("1_dwbtr")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -4)

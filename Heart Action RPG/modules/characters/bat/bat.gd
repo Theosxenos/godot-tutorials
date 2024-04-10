@@ -11,7 +11,7 @@ extends CharacterBody2D
 
 @onready var stats = $Stats as Stats
 @onready var player_detection_zone: PlayerDetectionZone = $PlayerDetectionZone as PlayerDetectionZone
-@onready var animated_sprite = $AnimatedSprite
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 
 const DEATH_SCENE: PackedScene = preload("res://modules/effects/enemy/enemy_death_effect.tscn")
 
@@ -22,6 +22,11 @@ enum bat_state {
 }
 
 var state: bat_state = bat_state.CHASE as bat_state
+
+func _ready():
+	var frames: SpriteFrames = animated_sprite.sprite_frames
+	randomize()
+	animated_sprite.frame = randi_range(0, frames.get_frame_count("fly"))
 
 func _physics_process(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
