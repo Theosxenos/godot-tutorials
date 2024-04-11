@@ -52,7 +52,10 @@ func _physics_process(delta):
 					velocity = Vector2.ZERO
 			else:
 				state = bat_state.IDLE
-			
+	
+	var soft_collision := $SoftCollision as SoftCollision
+	if soft_collision.has_overlapping_areas():
+		velocity += soft_collision.get_push_vector() * 400 * delta
 	move_and_slide()
 
 

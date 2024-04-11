@@ -501,8 +501,7 @@ texture_repeat = 2
 position = Vector2(160, 90)
 texture = ExtResource("3_yskxl")
 region_enabled = true
-region_rect = Rect2(0, 0, 320, 180)
-metadata/_edit_lock_ = true
+region_rect = Rect2(0, 0, 960, 540)
 
 [node name="TextureRectBackground" type="TextureRect" parent="."]
 visible = false
@@ -513,6 +512,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_yskxl")
 stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="PathTiles" type="TileMap" parent="."]
 tile_set = ExtResource("2_angjh")
@@ -532,6 +532,9 @@ y_sort_enabled = true
 [node name="Player" parent="Level" instance=ExtResource("2_mo0u0")]
 position = Vector2(104, 72)
 metadata/_edit_group_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/Player"]
+remote_path = NodePath("../../Camera2D")
 
 [node name="Bushes" type="Node2D" parent="Level"]
 y_sort_enabled = true
@@ -637,5 +640,13 @@ position = Vector2(300, 158)
 [node name="Tree2" parent="Level/Trees" instance=ExtResource("9_t8mfk")]
 position = Vector2(273, 158)
 
-[node name="HealthUi" parent="." instance=ExtResource("9_whaoq")]
+[node name="Camera2D" type="Camera2D" parent="Level"]
+position = Vector2(104, 72)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUi" parent="CanvasLayer" instance=ExtResource("9_whaoq")]
 metadata/_edit_lock_ = true
