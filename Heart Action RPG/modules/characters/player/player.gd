@@ -93,4 +93,4 @@ func _on_hurtbox_area_entered(area):
 func die():
 	var animation = hurtbox.get_node("HitEffect") as AnimatedSprite2D
 	await animation.animation_finished
-	queue_free()
+	#queue_free()

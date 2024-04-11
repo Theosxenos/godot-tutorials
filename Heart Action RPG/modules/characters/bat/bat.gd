@@ -17,16 +17,21 @@ const DEATH_SCENE: PackedScene = preload("res://modules/effects/enemy/enemy_deat
 
 @export var stop_distance: float = 2 # 2 == Vector2.ONE.length_squared()
 
+@export var behaviour_list: Array[bat_state] = [bat_state.IDLE, bat_state.WANDER]
+
 var state: bat_state = bat_state.CHASE as bat_state
 
 @onready var stats = $Stats as Stats
 @onready var player_detection_zone: PlayerDetectionZone = $PlayerDetectionZone as PlayerDetectionZone
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
+@onready var wander_controller := $WanderController as WanderController
 
 func _ready():
 	var frames: SpriteFrames = animated_sprite.sprite_frames
 	randomize()
 	animated_sprite.frame = randi_range(0, frames.get_frame_count("fly"))
+
+	state = pick_random_state(behaviour_list)
 
 
 func _physics_process(delta):
@@ -37,19 +42,33 @@ func _physics_process(delta):
 		bat_state.IDLE:
 			velocity = get_real_velocity()
 			velocity = velocity.move_toward(Vector2.ZERO, movement_friction * delta)
+			
+			if wander_controller.get_time_left() == 0:
+				update_state()
+			
 			seek_player()
+
 		bat_state.WANDER:
-			pass
+			if wander_controller.get_time_left() == 0:
+				update_state()
+
+			accelerate_towards_point(wander_controller.target_position, delta)
+			
+			if global_position.distance_squared_to(wander_controller.target_position) <= stop_distance: #<= max_speed * delta:
+				update_state()
+			
+			seek_player()
+
 		bat_state.CHASE:
 			var player = player_detection_zone.player
 			if player != null :
-				var direction: Vector2 = player.global_position - global_position
-				#var direction: Vector2 = position.direction_to(player.global_position)
-				if direction.length_squared() > stop_distance:
-					velocity = velocity.move_toward(direction.normalized() * max_speed, acceleration * delta)
-					animated_sprite.flip_h = velocity.x < 0
-				else:
-					velocity = Vector2.ZERO
+				# var direction: Vector2 = player.global_position - global_position
+				# #var direction: Vector2 = position.direction_to(player.global_position)
+				# if direction.length_squared() > stop_distance:
+				# 	velocity = velocity.move_toward(direction.normalized() * max_speed, acceleration * delta)
+				# 	animated_sprite.flip_h = velocity.x < 0
+				if global_position.distance_squared_to(player.global_position) > stop_distance:
+					accelerate_towards_point(player.global_position, delta)
 			else:
 				state = bat_state.IDLE
 	
@@ -59,9 +78,26 @@ func _physics_process(delta):
 	move_and_slide()
 
 
+func update_state():
+	state = pick_random_state(behaviour_list)
+	if state == bat_state.WANDER:
+		wander_controller.start_wander_timer(randf_range(1,3))
+
+func accelerate_towards_point(point: Vector2, delta: float):
+	var direction = global_position.direction_to(point)
+	velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
+	animated_sprite.flip_h = velocity.x < 0
+
+
 func seek_player():
 	if player_detection_zone.can_see_player():
 		state = bat_state.CHASE
+
+
+func pick_random_state(state_list: Array[bat_state]) -> bat_state:
+	# state_list.shuffle()
+	# return state_list.pop_front()
+	return state_list.pick_random()
 
 
 func create_hit_effect():
