@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c73nsarmutg0l" path="res://modules/controllers/wander/wander_controller.tscn" id="9_cq6pe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oxwqa"]
+resource_local_to_scene = true
 shader = ExtResource("2_3s0it")
 shader_parameter/Active = false
 
