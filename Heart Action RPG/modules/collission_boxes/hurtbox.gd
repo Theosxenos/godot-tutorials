@@ -9,10 +9,10 @@ signal invincibility_stopped
 
 const HIT_EFFECT = preload("res://modules/effects/hit/hit_effect.tscn")
 
-func create_hit_effect(position: Vector2 = Vector2.ZERO):
+func create_hit_effect(pos: Vector2 = Vector2.ZERO):
 	var effect: Effect = HIT_EFFECT.instantiate() as Effect
 	add_child(effect)
-	effect.position = position
+	effect.position = pos
 	hit_audio.play()
 
 func set_invincibility(value):

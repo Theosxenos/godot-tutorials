@@ -88,7 +88,7 @@ func roll_animation_finished():
 func _on_hurtbox_area_entered(area):
 	hurtbox.create_hit_effect(Vector2.UP * 10)
 	hurtbox.start_invincibility(.5)
-	stats.health -= 1
+	stats.health -= (area as Hitbox).damage
 
 func die():
 	var animation = hurtbox.get_node("HitEffect") as AnimatedSprite2D
