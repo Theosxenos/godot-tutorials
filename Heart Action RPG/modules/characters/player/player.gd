@@ -1,17 +1,17 @@
 extends CharacterBody2D
 
-@export var acceleration = 300
-@export var max_speed = 120
-@export var roll_speed = 125
-@export_range(0.1,1,0.1) var roll_slide_speed_modifier = 0.8
-@export var friction = 400
+@export var acceleration := 300
+@export var max_speed := 120
+@export var roll_speed := 125
+@export_range(0.1,1,0.1) var roll_slide_speed_modifier := 0.8
+@export var friction: int = 400
 
-@onready var animation_player = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree as AnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
 
 @onready var hurtbox: Hurtbox = $Hurtbox as Hurtbox
-
+@onready var blink_player := $BlinkAnimationPlayer as AnimationPlayer
 
 #@onready var sword_hitbox = $SwordPivot/SwordHitbox
 
@@ -94,3 +94,11 @@ func die():
 	var animation = hurtbox.get_node("HitEffect") as AnimatedSprite2D
 	await animation.animation_finished
 	#queue_free()
+
+
+func _on_hurtbox_invincibility_started():
+	blink_player.play("start")
+
+
+func _on_hurtbox_invincibility_stopped():
+	blink_player.play("stop")

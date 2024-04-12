@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvpaw6cwr0jyc"]
+[gd_scene load_steps=3 format=3 uid="uid://cvpaw6cwr0jyc"]
 
 [ext_resource type="Script" path="res://modules/collission_boxes/hurtbox.gd" id="1_6davi"]
+[ext_resource type="AudioStream" uid="uid://cqmllp3x0x5j5" path="res://assets/Music and Sounds/Hurt.wav" id="2_7j0sl"]
 
 [node name="Hurtbox" type="Area2D"]
 collision_layer = 0
@@ -11,5 +12,9 @@ script = ExtResource("1_6davi")
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_7j0sl")
+volume_db = -10.0
 
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

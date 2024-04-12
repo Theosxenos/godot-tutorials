@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dbtkbamup68k3"]
+[gd_scene load_steps=27 format=3 uid="uid://dbtkbamup68k3"]
 
 [ext_resource type="Texture2D" uid="uid://bvhrv0mmn3vaa" path="res://assets/Enemies/Bat.png" id="1_mjpub"]
 [ext_resource type="Script" path="res://modules/characters/bat/bat.gd" id="1_ry3ur"]
+[ext_resource type="Shader" path="res://modules/effects/shared/white_colour.gdshader" id="2_3s0it"]
 [ext_resource type="Texture2D" uid="uid://0omxbx3voqo0" path="res://assets/Shadows/SmallShadow.png" id="2_cakwx"]
 [ext_resource type="PackedScene" uid="uid://cvpaw6cwr0jyc" path="res://modules/collission_boxes/hurtbox.tscn" id="3_k5u7j"]
 [ext_resource type="PackedScene" uid="uid://bca6i1mgfi5tg" path="res://modules/characters/shared/stats.tscn" id="5_05uiu"]
@@ -9,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://cf8r38powf2yk" path="res://modules/collission_boxes/hitbox.tscn" id="7_c7whx"]
 [ext_resource type="PackedScene" uid="uid://1nirm74xkydv" path="res://modules/collission_boxes/soft_collision.tscn" id="8_aw4tj"]
 [ext_resource type="PackedScene" uid="uid://c73nsarmutg0l" path="res://modules/controllers/wander/wander_controller.tscn" id="9_cq6pe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oxwqa"]
+shader = ExtResource("2_3s0it")
+shader_parameter/Active = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ldwus"]
 atlas = ExtResource("1_mjpub")
@@ -69,6 +74,61 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_pxdj7"]
 radius = 3.0
 
+[sub_resource type="Animation" id="Animation_5drvu"]
+resource_name = "start"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/Active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_5uhxa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/Active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_l0ce6"]
+resource_name = "stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/Active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wykm6"]
+_data = {
+"RESET": SubResource("Animation_5uhxa"),
+"start": SubResource("Animation_5drvu"),
+"stop": SubResource("Animation_l0ce6")
+}
+
 [node name="Bat" type="CharacterBody2D"]
 collision_layer = 16
 script = ExtResource("1_ry3ur")
@@ -77,6 +137,7 @@ max_speed = 30
 behaviour_list = Array[int]([0, 1, 1])
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_oxwqa")
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_bppxl")
 animation = &"fly"
@@ -119,7 +180,14 @@ shape = SubResource("CircleShape2D_pxdj7")
 
 [node name="WanderController" parent="." instance=ExtResource("9_cq6pe")]
 
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wykm6")
+}
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
+[connection signal="invincibility_stopped" from="Hurtbox" to="." method="_on_hurtbox_invincibility_stopped"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 
 [editable path="Hurtbox"]

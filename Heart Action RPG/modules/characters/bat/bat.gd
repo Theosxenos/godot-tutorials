@@ -25,6 +25,7 @@ var state: bat_state = bat_state.CHASE as bat_state
 @onready var player_detection_zone: PlayerDetectionZone = $PlayerDetectionZone as PlayerDetectionZone
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var wander_controller := $WanderController as WanderController
+@onready var blink_animation_player := $BlinkAnimationPlayer as AnimationPlayer
 
 func _ready():
 	var frames: SpriteFrames = animated_sprite.sprite_frames
@@ -118,8 +119,17 @@ func _on_hurtbox_area_entered(area: Area2D):
 	var knockback_direction = (position - area.owner.position) as Vector2
 	velocity = knockback_direction.normalized() * knockback_force
 	create_hit_effect()
+	($Hurtbox as Hurtbox).start_invincibility(0.3)
 
 
 func _on_stats_no_health():
 	await create_effect()	
 	queue_free()
+
+
+func _on_hurtbox_invincibility_started():
+	blink_animation_player.play("start")
+
+
+func _on_hurtbox_invincibility_stopped():
+	blink_animation_player.play("stop")
