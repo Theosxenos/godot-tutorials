@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dvhx6adk8agqc" path="res://Delivery Driver Assets/House 1.png" id="1_hydxn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1k4cx"]
-size = Vector2(732, 544)
+size = Vector2(714.154, 597.435)
 
 [node name="StaticBody2D" type="StaticBody2D"]
 z_index = 2

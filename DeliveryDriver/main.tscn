@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cdj1616dkt4wt"]
+[gd_scene load_steps=19 format=3 uid="uid://cdj1616dkt4wt"]
 
 [ext_resource type="PackedScene" uid="uid://c4hcdch0csiys" path="res://drivy_mc_drive.tscn" id="1_slw83"]
 [ext_resource type="Texture2D" uid="uid://dxf37skrmwmqa" path="res://Delivery Driver Assets/Corner 1.png" id="2_ii785"]
@@ -15,369 +15,485 @@
 [ext_resource type="PackedScene" uid="uid://hq4eh0sdcclu" path="res://house3.tscn" id="14_0s6ek"]
 [ext_resource type="Texture2D" uid="uid://by0hdstaftodr" path="res://Delivery Driver Assets/Curve 2.png" id="14_cv5uy"]
 [ext_resource type="Texture2D" uid="uid://by0817vdlcqsc" path="res://Delivery Driver Assets/Road 1.png" id="14_dqsbj"]
+[ext_resource type="Texture2D" uid="uid://cy2xvnb7x2jxa" path="res://Delivery Driver Assets/Intersection 2.png" id="15_k4tv7"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_x51x5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vc1u4"]
 radius = 504.508
 
 [node name="Main" type="Node2D"]
 
-[node name="Level" type="Node2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(9.8668e-07, 0.426664, 0.0148825, 1)
+position = Vector2(5452, 3048)
+scale = Vector2(20696, 13408)
+texture = SubResource("CanvasTexture_x51x5")
 
-[node name="House1" parent="Level" instance=ExtResource("4_cq8sq")]
+[node name="Level1" type="Node2D" parent="."]
+
+[node name="House1" parent="Level1" instance=ExtResource("4_cq8sq")]
 position = Vector2(600, -1080)
 scale = Vector2(2, 2)
 
-[node name="House5" parent="Level" instance=ExtResource("4_cq8sq")]
+[node name="House5" parent="Level1" instance=ExtResource("4_cq8sq")]
 position = Vector2(-334, 3504)
 rotation = 0.94831
 scale = Vector2(2, 2)
 
-[node name="House2" parent="Level" instance=ExtResource("4_cq8sq")]
+[node name="House2" parent="Level1" instance=ExtResource("4_cq8sq")]
 position = Vector2(3112, -1120)
 rotation = 1.5708
 scale = Vector2(2, 2)
 metadata/_edit_group_ = true
 
-[node name="Sprite" parent="Level/House2" index="0"]
+[node name="Sprite" parent="Level1/House2" index="0"]
 texture = ExtResource("2_im7us")
 
-[node name="CollisionShape2D" parent="Level/House2" index="1"]
+[node name="CollisionShape2D" parent="Level1/House2" index="1"]
 rotation = 1.5708
 
-[node name="House3" parent="Level" instance=ExtResource("4_cq8sq")]
+[node name="House3" parent="Level1" instance=ExtResource("4_cq8sq")]
 position = Vector2(5568, 0)
 rotation = 2.53508
 scale = Vector2(2, 2)
 metadata/_edit_group_ = true
 
-[node name="Sprite" parent="Level/House3" index="0"]
+[node name="Sprite" parent="Level1/House3" index="0"]
 texture = ExtResource("2_im7us")
 
-[node name="CollisionShape2D" parent="Level/House3" index="1"]
+[node name="CollisionShape2D" parent="Level1/House3" index="1"]
 rotation = 1.5708
 
-[node name="House4" parent="Level" instance=ExtResource("4_cq8sq")]
+[node name="House4" parent="Level1" instance=ExtResource("4_cq8sq")]
 position = Vector2(2432, 3216)
 rotation = 4.70879
 scale = Vector2(2, 2)
 metadata/_edit_group_ = true
 
-[node name="Sprite" parent="Level/House4" index="0"]
+[node name="Sprite" parent="Level1/House4" index="0"]
 texture = ExtResource("2_im7us")
 
-[node name="CollisionShape2D" parent="Level/House4" index="1"]
+[node name="CollisionShape2D" parent="Level1/House4" index="1"]
 rotation = 1.5708
 scale = Vector2(1, 1)
 
-[node name="House6" parent="Level" instance=ExtResource("4_cq8sq")]
+[node name="House6" parent="Level1" instance=ExtResource("4_cq8sq")]
 position = Vector2(-896, 5528)
 rotation = 6.28318
 scale = Vector2(2, 2)
 metadata/_edit_group_ = true
 
-[node name="Sprite" parent="Level/House6" index="0"]
+[node name="Sprite" parent="Level1/House6" index="0"]
 texture = ExtResource("2_im7us")
 
-[node name="CollisionShape2D" parent="Level/House6" index="1"]
+[node name="CollisionShape2D" parent="Level1/House6" index="1"]
 rotation = 1.5708
 scale = Vector2(1, 1)
 
-[node name="Corner1" type="Sprite2D" parent="Level"]
+[node name="Corner1" type="Sprite2D" parent="Level1"]
 position = Vector2(-784, 1291)
 texture = ExtResource("2_ii785")
 
-[node name="Corner2" type="Sprite2D" parent="Level"]
+[node name="Corner2" type="Sprite2D" parent="Level1"]
 position = Vector2(3667, 1291)
 rotation = 3.14159
 texture = ExtResource("2_ii785")
 
-[node name="Corner3" type="Sprite2D" parent="Level"]
+[node name="Corner3" type="Sprite2D" parent="Level1"]
 position = Vector2(6200, 4826.27)
 rotation = 3.14159
 scale = Vector2(1, 0.977391)
 texture = ExtResource("2_ii785")
 
-[node name="TSection" type="Sprite2D" parent="Level"]
+[node name="TSection" type="Sprite2D" parent="Level1"]
 position = Vector2(416, 216)
 texture = ExtResource("7_b6okf")
 region_enabled = true
 region_rect = Rect2(0, 0, 1501, 952)
 
-[node name="TSection2" type="Sprite2D" parent="Level"]
+[node name="TSection2" type="Sprite2D" parent="Level1"]
 position = Vector2(1056, 5328)
 texture = ExtResource("7_b6okf")
 region_enabled = true
 region_rect = Rect2(0, 0, 1501, 952)
 
-[node name="Tree1" type="Sprite2D" parent="Level"]
+[node name="Tree1" type="Sprite2D" parent="Level1"]
 position = Vector2(4104, -608)
 rotation = -1.61324
 scale = Vector2(4, 4)
 texture = ExtResource("9_w1uux")
 
-[node name="Tree2" type="Sprite2D" parent="Level"]
+[node name="Tree2" type="Sprite2D" parent="Level1"]
 position = Vector2(4104, -1504)
 rotation = -1.61324
 scale = Vector2(4, 4)
 texture = ExtResource("9_w1uux")
 
-[node name="Tree3" parent="Level" instance=ExtResource("9_fxwji")]
+[node name="Tree3" parent="Level1" instance=ExtResource("9_fxwji")]
 position = Vector2(1056, -64)
 
-[node name="Tree4" parent="Level" instance=ExtResource("9_fxwji")]
+[node name="Tree4" parent="Level1" instance=ExtResource("9_fxwji")]
 position = Vector2(4152, 168)
 rotation = 0.602912
 
-[node name="Road2" type="Sprite2D" parent="Level"]
+[node name="Road2" type="Sprite2D" parent="Level1"]
 position = Vector2(2216, 2090)
 rotation = -1.5708
 texture = ExtResource("8_b5yco")
 
-[node name="Road3" type="Sprite2D" parent="Level"]
+[node name="Road3" type="Sprite2D" parent="Level1"]
 position = Vector2(2166, 491)
 rotation = -1.5708
 texture = ExtResource("7_jo804")
 
-[node name="Curve2" type="Sprite2D" parent="Level"]
+[node name="Curve2" type="Sprite2D" parent="Level1"]
 position = Vector2(718, 2390)
 rotation = 1.5708
 texture = ExtResource("14_cv5uy")
 
-[node name="Park" type="StaticBody2D" parent="Level"]
+[node name="Park" type="StaticBody2D" parent="Level1"]
 position = Vector2(-8, 1272)
 rotation = 1.899
 metadata/_edit_group_ = true
 
-[node name="Tree2" type="Sprite2D" parent="Level/Park"]
+[node name="Tree2" type="Sprite2D" parent="Level1/Park"]
 position = Vector2(-8.19385, 7.25427)
 rotation = 3.06852
 scale = Vector2(3, 3)
 texture = ExtResource("10_k0jf2")
 
-[node name="Tree4" type="Sprite2D" parent="Level/Park"]
+[node name="Tree4" type="Sprite2D" parent="Level1/Park"]
 position = Vector2(-376.193, -152.746)
 rotation = 2.13925
 scale = Vector2(3, 3)
 texture = ExtResource("12_lalgy")
 
-[node name="Tree7" type="Sprite2D" parent="Level/Park"]
+[node name="Tree7" type="Sprite2D" parent="Level1/Park"]
 position = Vector2(-216.194, 415.254)
 rotation = 0.666024
 scale = Vector2(3, 3)
 texture = ExtResource("12_lalgy")
 
-[node name="Tree5" type="Sprite2D" parent="Level/Park"]
+[node name="Tree5" type="Sprite2D" parent="Level1/Park"]
 position = Vector2(463.806, -0.745728)
 rotation = -2.07822
 scale = Vector2(3, 3)
 texture = ExtResource("10_k0jf2")
 
-[node name="Tree6" type="Sprite2D" parent="Level/Park"]
+[node name="Tree6" type="Sprite2D" parent="Level1/Park"]
 position = Vector2(134.444, -439.463)
 rotation = -3.00748
 scale = Vector2(3, 3)
 texture = ExtResource("12_lalgy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Park"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1/Park"]
 position = Vector2(7.37256, 14.2003)
 shape = SubResource("CircleShape2D_vc1u4")
 
-[node name="Rocks1" parent="Level/Park" instance=ExtResource("7_e6417")]
+[node name="Rocks1" parent="Level1/Park" instance=ExtResource("7_e6417")]
 position = Vector2(249.303, 393.375)
 rotation = -0.478876
 
-[node name="Park2" type="StaticBody2D" parent="Level"]
+[node name="Park2" type="StaticBody2D" parent="Level1"]
 position = Vector2(2920, 1280)
 rotation = -1.19135
 metadata/_edit_group_ = true
 
-[node name="Tree2" type="Sprite2D" parent="Level/Park2"]
+[node name="Tree2" type="Sprite2D" parent="Level1/Park2"]
 position = Vector2(-8.19385, 7.25427)
 rotation = 3.06852
 scale = Vector2(3, 3)
 texture = ExtResource("10_k0jf2")
 
-[node name="Tree4" type="Sprite2D" parent="Level/Park2"]
+[node name="Tree4" type="Sprite2D" parent="Level1/Park2"]
 position = Vector2(-376.193, -152.746)
 rotation = 2.13925
 scale = Vector2(3, 3)
 texture = ExtResource("12_lalgy")
 
-[node name="Tree7" type="Sprite2D" parent="Level/Park2"]
+[node name="Tree7" type="Sprite2D" parent="Level1/Park2"]
 position = Vector2(-216.194, 415.254)
 rotation = 0.666024
 scale = Vector2(3, 3)
 texture = ExtResource("12_lalgy")
 
-[node name="Tree5" type="Sprite2D" parent="Level/Park2"]
+[node name="Tree5" type="Sprite2D" parent="Level1/Park2"]
 position = Vector2(463.806, -0.745728)
 rotation = -2.07822
 scale = Vector2(3, 3)
 texture = ExtResource("10_k0jf2")
 
-[node name="Tree6" type="Sprite2D" parent="Level/Park2"]
+[node name="Tree6" type="Sprite2D" parent="Level1/Park2"]
 position = Vector2(134.444, -439.463)
 rotation = -3.00748
 scale = Vector2(3, 3)
 texture = ExtResource("12_lalgy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Park2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1/Park2"]
 position = Vector2(7.37256, 14.2003)
 shape = SubResource("CircleShape2D_vc1u4")
 
-[node name="Rocks1" parent="Level/Park2" instance=ExtResource("7_e6417")]
+[node name="Rocks1" parent="Level1/Park2" instance=ExtResource("7_e6417")]
 position = Vector2(249.303, 393.375)
 rotation = -0.478876
 
-[node name="Road6" type="Sprite2D" parent="Level"]
+[node name="Road6" type="Sprite2D" parent="Level1"]
 position = Vector2(1744, 4048)
 rotation = 1.5708
 texture = ExtResource("8_b5yco")
 
-[node name="Road7" type="Sprite2D" parent="Level"]
+[node name="Road7" type="Sprite2D" parent="Level1"]
 position = Vector2(2728, 4048)
 rotation = 1.5708
 texture = ExtResource("8_b5yco")
 
-[node name="Road8" type="Sprite2D" parent="Level"]
+[node name="Road8" type="Sprite2D" parent="Level1"]
 position = Vector2(3720, 4048)
 rotation = 1.5708
 texture = ExtResource("8_b5yco")
 
-[node name="Road11" type="Sprite2D" parent="Level"]
+[node name="Road11" type="Sprite2D" parent="Level1"]
 position = Vector2(4712, 4048)
 rotation = 1.5708
 texture = ExtResource("8_b5yco")
 
-[node name="Road4" type="Sprite2D" parent="Level"]
+[node name="Road4" type="Sprite2D" parent="Level1"]
 position = Vector2(1056, 3864)
 texture = ExtResource("7_jo804")
 
-[node name="Road9" type="Sprite2D" parent="Level"]
+[node name="Road9" type="Sprite2D" parent="Level1"]
 position = Vector2(2792, 5603)
 rotation = 1.5708
 texture = ExtResource("7_jo804")
 
-[node name="Road10" type="Sprite2D" parent="Level"]
+[node name="Road10" type="Sprite2D" parent="Level1"]
 position = Vector2(4792, 5603)
 rotation = 1.5708
 texture = ExtResource("7_jo804")
 
-[node name="Road1" type="Sprite2D" parent="Level"]
+[node name="Road1" type="Sprite2D" parent="Level1"]
 position = Vector2(2952, 2090)
 rotation = 1.5708
 texture = ExtResource("14_dqsbj")
 
-[node name="Road12" type="Sprite2D" parent="Level"]
+[node name="Road12" type="Sprite2D" parent="Level1"]
 position = Vector2(5463, 4048)
 rotation = 1.5708
 texture = ExtResource("14_dqsbj")
 
-[node name="Road5" type="Sprite2D" parent="Level"]
+[node name="Road5" type="Sprite2D" parent="Level1"]
 position = Vector2(2752, 56)
 texture = ExtResource("14_dqsbj")
 
-[node name="Tree5" type="Sprite2D" parent="Level"]
+[node name="Tree5" type="Sprite2D" parent="Level1"]
 position = Vector2(-59, 2641.19)
 scale = Vector2(1.74138, 1.74138)
 texture = ExtResource("10_k0jf2")
 
-[node name="Tree6" type="Sprite2D" parent="Level"]
+[node name="Tree6" type="Sprite2D" parent="Level1"]
 position = Vector2(82, 2849)
 scale = Vector2(1.74138, 1.74138)
 texture = ExtResource("10_k0jf2")
 
-[node name="Tree7" type="Sprite2D" parent="Level"]
+[node name="Tree7" type="Sprite2D" parent="Level1"]
 position = Vector2(480, 3320)
 scale = Vector2(1.74138, 1.74138)
 texture = ExtResource("10_k0jf2")
 
-[node name="Tree9" type="Sprite2D" parent="Level"]
+[node name="Tree9" type="Sprite2D" parent="Level1"]
 position = Vector2(3408, 3288)
 scale = Vector2(2.41541, 2.41541)
 texture = ExtResource("12_lalgy")
 offset = Vector2(53.6389, 141.364)
 
-[node name="Tree10" type="Sprite2D" parent="Level"]
+[node name="Tree10" type="Sprite2D" parent="Level1"]
 position = Vector2(3696, 3176)
 rotation = -2.87979
 scale = Vector2(2.41541, 2.41541)
 texture = ExtResource("12_lalgy")
 offset = Vector2(87.5886, 135.699)
 
-[node name="Rocks" parent="Level" instance=ExtResource("7_e6417")]
+[node name="Rocks" parent="Level1" instance=ExtResource("7_e6417")]
 position = Vector2(3528, 3240)
 rotation = 1.57079
 
-[node name="House3_1" parent="Level" instance=ExtResource("14_0s6ek")]
+[node name="House3_1" parent="Level1" instance=ExtResource("14_0s6ek")]
 position = Vector2(1800, 4824)
 rotation = -1.57079
 scale = Vector2(1.56, 1.56)
 
-[node name="House3_2" parent="Level" instance=ExtResource("14_0s6ek")]
+[node name="House3_2" parent="Level1" instance=ExtResource("14_0s6ek")]
 position = Vector2(2960, 4824)
 rotation = -1.57079
 scale = Vector2(1.56, 1.56)
 
-[node name="House3_3" parent="Level" instance=ExtResource("14_0s6ek")]
+[node name="House3_3" parent="Level1" instance=ExtResource("14_0s6ek")]
 position = Vector2(4080, 4824)
 rotation = -1.57079
 scale = Vector2(1.56, 1.56)
 
-[node name="House3_4" parent="Level" instance=ExtResource("14_0s6ek")]
+[node name="House3_4" parent="Level1" instance=ExtResource("14_0s6ek")]
 position = Vector2(5176, 4824)
 rotation = -1.57079
 scale = Vector2(1.56, 1.56)
 
-[node name="Tree8" type="Sprite2D" parent="Level"]
+[node name="Tree8" type="Sprite2D" parent="Level1"]
 position = Vector2(648, 3576)
 scale = Vector2(1.74138, 1.74138)
 texture = ExtResource("10_k0jf2")
 
-[node name="House7" parent="Level" instance=ExtResource("4_cq8sq")]
+[node name="House7" parent="Level1" instance=ExtResource("4_cq8sq")]
 position = Vector2(5056, 2696)
 rotation = 3.14159
 scale = Vector2(2, 2)
 
-[node name="Tree12" type="Sprite2D" parent="Level"]
-position = Vector2(5048, 2800)
+[node name="Tree12" type="Sprite2D" parent="Level1"]
+position = Vector2(5653.72, 3476.49)
 rotation = 2.09439
 scale = Vector2(1.74138, 1.74138)
 texture = ExtResource("10_k0jf2")
-offset = Vector2(162.515, -495.475)
+offset = Vector2(0, 0.00012207)
 
-[node name="Tree13" type="Sprite2D" parent="Level"]
-position = Vector2(5008, 2776)
+[node name="Tree13" type="Sprite2D" parent="Level1"]
+position = Vector2(5363.25, 3470.69)
 rotation = 2.09439
 scale = Vector2(1.74138, 1.74138)
 texture = ExtResource("10_k0jf2")
-offset = Vector2(243.485, -376.139)
+offset = Vector2(-0.000366211, 0.000366211)
 
-[node name="Tree14" type="Sprite2D" parent="Level"]
+[node name="Tree14" type="Sprite2D" parent="Level1"]
 position = Vector2(5016, 2656)
 rotation = 2.09439
 scale = Vector2(1.74138, 1.74138)
 texture = ExtResource("10_k0jf2")
 offset = Vector2(472.04, -105.663)
 
-[node name="Tree15" type="Sprite2D" parent="Level"]
+[node name="Tree15" type="Sprite2D" parent="Level1"]
 position = Vector2(5040, 2640)
 rotation = 2.09439
 scale = Vector2(1.74138, 1.74138)
 texture = ExtResource("10_k0jf2")
 offset = Vector2(568.515, 41.3466)
 
-[node name="Tree11" type="Sprite2D" parent="Level"]
+[node name="Tree11" type="Sprite2D" parent="Level1"]
 position = Vector2(5968, 4840)
 rotation = 1.57079
 scale = Vector2(5.57215, 5.53847)
 texture = ExtResource("9_w1uux")
 
+[node name="LevelTutor" type="Node2D" parent="."]
+
+[node name="Intersection2" type="Sprite2D" parent="LevelTutor"]
+position = Vector2(11032, 2384)
+texture = ExtResource("15_k4tv7")
+
+[node name="Intersection3" type="Sprite2D" parent="LevelTutor"]
+position = Vector2(11024, 3984)
+texture = ExtResource("15_k4tv7")
+
+[node name="Corner1" type="Sprite2D" parent="LevelTutor"]
+position = Vector2(9536, 3184)
+texture = ExtResource("2_ii785")
+
+[node name="Corner2" type="Sprite2D" parent="LevelTutor"]
+position = Vector2(12496, 3184)
+rotation = 3.14159
+texture = ExtResource("2_ii785")
+
+[node name="Road3" type="Sprite2D" parent="LevelTutor"]
+position = Vector2(11032, 400)
+texture = ExtResource("7_jo804")
+
+[node name="Road4" type="Sprite2D" parent="LevelTutor"]
+position = Vector2(11024, 5984)
+texture = ExtResource("7_jo804")
+
+[node name="House3_1" parent="LevelTutor" instance=ExtResource("14_0s6ek")]
+position = Vector2(11896, 3207)
+rotation = -2.35619
+scale = Vector2(1.41382, 1.3973)
+
+[node name="House1_1" parent="LevelTutor" instance=ExtResource("4_cq8sq")]
+position = Vector2(10072, 3224)
+rotation = -2.35619
+scale = Vector2(1.40856, 1.40856)
+
+[node name="Tree1" type="Sprite2D" parent="LevelTutor/House1_1"]
+position = Vector2(160.643, 377.508)
+scale = Vector2(2.14637, 2.14637)
+texture = ExtResource("9_w1uux")
+
+[node name="Tree2" type="Sprite2D" parent="LevelTutor/House1_1"]
+position = Vector2(4.01726, 373.492)
+scale = Vector2(2.14637, 2.14637)
+texture = ExtResource("9_w1uux")
+
+[node name="House1_2" parent="LevelTutor" instance=ExtResource("4_cq8sq")]
+position = Vector2(12240, 1248)
+rotation = 0.474565
+scale = Vector2(1.40856, 1.40856)
+
+[node name="Tree1" type="Sprite2D" parent="LevelTutor/House1_2"]
+position = Vector2(182.917, 467.925)
+scale = Vector2(2.14637, 2.14637)
+texture = ExtResource("9_w1uux")
+
+[node name="Tree2" type="Sprite2D" parent="LevelTutor/House1_2"]
+position = Vector2(-159.265, 535.164)
+rotation = -1.25286
+scale = Vector2(1.93708, 1.73731)
+texture = ExtResource("9_w1uux")
+
+[node name="Tree4" type="Sprite2D" parent="LevelTutor"]
+position = Vector2(11032.7, 3912.08)
+rotation = -3.02591
+scale = Vector2(1.5079, 1.5)
+texture = ExtResource("12_lalgy")
+
+[node name="Tree5" type="Sprite2D" parent="LevelTutor"]
+position = Vector2(11016, 4064)
+rotation = 0.258087
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("12_lalgy")
+
+[node name="Rocks" parent="LevelTutor" instance=ExtResource("7_e6417")]
+position = Vector2(11024, 2352)
+scale = Vector2(0.93122, 0.93122)
+
+[node name="Tree" parent="LevelTutor/Rocks" instance=ExtResource("9_fxwji")]
+position = Vector2(42.9548, 111.681)
+scale = Vector2(0.533799, 0.533799)
+
+[node name="Tree2" type="Sprite2D" parent="LevelTutor"]
+position = Vector2(10168, 1728)
+rotation = 0.993224
+scale = Vector2(3.26619, 3.26619)
+texture = ExtResource("10_k0jf2")
+
+[node name="Tree3" type="Sprite2D" parent="LevelTutor"]
+position = Vector2(9744, 2016)
+rotation = 0.993224
+scale = Vector2(3.26619, 3.26619)
+texture = ExtResource("10_k0jf2")
+
+[node name="House8" parent="LevelTutor" instance=ExtResource("4_cq8sq")]
+position = Vector2(9432, 1168)
+rotation = 4.13482
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="Sprite" parent="LevelTutor/House8" index="0"]
+texture = ExtResource("2_im7us")
+
+[node name="CollisionShape2D" parent="LevelTutor/House8" index="1"]
+rotation = 1.5708
+
 [node name="Drivy McDrive" parent="." instance=ExtResource("1_slw83")]
 position = Vector2(220, 480)
 scale = Vector2(0.75, 0.75)
 SteerSpeed = 125.0
-MoveSpeed = 2500.0
+MoveSpeed = 2400.0
 
 [node name="Camera2D" type="Camera2D" parent="Drivy McDrive"]
 zoom = Vector2(0.5, 0.5)
@@ -385,7 +501,8 @@ limit_smoothed = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
-[editable path="Level/House2"]
-[editable path="Level/House3"]
-[editable path="Level/House4"]
-[editable path="Level/House6"]
+[editable path="Level1/House2"]
+[editable path="Level1/House3"]
+[editable path="Level1/House4"]
+[editable path="Level1/House6"]
+[editable path="LevelTutor/House8"]
