@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxw6unwy8fj0k"]
+
+[ext_resource type="PackedScene" uid="uid://cw03jbma0i64d" path="res://player.tscn" id="1_f180l"]
+[ext_resource type="PackedScene" uid="uid://84kjxf4825yf" path="res://mob.tscn" id="2_al2pn"]
+[ext_resource type="PackedScene" uid="uid://blj8i48hbpd1o" path="res://tree.tscn" id="2_cqkot"]
+
+[node name="Game" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Level" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tree" parent="Level" instance=ExtResource("2_cqkot")]
+position = Vector2(275, 441)
+
+[node name="Tree2" parent="Level" instance=ExtResource("2_cqkot")]
+position = Vector2(348, 441)
+
+[node name="Tree3" parent="Level" instance=ExtResource("2_cqkot")]
+position = Vector2(309, 472)
+
+[node name="Tree4" parent="Level" instance=ExtResource("2_cqkot")]
+position = Vector2(1453, 253)
+
+[node name="Tree5" parent="Level" instance=ExtResource("2_cqkot")]
+position = Vector2(1611, 245)
+
+[node name="Tree6" parent="Level" instance=ExtResource("2_cqkot")]
+position = Vector2(1540, 376)
+
+[node name="Tree7" parent="Level" instance=ExtResource("2_cqkot")]
+position = Vector2(1466, 821)
+
+[node name="Tree8" parent="Level" instance=ExtResource("2_cqkot")]
+position = Vector2(1360, 823)
+
+[node name="Tree9" parent="Level" instance=ExtResource("2_cqkot")]
+position = Vector2(657, 823)
+
+[node name="Mob" parent="Level" instance=ExtResource("2_al2pn")]
+position = Vector2(559, 413)
+
+[node name="Player" parent="Level" instance=ExtResource("1_f180l")]
+position = Vector2(960, 540)
