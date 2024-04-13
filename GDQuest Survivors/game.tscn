@@ -6,7 +6,10 @@
 
 [node name="Game" type="Node"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -46,6 +49,21 @@ position = Vector2(657, 823)
 
 [node name="Mob" parent="Level" instance=ExtResource("2_al2pn")]
 position = Vector2(559, 413)
+
+[node name="Mob2" parent="Level" instance=ExtResource("2_al2pn")]
+position = Vector2(534, 602)
+
+[node name="Mob3" parent="Level" instance=ExtResource("2_al2pn")]
+position = Vector2(591, 994)
+
+[node name="Mob4" parent="Level" instance=ExtResource("2_al2pn")]
+position = Vector2(1248, 1011)
+
+[node name="Mob5" parent="Level" instance=ExtResource("2_al2pn")]
+position = Vector2(1687, 568)
+
+[node name="Mob6" parent="Level" instance=ExtResource("2_al2pn")]
+position = Vector2(1278, 104)
 
 [node name="Player" parent="Level" instance=ExtResource("1_f180l")]
 position = Vector2(960, 540)
