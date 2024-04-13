@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://hq4eh0sdcclu"]
+
+[ext_resource type="Texture2D" uid="uid://2fuv73kdfmdk" path="res://Delivery Driver Assets/House 3.png" id="1_y53fe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k4cx"]
+size = Vector2(664, 554.718)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+z_index = 2
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(3.28049, 3.28049)
+texture = ExtResource("1_y53fe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_1k4cx")

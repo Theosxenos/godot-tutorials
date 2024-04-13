@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxsarlq7emsct"]
+
+[ext_resource type="Texture2D" uid="uid://b53gl8o7ic4x0" path="res://Delivery Driver Assets/Tree 3.png" id="1_rk8r6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ndi2h"]
+radius = 20.0
+
+[node name="Tree" type="StaticBody2D"]
+z_index = 1
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_rk8r6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_ndi2h")

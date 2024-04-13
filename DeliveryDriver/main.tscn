@@ -1,42 +1,391 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdj1616dkt4wt"]
+[gd_scene load_steps=17 format=3 uid="uid://cdj1616dkt4wt"]
 
 [ext_resource type="PackedScene" uid="uid://c4hcdch0csiys" path="res://drivy_mc_drive.tscn" id="1_slw83"]
-[ext_resource type="Script" path="res://Circle.gd" id="2_y6g8t"]
+[ext_resource type="Texture2D" uid="uid://dxf37skrmwmqa" path="res://Delivery Driver Assets/Corner 1.png" id="2_ii785"]
+[ext_resource type="Texture2D" uid="uid://dleti8ia6f3tk" path="res://Delivery Driver Assets/House 2.png" id="2_im7us"]
+[ext_resource type="PackedScene" uid="uid://drc2axdrowc5v" path="res://house.tscn" id="4_cq8sq"]
+[ext_resource type="Texture2D" uid="uid://bt41w0dljck57" path="res://Delivery Driver Assets/Intersection 1.png" id="7_b6okf"]
+[ext_resource type="PackedScene" uid="uid://cxxsbiwaklkhw" path="res://rocks.tscn" id="7_e6417"]
+[ext_resource type="Texture2D" uid="uid://bvnu38vsqtvbr" path="res://Delivery Driver Assets/Road 3.png" id="7_jo804"]
+[ext_resource type="Texture2D" uid="uid://dke2ycbmgqx17" path="res://Delivery Driver Assets/Road 2.png" id="8_b5yco"]
+[ext_resource type="PackedScene" uid="uid://bxsarlq7emsct" path="res://tree.tscn" id="9_fxwji"]
+[ext_resource type="Texture2D" uid="uid://b6v4aytjkgqeu" path="res://Delivery Driver Assets/Tree 1.png" id="9_w1uux"]
+[ext_resource type="Texture2D" uid="uid://4nei5vmlcdf7" path="res://Delivery Driver Assets/Tree 2.png" id="10_k0jf2"]
+[ext_resource type="Texture2D" uid="uid://luaj0mwpn0te" path="res://Delivery Driver Assets/Tree 4.png" id="12_lalgy"]
+[ext_resource type="PackedScene" uid="uid://hq4eh0sdcclu" path="res://house3.tscn" id="14_0s6ek"]
+[ext_resource type="Texture2D" uid="uid://by0hdstaftodr" path="res://Delivery Driver Assets/Curve 2.png" id="14_cv5uy"]
+[ext_resource type="Texture2D" uid="uid://by0817vdlcqsc" path="res://Delivery Driver Assets/Road 1.png" id="14_dqsbj"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ywpl4"]
-radius = 50.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6gdys"]
-radius = 50.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_35kr7"]
-radius = 2.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_vc1u4"]
+radius = 504.508
 
 [node name="Main" type="Node2D"]
 
+[node name="Level" type="Node2D" parent="."]
+
+[node name="House1" parent="Level" instance=ExtResource("4_cq8sq")]
+position = Vector2(600, -1080)
+scale = Vector2(2, 2)
+
+[node name="House5" parent="Level" instance=ExtResource("4_cq8sq")]
+position = Vector2(-334, 3504)
+rotation = 0.94831
+scale = Vector2(2, 2)
+
+[node name="House2" parent="Level" instance=ExtResource("4_cq8sq")]
+position = Vector2(3112, -1120)
+rotation = 1.5708
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="Sprite" parent="Level/House2" index="0"]
+texture = ExtResource("2_im7us")
+
+[node name="CollisionShape2D" parent="Level/House2" index="1"]
+rotation = 1.5708
+
+[node name="House3" parent="Level" instance=ExtResource("4_cq8sq")]
+position = Vector2(5568, 0)
+rotation = 2.53508
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="Sprite" parent="Level/House3" index="0"]
+texture = ExtResource("2_im7us")
+
+[node name="CollisionShape2D" parent="Level/House3" index="1"]
+rotation = 1.5708
+
+[node name="House4" parent="Level" instance=ExtResource("4_cq8sq")]
+position = Vector2(2432, 3216)
+rotation = 4.70879
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="Sprite" parent="Level/House4" index="0"]
+texture = ExtResource("2_im7us")
+
+[node name="CollisionShape2D" parent="Level/House4" index="1"]
+rotation = 1.5708
+scale = Vector2(1, 1)
+
+[node name="House6" parent="Level" instance=ExtResource("4_cq8sq")]
+position = Vector2(-896, 5528)
+rotation = 6.28318
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="Sprite" parent="Level/House6" index="0"]
+texture = ExtResource("2_im7us")
+
+[node name="CollisionShape2D" parent="Level/House6" index="1"]
+rotation = 1.5708
+scale = Vector2(1, 1)
+
+[node name="Corner1" type="Sprite2D" parent="Level"]
+position = Vector2(-784, 1291)
+texture = ExtResource("2_ii785")
+
+[node name="Corner2" type="Sprite2D" parent="Level"]
+position = Vector2(3667, 1291)
+rotation = 3.14159
+texture = ExtResource("2_ii785")
+
+[node name="Corner3" type="Sprite2D" parent="Level"]
+position = Vector2(6200, 4826.27)
+rotation = 3.14159
+scale = Vector2(1, 0.977391)
+texture = ExtResource("2_ii785")
+
+[node name="TSection" type="Sprite2D" parent="Level"]
+position = Vector2(416, 216)
+texture = ExtResource("7_b6okf")
+region_enabled = true
+region_rect = Rect2(0, 0, 1501, 952)
+
+[node name="TSection2" type="Sprite2D" parent="Level"]
+position = Vector2(1056, 5328)
+texture = ExtResource("7_b6okf")
+region_enabled = true
+region_rect = Rect2(0, 0, 1501, 952)
+
+[node name="Tree1" type="Sprite2D" parent="Level"]
+position = Vector2(4104, -608)
+rotation = -1.61324
+scale = Vector2(4, 4)
+texture = ExtResource("9_w1uux")
+
+[node name="Tree2" type="Sprite2D" parent="Level"]
+position = Vector2(4104, -1504)
+rotation = -1.61324
+scale = Vector2(4, 4)
+texture = ExtResource("9_w1uux")
+
+[node name="Tree3" parent="Level" instance=ExtResource("9_fxwji")]
+position = Vector2(1056, -64)
+
+[node name="Tree4" parent="Level" instance=ExtResource("9_fxwji")]
+position = Vector2(4152, 168)
+rotation = 0.602912
+
+[node name="Road2" type="Sprite2D" parent="Level"]
+position = Vector2(2216, 2090)
+rotation = -1.5708
+texture = ExtResource("8_b5yco")
+
+[node name="Road3" type="Sprite2D" parent="Level"]
+position = Vector2(2166, 491)
+rotation = -1.5708
+texture = ExtResource("7_jo804")
+
+[node name="Curve2" type="Sprite2D" parent="Level"]
+position = Vector2(718, 2390)
+rotation = 1.5708
+texture = ExtResource("14_cv5uy")
+
+[node name="Park" type="StaticBody2D" parent="Level"]
+position = Vector2(-8, 1272)
+rotation = 1.899
+metadata/_edit_group_ = true
+
+[node name="Tree2" type="Sprite2D" parent="Level/Park"]
+position = Vector2(-8.19385, 7.25427)
+rotation = 3.06852
+scale = Vector2(3, 3)
+texture = ExtResource("10_k0jf2")
+
+[node name="Tree4" type="Sprite2D" parent="Level/Park"]
+position = Vector2(-376.193, -152.746)
+rotation = 2.13925
+scale = Vector2(3, 3)
+texture = ExtResource("12_lalgy")
+
+[node name="Tree7" type="Sprite2D" parent="Level/Park"]
+position = Vector2(-216.194, 415.254)
+rotation = 0.666024
+scale = Vector2(3, 3)
+texture = ExtResource("12_lalgy")
+
+[node name="Tree5" type="Sprite2D" parent="Level/Park"]
+position = Vector2(463.806, -0.745728)
+rotation = -2.07822
+scale = Vector2(3, 3)
+texture = ExtResource("10_k0jf2")
+
+[node name="Tree6" type="Sprite2D" parent="Level/Park"]
+position = Vector2(134.444, -439.463)
+rotation = -3.00748
+scale = Vector2(3, 3)
+texture = ExtResource("12_lalgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Park"]
+position = Vector2(7.37256, 14.2003)
+shape = SubResource("CircleShape2D_vc1u4")
+
+[node name="Rocks1" parent="Level/Park" instance=ExtResource("7_e6417")]
+position = Vector2(249.303, 393.375)
+rotation = -0.478876
+
+[node name="Park2" type="StaticBody2D" parent="Level"]
+position = Vector2(2920, 1280)
+rotation = -1.19135
+metadata/_edit_group_ = true
+
+[node name="Tree2" type="Sprite2D" parent="Level/Park2"]
+position = Vector2(-8.19385, 7.25427)
+rotation = 3.06852
+scale = Vector2(3, 3)
+texture = ExtResource("10_k0jf2")
+
+[node name="Tree4" type="Sprite2D" parent="Level/Park2"]
+position = Vector2(-376.193, -152.746)
+rotation = 2.13925
+scale = Vector2(3, 3)
+texture = ExtResource("12_lalgy")
+
+[node name="Tree7" type="Sprite2D" parent="Level/Park2"]
+position = Vector2(-216.194, 415.254)
+rotation = 0.666024
+scale = Vector2(3, 3)
+texture = ExtResource("12_lalgy")
+
+[node name="Tree5" type="Sprite2D" parent="Level/Park2"]
+position = Vector2(463.806, -0.745728)
+rotation = -2.07822
+scale = Vector2(3, 3)
+texture = ExtResource("10_k0jf2")
+
+[node name="Tree6" type="Sprite2D" parent="Level/Park2"]
+position = Vector2(134.444, -439.463)
+rotation = -3.00748
+scale = Vector2(3, 3)
+texture = ExtResource("12_lalgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Park2"]
+position = Vector2(7.37256, 14.2003)
+shape = SubResource("CircleShape2D_vc1u4")
+
+[node name="Rocks1" parent="Level/Park2" instance=ExtResource("7_e6417")]
+position = Vector2(249.303, 393.375)
+rotation = -0.478876
+
+[node name="Road6" type="Sprite2D" parent="Level"]
+position = Vector2(1744, 4048)
+rotation = 1.5708
+texture = ExtResource("8_b5yco")
+
+[node name="Road7" type="Sprite2D" parent="Level"]
+position = Vector2(2728, 4048)
+rotation = 1.5708
+texture = ExtResource("8_b5yco")
+
+[node name="Road8" type="Sprite2D" parent="Level"]
+position = Vector2(3720, 4048)
+rotation = 1.5708
+texture = ExtResource("8_b5yco")
+
+[node name="Road11" type="Sprite2D" parent="Level"]
+position = Vector2(4712, 4048)
+rotation = 1.5708
+texture = ExtResource("8_b5yco")
+
+[node name="Road4" type="Sprite2D" parent="Level"]
+position = Vector2(1056, 3864)
+texture = ExtResource("7_jo804")
+
+[node name="Road9" type="Sprite2D" parent="Level"]
+position = Vector2(2792, 5603)
+rotation = 1.5708
+texture = ExtResource("7_jo804")
+
+[node name="Road10" type="Sprite2D" parent="Level"]
+position = Vector2(4792, 5603)
+rotation = 1.5708
+texture = ExtResource("7_jo804")
+
+[node name="Road1" type="Sprite2D" parent="Level"]
+position = Vector2(2952, 2090)
+rotation = 1.5708
+texture = ExtResource("14_dqsbj")
+
+[node name="Road12" type="Sprite2D" parent="Level"]
+position = Vector2(5463, 4048)
+rotation = 1.5708
+texture = ExtResource("14_dqsbj")
+
+[node name="Road5" type="Sprite2D" parent="Level"]
+position = Vector2(2752, 56)
+texture = ExtResource("14_dqsbj")
+
+[node name="Tree5" type="Sprite2D" parent="Level"]
+position = Vector2(-59, 2641.19)
+scale = Vector2(1.74138, 1.74138)
+texture = ExtResource("10_k0jf2")
+
+[node name="Tree6" type="Sprite2D" parent="Level"]
+position = Vector2(82, 2849)
+scale = Vector2(1.74138, 1.74138)
+texture = ExtResource("10_k0jf2")
+
+[node name="Tree7" type="Sprite2D" parent="Level"]
+position = Vector2(480, 3320)
+scale = Vector2(1.74138, 1.74138)
+texture = ExtResource("10_k0jf2")
+
+[node name="Tree9" type="Sprite2D" parent="Level"]
+position = Vector2(3408, 3288)
+scale = Vector2(2.41541, 2.41541)
+texture = ExtResource("12_lalgy")
+offset = Vector2(53.6389, 141.364)
+
+[node name="Tree10" type="Sprite2D" parent="Level"]
+position = Vector2(3696, 3176)
+rotation = -2.87979
+scale = Vector2(2.41541, 2.41541)
+texture = ExtResource("12_lalgy")
+offset = Vector2(87.5886, 135.699)
+
+[node name="Rocks" parent="Level" instance=ExtResource("7_e6417")]
+position = Vector2(3528, 3240)
+rotation = 1.57079
+
+[node name="House3_1" parent="Level" instance=ExtResource("14_0s6ek")]
+position = Vector2(1800, 4824)
+rotation = -1.57079
+scale = Vector2(1.56, 1.56)
+
+[node name="House3_2" parent="Level" instance=ExtResource("14_0s6ek")]
+position = Vector2(2960, 4824)
+rotation = -1.57079
+scale = Vector2(1.56, 1.56)
+
+[node name="House3_3" parent="Level" instance=ExtResource("14_0s6ek")]
+position = Vector2(4080, 4824)
+rotation = -1.57079
+scale = Vector2(1.56, 1.56)
+
+[node name="House3_4" parent="Level" instance=ExtResource("14_0s6ek")]
+position = Vector2(5176, 4824)
+rotation = -1.57079
+scale = Vector2(1.56, 1.56)
+
+[node name="Tree8" type="Sprite2D" parent="Level"]
+position = Vector2(648, 3576)
+scale = Vector2(1.74138, 1.74138)
+texture = ExtResource("10_k0jf2")
+
+[node name="House7" parent="Level" instance=ExtResource("4_cq8sq")]
+position = Vector2(5056, 2696)
+rotation = 3.14159
+scale = Vector2(2, 2)
+
+[node name="Tree12" type="Sprite2D" parent="Level"]
+position = Vector2(5048, 2800)
+rotation = 2.09439
+scale = Vector2(1.74138, 1.74138)
+texture = ExtResource("10_k0jf2")
+offset = Vector2(162.515, -495.475)
+
+[node name="Tree13" type="Sprite2D" parent="Level"]
+position = Vector2(5008, 2776)
+rotation = 2.09439
+scale = Vector2(1.74138, 1.74138)
+texture = ExtResource("10_k0jf2")
+offset = Vector2(243.485, -376.139)
+
+[node name="Tree14" type="Sprite2D" parent="Level"]
+position = Vector2(5016, 2656)
+rotation = 2.09439
+scale = Vector2(1.74138, 1.74138)
+texture = ExtResource("10_k0jf2")
+offset = Vector2(472.04, -105.663)
+
+[node name="Tree15" type="Sprite2D" parent="Level"]
+position = Vector2(5040, 2640)
+rotation = 2.09439
+scale = Vector2(1.74138, 1.74138)
+texture = ExtResource("10_k0jf2")
+offset = Vector2(568.515, 41.3466)
+
+[node name="Tree11" type="Sprite2D" parent="Level"]
+position = Vector2(5968, 4840)
+rotation = 1.57079
+scale = Vector2(5.57215, 5.53847)
+texture = ExtResource("9_w1uux")
+
 [node name="Drivy McDrive" parent="." instance=ExtResource("1_slw83")]
 position = Vector2(220, 480)
+scale = Vector2(0.75, 0.75)
+SteerSpeed = 125.0
+MoveSpeed = 2500.0
 
-[node name="Circle" type="StaticBody2D" parent="."]
-position = Vector2(661, 451)
-script = ExtResource("2_y6g8t")
-metadata/_edit_group_ = true
+[node name="Camera2D" type="Camera2D" parent="Drivy McDrive"]
+zoom = Vector2(0.5, 0.5)
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Circle"]
-shape = SubResource("CircleShape2D_ywpl4")
-
-[node name="Circle2" type="RigidBody2D" parent="."]
-position = Vector2(229, 295)
-mass = 0.1
-gravity_scale = 0.0
-script = ExtResource("2_y6g8t")
-color = Color(0.639216, 0.517647, 0.211765, 1)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Circle2"]
-shape = SubResource("CircleShape2D_6gdys")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(228, 296)
-scale = Vector2(25.2442, 100.929)
-mesh = SubResource("SphereMesh_35kr7")
+[editable path="Level/House2"]
+[editable path="Level/House3"]
+[editable path="Level/House4"]
+[editable path="Level/House6"]

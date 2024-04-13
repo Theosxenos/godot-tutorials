@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxxsbiwaklkhw"]
+
+[ext_resource type="Texture2D" uid="uid://bw7kkcqjdl2ky" path="res://Delivery Driver Assets/Rocks 1.png" id="1_txsb2"]
+
+[node name="Rocks" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_txsb2")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-32, 0)
+rotation = 0.919064
+polygon = PackedVector2Array(71.9908, 195.799, 27.1396, 201.83, -17.3823, 167.863, -21.9056, 134.224, -4.00326, 97.5704, -32.7891, 95.7333, -64.9197, 111.469, -107.934, 88.7146, -96.3918, 47.2082, -94.5548, 18.4223, -123.341, 16.5853, -148.123, -82.822, -85.0406, -165.506, -29.6351, -93.0471, -13.5698, -100.915, 12.5298, -161.502, 126.165, -165.367, 143.08, -82.0251, 106.097, -59.9287, 51.5407, -41.1772, 83.0128, 23.0841, 72.9785, 75.8033, 53.5685, 101.244)
