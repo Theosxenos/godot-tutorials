@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxw6unwy8fj0k"]
+[gd_scene load_steps=7 format=3 uid="uid://dxw6unwy8fj0k"]
 
 [ext_resource type="PackedScene" uid="uid://cw03jbma0i64d" path="res://player.tscn" id="1_f180l"]
+[ext_resource type="Script" path="res://Game.cs" id="1_v3qf6"]
 [ext_resource type="PackedScene" uid="uid://84kjxf4825yf" path="res://mob.tscn" id="2_al2pn"]
 [ext_resource type="PackedScene" uid="uid://blj8i48hbpd1o" path="res://tree.tscn" id="2_cqkot"]
+[ext_resource type="PackedScene" uid="uid://b1gw8iuiqpjay" path="res://ui.tscn" id="3_brq6i"]
+
+[sub_resource type="Curve2D" id="Curve2D_j1rvj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -90, -179, 0, 0, 0, 0, 2099, -178, 0, 0, 0, 0, 2093, 1266, 0, 0, 0, 0, -98, 1260, 0, 0, 0, 0, -90, -179)
+}
+point_count = 5
 
 [node name="Game" type="Node"]
+script = ExtResource("1_v3qf6")
+MobScene = ExtResource("2_al2pn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -47,23 +57,30 @@ position = Vector2(1360, 823)
 [node name="Tree9" parent="Level" instance=ExtResource("2_cqkot")]
 position = Vector2(657, 823)
 
-[node name="Mob" parent="Level" instance=ExtResource("2_al2pn")]
-position = Vector2(559, 413)
-
-[node name="Mob2" parent="Level" instance=ExtResource("2_al2pn")]
-position = Vector2(534, 602)
-
-[node name="Mob3" parent="Level" instance=ExtResource("2_al2pn")]
-position = Vector2(591, 994)
-
-[node name="Mob4" parent="Level" instance=ExtResource("2_al2pn")]
-position = Vector2(1248, 1011)
-
-[node name="Mob5" parent="Level" instance=ExtResource("2_al2pn")]
-position = Vector2(1687, 568)
-
-[node name="Mob6" parent="Level" instance=ExtResource("2_al2pn")]
-position = Vector2(1278, 104)
-
 [node name="Player" parent="Level" instance=ExtResource("1_f180l")]
 position = Vector2(960, 540)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/Player"]
+position = Vector2(-960, -540)
+remote_path = NodePath("../../../SpawnPath")
+update_rotation = false
+update_scale = false
+
+[node name="SpawnPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_j1rvj")
+
+[node name="SpawnPoints" type="PathFollow2D" parent="SpawnPath"]
+unique_name_in_owner = true
+position = Vector2(-90, -179)
+rotation = 0.00045683
+
+[node name="MobSpawnTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="GameOver" parent="." instance=ExtResource("3_brq6i")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="PlayerHealthDepleted" from="Level/Player" to="." method="OnPlayerPlayerHealthDepleted"]
+[connection signal="timeout" from="MobSpawnTimer" to="." method="OnMobSpawnTimerTimeout"]
