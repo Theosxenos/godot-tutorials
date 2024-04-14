@@ -3,8 +3,8 @@ using System;
 
 public partial class EnemyKoboldWeak : CharacterBody2D
 {
+	[Export] public int Health { get; set; } = 20;
 	[Export] public float MovementSpeed { get; set; } = 20f;
-
 	[Export] public Player player;
 
 	private string lastAnimation = "walk_right";

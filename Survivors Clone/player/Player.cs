@@ -3,6 +3,7 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	[Export] public int Health { get; set; } = 80;
 	[Export] public int Speed { get; set; } = 300;
 
 	private string lastAnimation = "walk_left";

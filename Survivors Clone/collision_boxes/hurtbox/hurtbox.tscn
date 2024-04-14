@@ -1,7 +1,18 @@
-[gd_scene format=3 uid="uid://dcqa41tlwwefa"]
+[gd_scene load_steps=2 format=3 uid="uid://dcqa41tlwwefa"]
 
-[node name="Hurtbox" type="Area2D"]
+[ext_resource type="Script" path="res://collision_boxes/hurtbox/Hurtbox.cs" id="1_x06wo"]
+
+[node name="Hurtbox" type="Area2D" node_paths=PackedStringArray("collisionShape2D")]
 collision_layer = 0
 collision_mask = 0
+script = ExtResource("1_x06wo")
+collisionShape2D = NodePath("HurtBoxCollision")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HurtBoxCollision" type="CollisionShape2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

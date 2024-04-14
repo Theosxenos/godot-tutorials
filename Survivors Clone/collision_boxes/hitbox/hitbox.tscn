@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4hyl801iosqd"]
+
+[ext_resource type="Script" path="res://collision_boxes/hitbox/Hitbox.cs" id="1_ej52a"]
+
+[node name="Hitbox" type="Area2D" node_paths=PackedStringArray("collisionShape2D")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ej52a")
+collisionShape2D = NodePath("HitBoxCollision")
+
+[node name="HitBoxCollision" type="CollisionShape2D" parent="."]
+
+[node name="DisableHitBoxTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
