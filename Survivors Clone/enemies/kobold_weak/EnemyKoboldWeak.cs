@@ -1,29 +1,24 @@
 using Godot;
 using System;
 
-public partial class Player : CharacterBody2D
+public partial class EnemyKoboldWeak : CharacterBody2D
 {
-	[Export] public int Speed { get; set; } = 300;
+	[Export] public float MovementSpeed { get; set; } = 20f;
 
-	private string lastAnimation = "walk_left";
+	[Export] public Player player;
+
+	private string lastAnimation = "walk_right";
 	private AnimationPlayer animationPlayer;
-	private Sprite2D sprite;
-	
 	public override void _Ready()
 	{
-		sprite = GetNode<Sprite2D>("Sprite");
+		player = GetTree().GetFirstNodeInGroup("wizzard") as Player;
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Movement();
-	}
-
-	void Movement()
-	{
-		var direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
-
+		var direction = GlobalPosition.DirectionTo(player.GlobalPosition);
+		
 		if (direction != Vector2.Zero && direction.X == 0)
 		{
 			animationPlayer.Play(lastAnimation);
@@ -38,8 +33,7 @@ public partial class Player : CharacterBody2D
 			animationPlayer.Pause();
 		}
 		
-		Velocity = direction * Speed;// * (float)delta;
-
+		Velocity = direction * MovementSpeed;
 		MoveAndSlide();
 	}
 }

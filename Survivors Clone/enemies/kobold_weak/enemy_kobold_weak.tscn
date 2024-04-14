@@ -1,0 +1,110 @@
+[gd_scene load_steps=9 format=3 uid="uid://00kkannuc0qq"]
+
+[ext_resource type="Script" path="res://enemies/kobold_weak/EnemyKoboldWeak.cs" id="1_iayll"]
+[ext_resource type="Texture2D" uid="uid://ceuomghp3hkdv" path="res://assets/Textures/Enemy/kolbold_weak.png" id="1_uoaml"]
+[ext_resource type="PackedScene" uid="uid://dcqa41tlwwefa" path="res://collision_boxes/hurtbox/hurtbox.tscn" id="3_k277t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4cghq"]
+radius = 7.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ps578"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_8yqy8"]
+resource_name = "walk_left"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_jd4db"]
+resource_name = "walk_left"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3rpry"]
+_data = {
+"walk_left": SubResource("Animation_8yqy8"),
+"walk_right": SubResource("Animation_jd4db")
+}
+
+[node name="EnemyKoboldWeak" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+platform_floor_layers = 4294967264
+script = ExtResource("1_iayll")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_uoaml")
+flip_h = true
+hframes = 2
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_k277t")]
+collision_layer = 16
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(2, 4)
+shape = SubResource("CapsuleShape2D_4cghq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 12)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ps578")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3rpry")
+}
+
+[editable path="Hurtbox"]
