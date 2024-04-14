@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnxjmhpm7skal"]
+
+[ext_resource type="Texture2D" uid="uid://cswb5do8rrj7q" path="res://pistol/pistol.png" id="1_67t6v"]
+[ext_resource type="Script" path="res://Weapon.cs" id="1_lecg6"]
+[ext_resource type="PackedScene" uid="uid://b0hii0cedp0bo" path="res://bullet.tscn" id="2_ycwy3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_abocb"]
+radius = 70.0
+
+[node name="Weapon" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_lecg6")
+ProjectileScene = ExtResource("2_ycwy3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6.35212, 6.35212)
+shape = SubResource("CircleShape2D_abocb")
+
+[node name="WeaponPivot" type="Marker2D" parent="."]
+
+[node name="Pistol" type="Sprite2D" parent="WeaponPivot"]
+position = Vector2(89, 0)
+texture = ExtResource("1_67t6v")
+
+[node name="BarrelEnd" type="Marker2D" parent="WeaponPivot/Pistol"]
+position = Vector2(26, -12)
+
+[node name="FireRate" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="FireRate" to="." method="FireWeapon"]

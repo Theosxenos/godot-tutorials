@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://cw03jbma0i64d"]
+
+[ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_jhwns"]
+[ext_resource type="Script" path="res://Player.cs" id="1_uu5ax"]
+[ext_resource type="PackedScene" uid="uid://bnxjmhpm7skal" path="res://weapon.tscn" id="3_8ot3x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fxjjg"]
+radius = 35.0571
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kyc68"]
+radius = 41.0122
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cntai"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgapp"]
+bg_color = Color(0.388235, 0.8, 0.372549, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_uu5ax")
+
+[node name="HappyBoo" parent="." instance=ExtResource("1_jhwns")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fxjjg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Weapon" parent="." instance=ExtResource("3_8ot3x")]
+position = Vector2(0, -32)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_kyc68")
+debug_color = Color(0.903631, 0.183693, 0.612925, 0.42)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -100.0
+offset_top = -146.0
+offset_right = 100.0
+offset_bottom = -119.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cntai")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qgapp")
+value = 100.0
+show_percentage = false
