@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://drdvxe0gt2g5y"]
+
+[ext_resource type="Texture2D" uid="uid://dqf3jcntaod4y" path="res://assets/Textures/dirt_full_new.png" id="1_2luc5"]
+[ext_resource type="PackedScene" uid="uid://c542pdfc5x4rr" path="res://player/player.tscn" id="2_vj480"]
+
+[node name="World" type="Node"]
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2000.0
+offset_top = -2000.0
+offset_right = 848.0
+offset_bottom = 1352.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2luc5")
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_vj480")]
