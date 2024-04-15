@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwffj3d1psu6f"]
+
+[ext_resource type="Script" path="res://spawner/MobSpawner.cs" id="1_1hm4q"]
+
+[node name="MobSpawner" type="Node2D"]
+script = ExtResource("1_1hm4q")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
