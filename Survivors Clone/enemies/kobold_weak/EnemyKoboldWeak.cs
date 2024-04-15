@@ -36,4 +36,10 @@ public partial class EnemyKoboldWeak : CharacterBody2D
 		Velocity = direction * MovementSpeed;
 		MoveAndSlide();
 	}
+
+	void OnHurt(int damage)
+	{
+		Health -= damage;
+		QueueFree();
+	}
 }

@@ -43,4 +43,9 @@ public partial class Player : CharacterBody2D
 
 		MoveAndSlide();
 	}
+
+	void OnHurt(int damage)
+	{
+		Health -= damage;
+	}
 }
