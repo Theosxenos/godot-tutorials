@@ -45,32 +45,39 @@ zoom = Vector2(0.5, 0.5)
 
 [node name="Level-01" parent="." instance=ExtResource("1_yu0h1")]
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Resources" type="VBoxContainer" parent="HUD"]
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Hearts" parent="HUD/Resources" instance=ExtResource("2_706y2")]
+[node name="Resources" type="VBoxContainer" parent="UI/HUD"]
+offset_right = 98.0
+offset_bottom = 144.0
+
+[node name="Hearts" parent="UI/HUD/Resources" instance=ExtResource("2_706y2")]
 layout_mode = 2
 
-[node name="Icon" parent="HUD/Resources/Hearts" index="0"]
+[node name="Icon" parent="UI/HUD/Resources/Hearts" index="0"]
 texture = ExtResource("3_6u3ab")
 
-[node name="Coins" parent="HUD/Resources" instance=ExtResource("2_706y2")]
+[node name="Coins" parent="UI/HUD/Resources" instance=ExtResource("2_706y2")]
 layout_mode = 2
 
-[node name="Icon" parent="HUD/Resources/Coins" index="0"]
+[node name="Icon" parent="UI/HUD/Resources/Coins" index="0"]
 texture = ExtResource("2_t1u67")
 
-[node name="ButtonTower" type="Button" parent="HUD"]
+[node name="ButtonTower" type="Button" parent="UI/HUD"]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 48.0
-offset_top = -167.0
+offset_top = 873.0
 offset_right = 184.0
-offset_bottom = -31.0
+offset_bottom = 1009.0
 grow_vertical = 0
 theme_override_styles/hover = SubResource("StyleBoxFlat_fusem")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4hdek")
@@ -78,7 +85,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_35oiv")
 icon = ExtResource("5_ugc3r")
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="HUD/ButtonTower"]
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/ButtonTower"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,7 +99,7 @@ grow_vertical = 2
 texture = ExtResource("6_vdel0")
 stretch_mode = 5
 
-[node name="BuildingPrice" parent="HUD/ButtonTower" instance=ExtResource("2_706y2")]
+[node name="BuildingPrice" parent="UI/HUD/ButtonTower" instance=ExtResource("2_706y2")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -103,13 +110,13 @@ offset_right = 62.5
 offset_bottom = 15.0
 grow_horizontal = 2
 
-[node name="Icon" parent="HUD/ButtonTower/BuildingPrice" index="0"]
+[node name="Icon" parent="UI/HUD/ButtonTower/BuildingPrice" index="0"]
 texture = ExtResource("2_t1u67")
 
-[node name="Label" parent="HUD/ButtonTower/BuildingPrice" index="1"]
+[node name="Label" parent="UI/HUD/ButtonTower/BuildingPrice" index="1"]
 text = "20
 "
 
-[editable path="HUD/Resources/Hearts"]
-[editable path="HUD/Resources/Coins"]
-[editable path="HUD/ButtonTower/BuildingPrice"]
+[editable path="UI/HUD/Resources/Hearts"]
+[editable path="UI/HUD/Resources/Coins"]
+[editable path="UI/HUD/ButtonTower/BuildingPrice"]
