@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cwvfllrjf57wf"]
+
+[ext_resource type="FontFile" uid="uid://dq50jaws0l6d2" path="res://assets/fonts/Vividly-Regular.ttf" id="1_fqwm0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7841"]
+content_margin_top = 8.0
+bg_color = Color(0, 0, 0, 0)
+
+[resource]
+default_font = ExtResource("1_fqwm0")
+Label/font_sizes/font_size = 68
+Label/styles/normal = SubResource("StyleBoxFlat_a7841")

@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctcv8pubp52dv"]
+
+[ext_resource type="PackedScene" uid="uid://bh8ta4g6dv4mq" path="res://assets/levels/level_1/level_01.tscn" id="1_yu0h1"]
+[ext_resource type="PackedScene" uid="uid://7hntm12wbaba" path="res://assets/ui/resource_icons/resource_icon.tscn" id="2_706y2"]
+[ext_resource type="Texture2D" uid="uid://bmkju7p3bsjnm" path="res://assets/ui/resource_icons/coinGold.png" id="2_t1u67"]
+[ext_resource type="Texture2D" uid="uid://bnd80w8vjsdmg" path="res://assets/ui/resource_icons/heart.png" id="3_6u3ab"]
+[ext_resource type="Texture2D" uid="uid://i60ulf3u6y4o" path="res://assets/towers/tower-base.png" id="5_ugc3r"]
+[ext_resource type="Texture2D" uid="uid://gremm4yuu0je" path="res://assets/towers/cannon.png" id="6_vdel0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fusem"]
+bg_color = Color(0.27451, 0.27451, 0.313726, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+expand_margin_left = 8.0
+expand_margin_top = 55.0
+expand_margin_right = 8.0
+expand_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hdek"]
+bg_color = Color(0.294118, 0.294118, 0.435294, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+expand_margin_left = 8.0
+expand_margin_top = 55.0
+expand_margin_right = 8.0
+expand_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35oiv"]
+bg_color = Color(0.145098, 0.145098, 0.164706, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+expand_margin_left = 8.0
+expand_margin_top = 55.0
+expand_margin_right = 8.0
+expand_margin_bottom = 30.0
+
+[node name="Main" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1920, 1080)
+zoom = Vector2(0.5, 0.5)
+
+[node name="Level-01" parent="." instance=ExtResource("1_yu0h1")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Resources" type="VBoxContainer" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Hearts" parent="HUD/Resources" instance=ExtResource("2_706y2")]
+layout_mode = 2
+
+[node name="Icon" parent="HUD/Resources/Hearts" index="0"]
+texture = ExtResource("3_6u3ab")
+
+[node name="Coins" parent="HUD/Resources" instance=ExtResource("2_706y2")]
+layout_mode = 2
+
+[node name="Icon" parent="HUD/Resources/Coins" index="0"]
+texture = ExtResource("2_t1u67")
+
+[node name="ButtonTower" type="Button" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -167.0
+offset_right = 184.0
+offset_bottom = -31.0
+grow_vertical = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_fusem")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4hdek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_35oiv")
+icon = ExtResource("5_ugc3r")
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="HUD/ButtonTower"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = 14.0
+offset_right = -21.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_vdel0")
+stretch_mode = 5
+
+[node name="BuildingPrice" parent="HUD/ButtonTower" instance=ExtResource("2_706y2")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_top = -55.0
+offset_right = 62.5
+offset_bottom = 15.0
+grow_horizontal = 2
+
+[node name="Icon" parent="HUD/ButtonTower/BuildingPrice" index="0"]
+texture = ExtResource("2_t1u67")
+
+[node name="Label" parent="HUD/ButtonTower/BuildingPrice" index="1"]
+text = "20
+"
+
+[editable path="HUD/Resources/Hearts"]
+[editable path="HUD/Resources/Coins"]
+[editable path="HUD/ButtonTower/BuildingPrice"]

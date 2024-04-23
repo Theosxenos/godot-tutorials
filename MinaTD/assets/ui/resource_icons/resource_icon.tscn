@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://7hntm12wbaba"]
+
+[ext_resource type="Theme" uid="uid://cwvfllrjf57wf" path="res://assets/ui/new_theme.tres" id="2_lh6eq"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+auto_translate_mode = 1
+theme_override_constants/separation = 0
+
+[node name="Icon" type="TextureRect" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+theme = ExtResource("2_lh6eq")
+text = "0
+"
+vertical_alignment = 1
