@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctcv8pubp52dv"]
+[gd_scene load_steps=12 format=3 uid="uid://ctcv8pubp52dv"]
 
+[ext_resource type="Script" path="res://src/GameManager.cs" id="1_b53jw"]
 [ext_resource type="PackedScene" uid="uid://bh8ta4g6dv4mq" path="res://assets/levels/level_1/level_01.tscn" id="1_yu0h1"]
 [ext_resource type="PackedScene" uid="uid://7hntm12wbaba" path="res://assets/ui/resource_icons/resource_icon.tscn" id="2_706y2"]
+[ext_resource type="Script" path="res://src/EnemyPathDisplay.cs" id="2_crncn"]
 [ext_resource type="Texture2D" uid="uid://bmkju7p3bsjnm" path="res://assets/ui/resource_icons/coinGold.png" id="2_t1u67"]
 [ext_resource type="Texture2D" uid="uid://bnd80w8vjsdmg" path="res://assets/ui/resource_icons/heart.png" id="3_6u3ab"]
 [ext_resource type="Texture2D" uid="uid://i60ulf3u6y4o" path="res://assets/towers/tower-base.png" id="5_ugc3r"]
@@ -37,14 +39,21 @@ expand_margin_top = 55.0
 expand_margin_right = 8.0
 expand_margin_bottom = 30.0
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" node_paths=PackedStringArray("livesLabel", "coinsLabel")]
+script = ExtResource("1_b53jw")
+livesLabel = NodePath("UI/HUD/Resources/Hearts/Label")
+coinsLabel = NodePath("UI/HUD/Resources/Coins/Label")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1920, 1080)
 zoom = Vector2(0.5, 0.5)
 
-[node name="Level-01" parent="." node_paths=PackedStringArray("path") instance=ExtResource("1_yu0h1")]
+[node name="Level" parent="." node_paths=PackedStringArray("path") instance=ExtResource("1_yu0h1")]
 path = NodePath("ShipPath")
+
+[node name="EnemyPathDisplay" type="Node2D" parent="." node_paths=PackedStringArray("level")]
+script = ExtResource("2_crncn")
+level = NodePath("../Level")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

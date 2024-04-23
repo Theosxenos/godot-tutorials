@@ -511,5 +511,6 @@ enabled = false
 zoom = Vector2(0.5, 0.5)
 
 [node name="ShipPath" type="Path2D" parent="."]
+z_index = 2
 position = Vector2(0, 1)
 curve = SubResource("Curve2D_3j3up")
