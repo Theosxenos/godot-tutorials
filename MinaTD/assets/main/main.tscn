@@ -43,7 +43,8 @@ expand_margin_bottom = 30.0
 position = Vector2(1920, 1080)
 zoom = Vector2(0.5, 0.5)
 
-[node name="Level-01" parent="." instance=ExtResource("1_yu0h1")]
+[node name="Level-01" parent="." node_paths=PackedStringArray("path") instance=ExtResource("1_yu0h1")]
+path = NodePath("ShipPath")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -54,6 +55,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Resources" type="VBoxContainer" parent="UI/HUD"]
+layout_mode = 0
 offset_right = 98.0
 offset_bottom = 144.0
 

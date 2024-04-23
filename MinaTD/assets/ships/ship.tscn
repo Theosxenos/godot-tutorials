@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://11l08a2o3mbe"]
+
+[ext_resource type="Script" path="res://src/ShipManager.cs" id="1_71vo1"]
+[ext_resource type="Texture2D" uid="uid://cg2blt83iec6y" path="res://assets/ships/ship (1).png" id="1_qpe8j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3p2c7"]
+radius = 33.1361
+
+[node name="Ship" type="PathFollow2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_71vo1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("1_qpe8j")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_3p2c7")

@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh8ta4g6dv4mq"]
+[gd_scene load_steps=7 format=3 uid="uid://bh8ta4g6dv4mq"]
 
+[ext_resource type="Script" path="res://src/LevelManager.cs" id="1_6tebo"]
 [ext_resource type="Texture2D" uid="uid://7gqdbx5swddj" path="res://assets/levels/tilesheets/tiles_sheet@2.png" id="1_ofnh3"]
+[ext_resource type="PackedScene" uid="uid://11l08a2o3mbe" path="res://assets/ships/ship.tscn" id="2_kn1jy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wt6t6"]
 texture = ExtResource("1_ofnh3")
@@ -470,9 +472,14 @@ _data = {
 }
 point_count = 13
 
-[node name="Level-01" type="Node2D"]
+[node name="Level-01" type="Node2D" node_paths=PackedStringArray("path")]
+script = ExtResource("1_6tebo")
+shipScene = ExtResource("2_kn1jy")
+path = NodePath("ShipPath")
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
 [node name="TileMaps" type="Node2D" parent="."]
 
@@ -503,7 +510,6 @@ position = Vector2(1920, 1080)
 enabled = false
 zoom = Vector2(0.5, 0.5)
 
-[node name="Path2D" type="Path2D" parent="."]
-modulate = Color(0.74441, 0.000425091, 0.744405, 1)
+[node name="ShipPath" type="Path2D" parent="."]
 position = Vector2(0, 1)
 curve = SubResource("Curve2D_3j3up")
