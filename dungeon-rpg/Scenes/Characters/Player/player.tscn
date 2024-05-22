@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://5rvva4g8xdid"]
+[gd_scene load_steps=37 format=3 uid="uid://5rvva4g8xdid"]
 
 [ext_resource type="Texture2D" uid="uid://db87u58yal717" path="res://Assets/Sprites/Characters/Player/Running/Running_001.png" id="1_4ol5w"]
 [ext_resource type="Script" path="res://Scenes/Characters/Player/Player.cs" id="1_oaslo"]
@@ -30,6 +30,9 @@
 [ext_resource type="Texture2D" uid="uid://cgft02o4aggq3" path="res://Assets/Sprites/Characters/Player/Running/Running_009.png" id="27_ykono"]
 [ext_resource type="Texture2D" uid="uid://d0bkheeah6ixp" path="res://Assets/Sprites/Characters/Player/Running/Running_010.png" id="28_ybucv"]
 [ext_resource type="Texture2D" uid="uid://k4tlw4viy3b3" path="res://Assets/Sprites/Characters/Player/Running/Running_011.png" id="29_au2ts"]
+[ext_resource type="Script" path="res://Scenes/Characters/Player/PlayerIdleState.cs" id="31_emon5"]
+[ext_resource type="Script" path="res://Scenes/Characters/Player/PlayerMoveState.cs" id="32_yuqih"]
+[ext_resource type="Script" path="res://Scenes/Characters/StateMachine.cs" id="33_agsfk"]
 
 [sub_resource type="Animation" id="Animation_p1nh8"]
 resource_name = "idle"
@@ -85,3 +88,14 @@ libraries = {
 "": SubResource("AnimationLibrary_5u1t8")
 }
 autoplay = "idle"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState", "states")]
+script = ExtResource("33_agsfk")
+currentState = NodePath("IdleState")
+states = [NodePath("IdleState"), NodePath("MoveState")]
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("31_emon5")
+
+[node name="MoveState" type="Node" parent="StateMachine"]
+script = ExtResource("32_yuqih")
