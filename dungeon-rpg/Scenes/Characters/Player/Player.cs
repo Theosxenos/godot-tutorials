@@ -3,17 +3,29 @@ using System;
 
 public partial class Player : CharacterBody3D
 {
-    [Export] public int Speed { get; set; }
+    [Export] public int Speed { get; set; } = 5;
+    
+    [ExportGroup("RequiredNodes")]
+    [Export] public Sprite3D Sprite { get; set; }
+    [Export] public AnimationPlayer AnimationPlayer { get; set; }
+
+    private Vector2 direction = Vector2.Zero;
 
     public override void _PhysicsProcess(double delta)
     {
-        var direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+        AnimationPlayer.Play(direction != Vector2.Zero ? GameConstants.ANIM_MOVE : GameConstants.ANIM_IDLE);
 
-        Velocity += direction * Speed * (float)delta;
+        Sprite.FlipH = direction.X < 0;
+        
+        Velocity = new(direction.X, 0, direction.Y);
+        Velocity *= Speed;
+
+        MoveAndSlide();
     }
 
     public override void _Input(InputEvent @event)
     {
-        base._Input(@event);
+        direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
+
     }
 }

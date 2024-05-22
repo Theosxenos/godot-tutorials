@@ -87,8 +87,10 @@ _data = {
 "move": SubResource("Animation_w8o6f")
 }
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Sprite", "AnimationPlayer")]
 script = ExtResource("1_oaslo")
+Sprite = NodePath("Sprite3D")
+AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture = ExtResource("1_4ol5w")
@@ -97,3 +99,4 @@ texture = ExtResource("1_4ol5w")
 libraries = {
 "": SubResource("AnimationLibrary_5u1t8")
 }
+autoplay = "idle"
