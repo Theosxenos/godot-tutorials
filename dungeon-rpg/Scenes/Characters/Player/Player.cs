@@ -17,11 +17,6 @@ public partial class Player : CharacterBody3D
         StateMachine = GetNode<StateMachine>("StateMachine");
     }
 
-    public override void _PhysicsProcess(double delta)
-    {
-
-    }
-
     public override void _Input(InputEvent @event)
     {
         Direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);

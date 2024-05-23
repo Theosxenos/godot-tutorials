@@ -3,6 +3,9 @@ using System;
 
 public partial class PlayerDashState : Node
 {
+
+    [Export] private int dashSpeed = 10;
+
     private Player characterNode;
     private Timer dashTimer;
 
@@ -19,10 +22,8 @@ public partial class PlayerDashState : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        // if (characterNode.Direction != Vector2.Zero)
-        // {
-        //     characterNode.StateMachine.SwitchState<PlayerMoveState>();
-        // }
+        characterNode.MoveAndSlide();
+        // characterNode.FlipSprite();
     }
 
     public override void _Notification(int what)
@@ -32,6 +33,18 @@ public partial class PlayerDashState : Node
         if (what == 5_001)
         {
             characterNode.AnimationPlayer.Play(GameConstants.ANIM_DASH);
+            
+            characterNode.Velocity = new Vector3(characterNode.Direction.X, 0, characterNode.Direction.Y);
+
+            if (characterNode.Velocity == Vector3.Zero)
+            {
+                characterNode.Velocity = characterNode.Sprite.FlipH
+                    ? characterNode.Velocity = Vector3.Left
+                    : characterNode.Velocity = Vector3.Right;
+            }
+            
+            characterNode.Velocity *= dashSpeed;
+            
             dashTimer.Start();
             
             SetPhysicsProcess(true);
@@ -46,6 +59,8 @@ public partial class PlayerDashState : Node
     
     private void DashTimerOnTimeout()
     {
+        characterNode.Velocity = Vector3.Zero;
+        
         characterNode.StateMachine.SwitchState<PlayerIdleState>();
     }
 }
