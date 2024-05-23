@@ -22,7 +22,6 @@ public partial class Player : CharacterBody3D
     {
         Direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT,
             GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
-        // AnimationPlayer.Play(direction != Vector2.Zero ? GameConstants.ANIM_MOVE : GameConstants.ANIM_IDLE);
     }
 
     public void FlipSprite()
