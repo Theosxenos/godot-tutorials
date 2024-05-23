@@ -1,13 +1,17 @@
 using Godot;
 using System;
 
-public partial class PlayerIdleState : Node
+public partial class PlayerDashState : Node
 {
     private Player characterNode;
+    private Timer dashTimer;
 
     public override void _Ready()
     {
         characterNode = GetOwner<Player>();
+        dashTimer = GetNode<Timer>("Timer");
+        
+        dashTimer.Timeout += DashTimerOnTimeout;
 
         SetPhysicsProcess(false);
         SetProcessInput(false);
@@ -15,10 +19,10 @@ public partial class PlayerIdleState : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        if (characterNode.Direction != Vector2.Zero)
-        {
-            characterNode.StateMachine.SwitchState<PlayerMoveState>();
-        }
+        // if (characterNode.Direction != Vector2.Zero)
+        // {
+        //     characterNode.StateMachine.SwitchState<PlayerMoveState>();
+        // }
     }
 
     public override void _Notification(int what)
@@ -27,7 +31,9 @@ public partial class PlayerIdleState : Node
 
         if (what == 5_001)
         {
-            characterNode.AnimationPlayer.Play(GameConstants.ANIM_IDLE);
+            characterNode.AnimationPlayer.Play(GameConstants.ANIM_DASH);
+            dashTimer.Start();
+            
             SetPhysicsProcess(true);
             SetProcessInput(true);
         }
@@ -37,12 +43,9 @@ public partial class PlayerIdleState : Node
             SetProcessInput(false);
         }
     }
-
-    public override void _Input(InputEvent @event)
+    
+    private void DashTimerOnTimeout()
     {
-        if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
-        {
-            characterNode.StateMachine.SwitchState<PlayerDashState>();
-        }
+        characterNode.StateMachine.SwitchState<PlayerIdleState>();
     }
 }

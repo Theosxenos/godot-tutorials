@@ -23,6 +23,10 @@ public partial class StateMachine : Node
             }
         }
 
-        newState?._Notification(5_001);
+        if (newState == null) return;
+
+        currentState._Notification(5_002);
+        currentState = newState;
+        newState._Notification(5_001);
     }
 }
