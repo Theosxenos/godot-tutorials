@@ -3,8 +3,8 @@ using System;
 
 public partial class StateMachine : Node
 {
-    [Export] private Node currentState;
-    [Export] private Node[] states;
+    [Export] private PlayerState currentState;
+    [Export] private PlayerState[] states;
 
     public override void _Ready()
     {
@@ -13,7 +13,7 @@ public partial class StateMachine : Node
 
     public void SwitchState<T>()
     {
-        Node newState = null;
+        PlayerState newState = null;
 
         foreach (var state in states)
         {

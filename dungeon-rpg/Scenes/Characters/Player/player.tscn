@@ -124,9 +124,12 @@ script = ExtResource("31_emon5")
 [node name="MoveState" type="Node" parent="StateMachine"]
 script = ExtResource("32_yuqih")
 
-[node name="DashState" type="Node" parent="StateMachine"]
+[node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashTimer")]
 script = ExtResource("40_qpcmd")
+dashTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachine/DashState"]
 wait_time = 0.4
 one_shot = true
+
+[connection signal="timeout" from="StateMachine/DashState/Timer" to="StateMachine/DashState" method="OnDashTimerTimeout"]

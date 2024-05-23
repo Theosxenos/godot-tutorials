@@ -1,66 +1,39 @@
 using Godot;
 using System;
 
-public partial class PlayerDashState : Node
+public partial class PlayerDashState : PlayerState
 {
 
     [Export] private int dashSpeed = 10;
-
-    private Player characterNode;
-    private Timer dashTimer;
-
-    public override void _Ready()
-    {
-        characterNode = GetOwner<Player>();
-        dashTimer = GetNode<Timer>("Timer");
-        
-        dashTimer.Timeout += DashTimerOnTimeout;
-
-        SetPhysicsProcess(false);
-        SetProcessInput(false);
-    }
+    [Export] private Timer dashTimer;
 
     public override void _PhysicsProcess(double delta)
     {
-        characterNode.MoveAndSlide();
-        // characterNode.FlipSprite();
+        CharacterNode.MoveAndSlide();
     }
 
-    public override void _Notification(int what)
+    protected override void EnterState()
     {
-        base._Notification(what);
+        CharacterNode.AnimationPlayer.Play(GameConstants.ANIM_DASH);
+            
+        CharacterNode.Velocity = new Vector3(CharacterNode.Direction.X, 0, CharacterNode.Direction.Y);
 
-        if (what == 5_001)
+        if (CharacterNode.Velocity == Vector3.Zero)
         {
-            characterNode.AnimationPlayer.Play(GameConstants.ANIM_DASH);
-            
-            characterNode.Velocity = new Vector3(characterNode.Direction.X, 0, characterNode.Direction.Y);
-
-            if (characterNode.Velocity == Vector3.Zero)
-            {
-                characterNode.Velocity = characterNode.Sprite.FlipH
-                    ? characterNode.Velocity = Vector3.Left
-                    : characterNode.Velocity = Vector3.Right;
-            }
-            
-            characterNode.Velocity *= dashSpeed;
-            
-            dashTimer.Start();
-            
-            SetPhysicsProcess(true);
-            SetProcessInput(true);
+            CharacterNode.Velocity = CharacterNode.Sprite.FlipH
+                ? CharacterNode.Velocity = Vector3.Left
+                : CharacterNode.Velocity = Vector3.Right;
         }
-        else if (what == 5_002)
-        {
-            SetPhysicsProcess(false);
-            SetProcessInput(false);
-        }
+            
+        CharacterNode.Velocity *= dashSpeed;
+            
+        dashTimer.Start();
     }
-    
-    private void DashTimerOnTimeout()
+
+    private void OnDashTimerTimeout()
     {
-        characterNode.Velocity = Vector3.Zero;
+        CharacterNode.Velocity = Vector3.Zero;
         
-        characterNode.StateMachine.SwitchState<PlayerIdleState>();
+        CharacterNode.StateMachine.SwitchState<PlayerIdleState>();
     }
 }

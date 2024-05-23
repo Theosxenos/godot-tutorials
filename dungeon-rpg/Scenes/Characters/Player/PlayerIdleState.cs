@@ -1,40 +1,12 @@
 using Godot;
-using System;
 
-public partial class PlayerIdleState : Node
+public partial class PlayerIdleState : PlayerState
 {
-    private Player characterNode;
-
-    public override void _Ready()
-    {
-        characterNode = GetOwner<Player>();
-
-        SetPhysicsProcess(false);
-        SetProcessInput(false);
-    }
-
     public override void _PhysicsProcess(double delta)
     {
-        if (characterNode.Direction != Vector2.Zero)
+        if (CharacterNode.Direction != Vector2.Zero)
         {
-            characterNode.StateMachine.SwitchState<PlayerMoveState>();
-        }
-    }
-
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == 5_001)
-        {
-            characterNode.AnimationPlayer.Play(GameConstants.ANIM_IDLE);
-            SetPhysicsProcess(true);
-            SetProcessInput(true);
-        }
-        else if (what == 5_002)
-        {
-            SetPhysicsProcess(false);
-            SetProcessInput(false);
+            CharacterNode.StateMachine.SwitchState<PlayerMoveState>();
         }
     }
 
@@ -42,7 +14,12 @@ public partial class PlayerIdleState : Node
     {
         if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
         {
-            characterNode.StateMachine.SwitchState<PlayerDashState>();
+            CharacterNode.StateMachine.SwitchState<PlayerDashState>();
         }
+    }
+
+    protected override void EnterState()
+    {
+        CharacterNode.AnimationPlayer.Play(GameConstants.ANIM_IDLE);
     }
 }
