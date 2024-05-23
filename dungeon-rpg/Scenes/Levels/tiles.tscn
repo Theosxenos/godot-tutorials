@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://c34b2c6uksom"]
+
+[ext_resource type="PackedScene" uid="uid://3rk02oade0uj" path="res://Assets/Models/Dungeon/gltf/floor_tile_small.gltf.glb" id="1_c8gls"]
+[ext_resource type="PackedScene" uid="uid://mj6tvtxt3rpl" path="res://Assets/Models/Dungeon/gltf/wall.gltf.glb" id="2_bv75y"]
+[ext_resource type="PackedScene" uid="uid://caqoj1r3jm2ak" path="res://Assets/Models/Dungeon/gltf/stairs_wood_decorated.gltf.glb" id="3_6rcl7"]
+[ext_resource type="PackedScene" uid="uid://cuyyid2s4pjbn" path="res://Assets/Models/Dungeon/gltf/wall_corner.gltf.glb" id="4_8abi8"]
+[ext_resource type="PackedScene" uid="uid://npyub3mhriuh" path="res://Assets/Models/Dungeon/gltf/wall_Tsplit.gltf.glb" id="5_a3r1n"]
+[ext_resource type="PackedScene" uid="uid://d38tty5dtexoi" path="res://Assets/Models/Dungeon/gltf/wall_open_scaffold.gltf.glb" id="6_cvla3"]
+[ext_resource type="PackedScene" uid="uid://cvt01i53tihf3" path="res://Assets/Models/Dungeon/gltf/wall_doorway_scaffold.glb" id="7_yf8xf"]
+
+[node name="Tiles" type="Node3D"]
+
+[node name="floor_tile_small_gltf" parent="." instance=ExtResource("1_c8gls")]
+
+[node name="wall_gltf" parent="." instance=ExtResource("2_bv75y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.77368, 0, 0)
+
+[node name="stairs_wood_decorated_gltf" parent="." instance=ExtResource("3_6rcl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 0, 0)
+
+[node name="wall_corner_gltf" parent="." instance=ExtResource("4_8abi8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
+
+[node name="wall_Tsplit_gltf" parent="." instance=ExtResource("5_a3r1n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0)
+
+[node name="wall_open_scaffold_gltf" parent="." instance=ExtResource("6_cvla3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 0)
+
+[node name="wall_doorway_scaffold2" parent="." instance=ExtResource("7_yf8xf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 0)
