@@ -3,18 +3,11 @@ using Godot;
 public partial class Player : CharacterBody3D
 {
     [ExportGroup("RequiredNodes")]
-    [Export]
-    public Sprite3D Sprite { get; set; }
-
-    [Export] public AnimationPlayer AnimationPlayer { get; set; }
+    [Export] public Sprite3D Sprite { get; private set; }
+    [Export] public AnimationPlayer AnimationPlayer { get; private set; }
+    [Export] public StateMachine StateMachine { get; private set; }
 
     public Vector2 Direction { get; set; } = Vector2.Zero;
-    public StateMachine StateMachine { get; set; }
-
-    public override void _Ready()
-    {
-        StateMachine = GetNode<StateMachine>("StateMachine");
-    }
 
     public override void _Input(InputEvent @event)
     {

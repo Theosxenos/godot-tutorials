@@ -6,9 +6,10 @@
 [node name="Main" type="Node3D"]
 script = ExtResource("1_y321h")
 
-[node name="Player" parent="." node_paths=PackedStringArray("Sprite", "AnimationPlayer") instance=ExtResource("2_h2d8e")]
+[node name="Player" parent="." node_paths=PackedStringArray("Sprite", "AnimationPlayer", "StateMachine") instance=ExtResource("2_h2d8e")]
 Sprite = NodePath("Sprite3D")
 AnimationPlayer = NodePath("AnimationPlayer")
+StateMachine = NodePath("StateMachine")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.5306)

@@ -1,5 +1,6 @@
 using Godot;
 
+
 public partial class PlayerIdleState : PlayerState
 {
     public override void _PhysicsProcess(double delta)
