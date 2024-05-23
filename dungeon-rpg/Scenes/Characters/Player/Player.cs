@@ -1,12 +1,13 @@
 using Godot;
-using System;
 
 public partial class Player : CharacterBody3D
 {
     [Export] public int Speed { get; set; } = 5;
-    
+
     [ExportGroup("RequiredNodes")]
-    [Export] public Sprite3D Sprite { get; set; }
+    [Export]
+    public Sprite3D Sprite { get; set; }
+
     [Export] public AnimationPlayer AnimationPlayer { get; set; }
 
     public Vector2 Direction { get; set; } = Vector2.Zero;
@@ -19,14 +20,15 @@ public partial class Player : CharacterBody3D
 
     public override void _Input(InputEvent @event)
     {
-        Direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
+        Direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT,
+            GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
         // AnimationPlayer.Play(direction != Vector2.Zero ? GameConstants.ANIM_MOVE : GameConstants.ANIM_IDLE);
     }
 
     public void FlipSprite()
     {
         // Not moving horizontally
-        if(Velocity.X == 0) return;
+        if (Velocity.X == 0) return;
 
         Sprite.FlipH = Direction.X < 0;
     }

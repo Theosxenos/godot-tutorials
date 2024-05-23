@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class StateMachine : Node
 {
@@ -16,12 +15,8 @@ public partial class StateMachine : Node
         PlayerState newState = null;
 
         foreach (var state in states)
-        {
             if (state is T)
-            {
                 newState = state;
-            }
-        }
 
         if (newState == null) return;
 

@@ -11,7 +11,7 @@ public partial class PlayerState : Node
         SetPhysicsProcess(false);
         SetProcessInput(false);
     }
-    
+
     public override void _Notification(int what)
     {
         base._Notification(what);
@@ -29,5 +29,7 @@ public partial class PlayerState : Node
         }
     }
 
-    protected virtual void EnterState() { }
+    protected virtual void EnterState()
+    {
+    }
 }
