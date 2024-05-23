@@ -2,8 +2,6 @@ using Godot;
 
 public partial class Player : CharacterBody3D
 {
-    [Export] public int Speed { get; set; } = 5;
-
     [ExportGroup("RequiredNodes")]
     [Export]
     public Sprite3D Sprite { get; set; }

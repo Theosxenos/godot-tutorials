@@ -2,7 +2,7 @@ using Godot;
 
 public partial class PlayerDashState : PlayerState
 {
-    [Export] private int dashSpeed = 10;
+    [Export(PropertyHint.Range, "0,20,0.1")] private float dashSpeed = 10;
     [Export] private Timer dashTimer;
 
     public override void _PhysicsProcess(double delta)
