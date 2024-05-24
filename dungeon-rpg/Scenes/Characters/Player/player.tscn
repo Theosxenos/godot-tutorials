@@ -103,6 +103,8 @@ _data = {
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Sprite", "AnimationPlayer", "StateMachine")]
 collision_layer = 2
+floor_max_angle = 1.55334
+floor_snap_length = 0.2
 script = ExtResource("1_oaslo")
 Sprite = NodePath("Sprite3D")
 AnimationPlayer = NodePath("AnimationPlayer")
@@ -133,9 +135,11 @@ script = ExtResource("31_emon5")
 
 [node name="MoveState" type="Node" parent="StateMachine"]
 script = ExtResource("32_yuqih")
+speed = 15.0
 
 [node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashTimer")]
 script = ExtResource("40_qpcmd")
+dashSpeed = 20.0
 dashTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachine/DashState"]
