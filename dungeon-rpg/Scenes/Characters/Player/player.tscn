@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://5rvva4g8xdid"]
+[gd_scene load_steps=46 format=3 uid="uid://5rvva4g8xdid"]
 
 [ext_resource type="Texture2D" uid="uid://db87u58yal717" path="res://Assets/Sprites/Characters/Player/Running/Running_001.png" id="1_4ol5w"]
 [ext_resource type="Script" path="res://Scenes/Characters/Player/Player.cs" id="1_oaslo"]
@@ -40,6 +40,9 @@
 [ext_resource type="Texture2D" uid="uid://5nafurxl23cx" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_003.png" id="35_xvtyj"]
 [ext_resource type="Texture2D" uid="uid://x2wkbp04i7l3" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="36_jare2"]
 [ext_resource type="Script" path="res://Scenes/Characters/Player/PlayerDashState.cs" id="40_qpcmd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bgq46"]
+height = 1.46222
 
 [sub_resource type="Animation" id="Animation_p1nh8"]
 resource_name = "idle"
@@ -99,10 +102,15 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Sprite", "AnimationPlayer", "StateMachine")]
+collision_layer = 2
 script = ExtResource("1_oaslo")
 Sprite = NodePath("Sprite3D")
 AnimationPlayer = NodePath("AnimationPlayer")
 StateMachine = NodePath("StateMachine")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0312761, 0.0201632, 0)
+shape = SubResource("CapsuleShape3D_bgq46")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
