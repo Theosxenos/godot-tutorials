@@ -23,6 +23,7 @@ project/assembly_name="Dungeon RPG"
 
 folder_colors={
 "res://Assets/": "orange",
+"res://Resources/": "green",
 "res://Scenes/": "yellow"
 }
 
