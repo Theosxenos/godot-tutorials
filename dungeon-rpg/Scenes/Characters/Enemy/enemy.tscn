@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://j6rndud84o8s"]
+[gd_scene load_steps=48 format=3 uid="uid://j6rndud84o8s"]
 
 [ext_resource type="Texture2D" uid="uid://d1bfuk68dfklv" path="res://Assets/Sprites/Characters/Enemy Knight/Idle/0_Demons_of_Darkness_Idle_000.png" id="1_knou8"]
 [ext_resource type="Texture2D" uid="uid://bxq4i8m0g3h77" path="res://Assets/Sprites/Characters/Enemy Knight/Move/0_Demons_of_Darkness_Walking_000.png" id="1_nqisf"]
@@ -99,12 +99,20 @@ _data = {
 "move": SubResource("Animation_g46ca")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_73buo"]
+radius = 0.547536
+
 [node name="Enemy" type="CharacterBody3D"]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.0025
 texture = ExtResource("1_knou8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_g1nx6")
 }
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0339761, 0, 0)
+shape = SubResource("CapsuleShape3D_73buo")
