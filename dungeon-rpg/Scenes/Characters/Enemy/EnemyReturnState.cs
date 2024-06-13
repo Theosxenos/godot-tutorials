@@ -16,7 +16,19 @@ public partial class EnemyReturnState : EnemyState
     protected override void EnterState()
     {
         CharacterNode.AnimationPlayer.Play(GameConstants.ANIM_MOVE);
+    }
 
-        CharacterNode.GlobalPosition = destination;
+    public override void _PhysicsProcess(double delta)
+    {
+        if (CharacterNode.GlobalPosition == destination)
+        {
+            GD.Print("Destination reached");
+            return;
+        }
+
+        CharacterNode.Velocity = CharacterNode.GlobalPosition.DirectionTo(destination);
+
+        CharacterNode.MoveAndSlide();
     }
 }
+
