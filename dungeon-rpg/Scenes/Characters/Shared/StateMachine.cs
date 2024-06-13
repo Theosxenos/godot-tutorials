@@ -1,9 +1,10 @@
+using System.Linq;
 using Godot;
 
 public partial class StateMachine : Node
 {
-    [Export] private PlayerState currentState;
-    [Export] private PlayerState[] states;
+    [Export] private CharacterState currentState;
+    [Export] private CharacterState[] states;
 
     public override void _Ready()
     {
@@ -12,7 +13,7 @@ public partial class StateMachine : Node
 
     public void SwitchState<T>()
     {
-        PlayerState newState = null;
+        CharacterState newState = null;
 
         foreach (var state in states)
         {
