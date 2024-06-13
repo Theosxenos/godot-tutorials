@@ -1,13 +1,21 @@
 using Godot;
-using System;
 
 [GlobalClass]
 public abstract partial class EnemyState : CharacterState
 {
-    // public override void _Ready()
-    // {
-    //     base._Ready();
-    //
-    //     CharacterNode = GetOwner<Enemy>();
-    // }
+    protected Vector3 Destination { get; set; }
+
+    protected Vector3 GetPointGlobalPosition(int index)
+    {
+        var localPosition = CharacterNode.PathNode.Curve.GetPointPosition(index);
+        var globalPosition = CharacterNode.PathNode.GlobalPosition;
+        return localPosition + globalPosition;
+    }
+
+    protected void Move()
+    {
+        CharacterNode.Velocity = CharacterNode.GlobalPosition.DirectionTo(Destination);
+
+        CharacterNode.MoveAndSlide();
+    }
 }

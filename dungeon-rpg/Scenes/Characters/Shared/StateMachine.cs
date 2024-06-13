@@ -8,6 +8,15 @@ public partial class StateMachine : Node
 
     public override void _Ready()
     {
+        states = new CharacterState[GetChildCount()];
+
+        var i = 0;
+        foreach (var child in GetChildren())
+        {
+            states[i] = child as CharacterState;
+            i++;
+        }
+        
         currentState._Notification(GameConstants.NOTIFICATION_ENTER_STATE);
     }
 
