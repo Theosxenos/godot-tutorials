@@ -13,13 +13,7 @@ public partial class StateMachine : Node
 
     public void SwitchState<T>()
     {
-        CharacterState newState = null;
-
-        foreach (var state in states)
-        {
-            if (state is T)
-                newState = state;
-        }
+        var newState = states.FirstOrDefault(state => state is T);
 
         if (newState == null) return;
 
