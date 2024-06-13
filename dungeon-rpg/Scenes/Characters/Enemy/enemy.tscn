@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://j6rndud84o8s"]
+[gd_scene load_steps=112 format=3 uid="uid://j6rndud84o8s"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/Enemy.cs" id="1_6onq0"]
 [ext_resource type="Texture2D" uid="uid://d1bfuk68dfklv" path="res://Assets/Sprites/Characters/Enemy Knight/Idle/0_Demons_of_Darkness_Idle_000.png" id="1_knou8"]
@@ -102,6 +102,7 @@
 [ext_resource type="Texture2D" uid="uid://da77x7ppyqwyb" path="res://Assets/Sprites/Characters/Enemy Knight/TakeHit/0_Demons_of_Darkness_Hurt_011.png" id="99_11om5"]
 [ext_resource type="PackedScene" uid="uid://7rqtxh4xera6" path="res://Scenes/Characters/Shared/state_machine.tscn" id="100_ka4h1"]
 [ext_resource type="Script" path="res://Scenes/Characters/Enemy/EnemyIdleState.cs" id="101_jahhi"]
+[ext_resource type="Script" path="res://Scenes/Characters/Enemy/EnemyReturnState.cs" id="103_y0cqj"]
 
 [sub_resource type="Animation" id="Animation_7mtbr"]
 length = 0.001
@@ -238,10 +239,11 @@ _data = {
 radius = 0.615808
 height = 1.53684
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("Sprite", "AnimationPlayer")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("Sprite", "AnimationPlayer", "StateMachine")]
 script = ExtResource("1_6onq0")
 Sprite = NodePath("Sprite3D")
 AnimationPlayer = NodePath("AnimationPlayer")
+StateMachine = NodePath("StateMachine")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
@@ -256,8 +258,12 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00344443, 0, 0)
 shape = SubResource("CapsuleShape3D_73buo")
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("currentState") instance=ExtResource("100_ka4h1")]
-currentState = NodePath("IdleState")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("currentState", "states") instance=ExtResource("100_ka4h1")]
+currentState = NodePath("EnemyReturnState")
+states = [NodePath("IdleState"), NodePath("EnemyReturnState")]
 
 [node name="IdleState" type="Node" parent="StateMachine"]
 script = ExtResource("101_jahhi")
+
+[node name="EnemyReturnState" type="Node" parent="StateMachine"]
+script = ExtResource("103_y0cqj")

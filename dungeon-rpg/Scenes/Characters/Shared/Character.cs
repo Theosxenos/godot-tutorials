@@ -9,6 +9,9 @@ public abstract partial class Character : CharacterBody3D
     [Export] public AnimationPlayer AnimationPlayer { get; private set; }
     [Export] public StateMachine StateMachine { get; private set; }
     
+    [ExportGroup("AI Nodes")]
+    [Export] public Path3D PathNode { get; private set; }
+    
     public Vector2 Direction { get; set; } = Vector2.Zero;
     
     public void FlipSprite()

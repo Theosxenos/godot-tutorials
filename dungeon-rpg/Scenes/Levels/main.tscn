@@ -111,17 +111,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1, 3.23818)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9564, 2.41909, -0.0144312)
 shape = SubResource("BoxShape3D_ltpu8")
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("Sprite", "AnimationPlayer", "StateMachine") instance=ExtResource("4_ypd6g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.0121, 1.80572, 0)
-Sprite = NodePath("Sprite3D")
-AnimationPlayer = NodePath("AnimationPlayer")
-StateMachine = NodePath("StateMachine")
-
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Path3D" type="Path3D" parent="Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1.1599, 0)
 curve = SubResource("Curve3D_u6jal")
+
+[node name="Enemy" parent="Enemies/Path3D" node_paths=PackedStringArray("Sprite", "AnimationPlayer", "StateMachine", "PathNode") instance=ExtResource("4_ypd6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0121, 0.64582, 0)
+Sprite = NodePath("Sprite3D")
+AnimationPlayer = NodePath("AnimationPlayer")
+StateMachine = NodePath("StateMachine")
+PathNode = NodePath("..")
 
 [node name="Path3D2" type="Path3D" parent="Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3023, 1.42206, -7.13331)
