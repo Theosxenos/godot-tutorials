@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://5rvva4g8xdid"]
+[gd_scene load_steps=74 format=3 uid="uid://5rvva4g8xdid"]
 
 [ext_resource type="Texture2D" uid="uid://db87u58yal717" path="res://Assets/Sprites/Characters/Player/Running/Running_001.png" id="1_4ol5w"]
 [ext_resource type="Script" path="res://Scenes/Characters/Player/Player.cs" id="1_oaslo"]
@@ -160,6 +160,9 @@ _data = {
 "move": SubResource("Animation_w8o6f")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_sd22h"]
+size = Vector3(0.5, 0.5, 0.5)
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Sprite", "AnimationPlayer", "StateMachine")]
 collision_layer = 2
 collision_mask = 5
@@ -177,7 +180,7 @@ shape = SubResource("CapsuleShape3D_bgq46")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
 texture_filter = 2
-texture = ExtResource("37_foq7y")
+texture = ExtResource("2_rnqne")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -212,5 +215,13 @@ comboResetTimer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="StateMachine/AttackState"]
 wait_time = 2.0
 one_shot = true
+
+[node name="Hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.862582, 0, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("BoxShape3D_sd22h")
 
 [connection signal="timeout" from="StateMachine/DashState/Timer" to="StateMachine/DashState" method="OnDashTimerTimeout"]
