@@ -8,7 +8,6 @@ public abstract partial class PlayerState : CharacterState
         if(Input.IsActionJustPressed(GameConstants.INPUT_ATTACK))
         {
             CharacterNode.StateMachine.SwitchState<PlayerAttackState>();
-            GD.Print("After Attack");
         }
     }
 }
