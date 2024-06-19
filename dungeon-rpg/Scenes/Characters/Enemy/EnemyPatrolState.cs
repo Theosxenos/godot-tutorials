@@ -23,6 +23,7 @@ public partial class EnemyPatrolState : EnemyState
 
     protected override void ExitState()
     {
+        CharacterNode.AgentNode.NavigationFinished -= AgentNodeOnNavigationFinished;
         idleTimer.Timeout -= IdleTimerOnTimeout;
     }
 
