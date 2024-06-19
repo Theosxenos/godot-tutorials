@@ -3,6 +3,7 @@ public class GameConstants
     public const string ANIM_IDLE = "idle";
     public const string ANIM_MOVE = "move";
     public const string ANIM_DASH = "dash";
+    public const string ANIM_ATTACK = "attack";
 
     public const string INPUT_MOVE_LEFT = "move_left";
     public const string INPUT_MOVE_RIGHT = "move_right";

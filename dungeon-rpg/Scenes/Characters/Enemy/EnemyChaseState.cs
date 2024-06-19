@@ -15,11 +15,15 @@ public partial class EnemyChaseState : EnemyState
             .FirstOrDefault(body => body is CharacterBody3D) as CharacterBody3D;
         
         updateDestinationTimer.Timeout += UpdateDestinationTimerOnTimeout;
+        CharacterNode.AttackAreaNode.BodyEntered += HandleAttackAreaEntered;
+        CharacterNode.ChaseAreaNode.BodyExited += HandleChaseAreaBodyExited;
     }
 
     protected override void ExitState()
     {
         updateDestinationTimer.Timeout -= UpdateDestinationTimerOnTimeout;
+        CharacterNode.AttackAreaNode.BodyEntered -= HandleAttackAreaEntered;
+        CharacterNode.ChaseAreaNode.BodyExited -= HandleChaseAreaBodyExited;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -31,5 +35,15 @@ public partial class EnemyChaseState : EnemyState
     {
         Destination = target.GlobalPosition;
         CharacterNode.AgentNode.TargetPosition = Destination;
+    }
+    
+    private void HandleAttackAreaEntered(Node3D body)
+    {
+        CharacterNode.StateMachine.SwitchState<EnemyAttackState>();
+    }
+    
+    private void HandleChaseAreaBodyExited(Node3D body)
+    {
+        CharacterNode.StateMachine.SwitchState<EnemyReturnState>();
     }
 }
