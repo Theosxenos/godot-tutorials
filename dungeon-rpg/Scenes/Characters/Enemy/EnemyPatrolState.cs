@@ -18,12 +18,14 @@ public partial class EnemyPatrolState : EnemyState
         CharacterNode.AgentNode.TargetPosition = Destination;
         
         CharacterNode.AgentNode.NavigationFinished += AgentNodeOnNavigationFinished;
+        CharacterNode.ChaseAreaNode.BodyEntered += HandleChaseAreaBodyEntered;
         idleTimer.Timeout += IdleTimerOnTimeout;
     }
 
     protected override void ExitState()
     {
         CharacterNode.AgentNode.NavigationFinished -= AgentNodeOnNavigationFinished;
+        CharacterNode.ChaseAreaNode.BodyEntered -= HandleChaseAreaBodyEntered;
         idleTimer.Timeout -= IdleTimerOnTimeout;
     }
 
