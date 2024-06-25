@@ -14,7 +14,7 @@ public partial class Enemy : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
-        pathFollow3D.Progress = pathFollow3D.Progress * Speed * (float)delta;
+        pathFollow3D.Progress += Speed * (float)delta;
 
         if (pathFollow3D.ProgressRatio >= 0.99f)
         {
