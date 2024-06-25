@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://nixfuigej64c"
+path="res://.godot/imported/tile_endRoundSpawn.obj-a9799ed3a1e3fa9cab6f5e56ec867137.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile_endRoundSpawn.obj-a9799ed3a1e3fa9cab6f5e56ec867137.mesh"]
+
+source_file="res://art/Models/OBJ format/tile_endRoundSpawn.obj"
+dest_files=["res://.godot/imported/tile_endRoundSpawn.obj-a9799ed3a1e3fa9cab6f5e56ec867137.mesh", "res://.godot/imported/tile_endRoundSpawn.obj-a9799ed3a1e3fa9cab6f5e56ec867137.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

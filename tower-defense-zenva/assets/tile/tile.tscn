@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5nb21ltnlcm"]
+
+[ext_resource type="ArrayMesh" uid="uid://bcgrdoptasj1a" path="res://assets/tile/tile.obj" id="1_1tgqi"]
+
+[node name="Tile" type="MeshInstance3D"]
+mesh = ExtResource("1_1tgqi")

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cc3q2epxci3u8"
+path="res://.godot/imported/snow_tile_cornerLarge.obj-6e0a6415674916eb2b4d3d4337c8a56a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/snow_tile_cornerLarge.obj-6e0a6415674916eb2b4d3d4337c8a56a.mesh"]
+
+source_file="res://art/Models/OBJ format/snow_tile_cornerLarge.obj"
+dest_files=["res://.godot/imported/snow_tile_cornerLarge.obj-6e0a6415674916eb2b4d3d4337c8a56a.mesh", "res://.godot/imported/snow_tile_cornerLarge.obj-6e0a6415674916eb2b4d3d4337c8a56a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
