@@ -226,7 +226,7 @@ curve = SubResource("Curve3D_2grl2")
 [node name="SpawnTimer" type="Timer" parent="."]
 
 [node name="CameraPivot" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.810042, 0.586372, 0, -0.586372, 0.810042, 4.8847, -0.0521488, 1.96893)
+transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 4.8847, 0.351224, 1.96893)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, -0.892889, -0.650621, 7.8988)
