@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://me2atpw4vtp7"
+path="res://.godot/imported/tile_end.obj-14cb14b0ca4f0b59c9b3550d478f748f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile_end.obj-14cb14b0ca4f0b59c9b3550d478f748f.mesh"]
+
+source_file="res://assets/tile/tile_end.obj"
+dest_files=["res://.godot/imported/tile_end.obj-14cb14b0ca4f0b59c9b3550d478f748f.mesh", "res://.godot/imported/tile_end.obj-14cb14b0ca4f0b59c9b3550d478f748f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

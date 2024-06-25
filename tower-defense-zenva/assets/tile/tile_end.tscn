@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq4w10bnngy0f"]
+
+[ext_resource type="ArrayMesh" uid="uid://me2atpw4vtp7" path="res://assets/tile/tile_end.obj" id="1_6qgh7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_501gt"]
+points = PackedVector3Array(0.507937, 0.214264, 0.507937, -0.471748, -1.38778e-17, -0.471748, -0.471748, -1.38778e-17, 0.471748, -0.507937, 0.214264, -0.507937, 0.471748, -1.38778e-17, -0.471748, -0.507937, 0.214264, 0.507937, 0.507937, 0.214264, -0.507937, 0.471748, -1.38778e-17, 0.471748)
+
+[node name="TileEnd" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_501gt")
+
+[node name="Tile" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_6qgh7")
