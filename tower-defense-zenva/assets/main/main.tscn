@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7q3tb7mcri1d"]
+[gd_scene load_steps=10 format=3 uid="uid://c7q3tb7mcri1d"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_7oqad"]
 [ext_resource type="PackedScene" uid="uid://18452sllevn4" path="res://assets/tile/tile_end_round_spawn.tscn" id="1_whin4"]
 [ext_resource type="PackedScene" uid="uid://d2fgue6p3ea6s" path="res://assets/tile/tile_straight.tscn" id="2_jp6i5"]
+[ext_resource type="PackedScene" uid="uid://u3u1k2mvex7k" path="res://assets/ufo/ufo.tscn" id="2_qqs5a"]
 [ext_resource type="PackedScene" uid="uid://dkamfe6k5x7w3" path="res://assets/tile/tile_corner_square.tscn" id="3_xm0l0"]
 [ext_resource type="PackedScene" uid="uid://cq4w10bnngy0f" path="res://assets/tile/tile_end.tscn" id="4_fnk6u"]
 [ext_resource type="PackedScene" uid="uid://b5nb21ltnlcm" path="res://assets/tile/tile_grass.tscn" id="5_cihqu"]
@@ -15,8 +16,10 @@ _data = {
 }
 point_count = 5
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("path")]
 script = ExtResource("1_7oqad")
+enemyScene = ExtResource("2_qqs5a")
+path = NodePath("Path")
 
 [node name="Map" type="Node3D" parent="."]
 
@@ -219,3 +222,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 4.5)
 
 [node name="Path" type="Path3D" parent="."]
 curve = SubResource("Curve3D_2grl2")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.810042, 0.586372, 0, -0.586372, 0.810042, 4.8847, -0.0521488, 1.96893)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, -0.892889, -0.650621, 7.8988)
