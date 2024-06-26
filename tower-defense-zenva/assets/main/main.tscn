@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7q3tb7mcri1d"]
+[gd_scene load_steps=11 format=3 uid="uid://c7q3tb7mcri1d"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_7oqad"]
 [ext_resource type="PackedScene" uid="uid://18452sllevn4" path="res://assets/tile/tile_end_round_spawn.tscn" id="1_whin4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cq4w10bnngy0f" path="res://assets/tile/tile_end.tscn" id="4_fnk6u"]
 [ext_resource type="PackedScene" uid="uid://b5nb21ltnlcm" path="res://assets/tile/tile_grass.tscn" id="5_cihqu"]
 [ext_resource type="PackedScene" uid="uid://b5iwolu1c3uqu" path="res://assets/tile/tile_dirt.tscn" id="6_c1n8s"]
+[ext_resource type="PackedScene" uid="uid://b7ndanjy8kyjg" path="res://assets/cannon/cannon.tscn" id="9_uq0xb"]
 
 [sub_resource type="Curve3D" id="Curve3D_2grl2"]
 _data = {
@@ -22,6 +23,7 @@ enemyScene = ExtResource("2_qqs5a")
 path = NodePath("Path")
 
 [node name="Map" type="Node3D" parent="."]
+metadata/_edit_group_ = true
 
 [node name="TileEndRoundSpawn" parent="Map" instance=ExtResource("1_whin4")]
 
@@ -230,3 +232,6 @@ transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, -0.892889, -0.650621, 7.8988)
+
+[node name="Cannon" parent="." instance=ExtResource("9_uq0xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.2, 3.5)

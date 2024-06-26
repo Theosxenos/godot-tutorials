@@ -2,8 +2,10 @@ using Godot;
 
 public partial class Enemy : CharacterBody3D
 {
-    public int Speed { get; set; } = 2;
-    public int Health { get; set; } = 15;
+    [Export] public int Speed { get; set; } = 2;
+    [Export] public int Health { get; set; } = 15;
+
+    public float Progress => pathFollow3D.Progress;
 
     private PathFollow3D pathFollow3D;
 
@@ -20,5 +22,5 @@ public partial class Enemy : CharacterBody3D
         {
             pathFollow3D.QueueFree();
         }
-}
+    }
 }

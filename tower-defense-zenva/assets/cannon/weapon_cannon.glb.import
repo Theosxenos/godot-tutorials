@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c2oot6qqpi0r5"
-path="res://.godot/imported/weapon_cannon.glb-f1961afaaf258c91377a885db2630bff.scn"
+path="res://.godot/imported/weapon_cannon.glb-ae326491696c00cd8c5b7659e2a7997c.scn"
 
 [deps]
 
-source_file="res://art/Models/GLTF format/weapon_cannon.glb"
-dest_files=["res://.godot/imported/weapon_cannon.glb-f1961afaaf258c91377a885db2630bff.scn"]
+source_file="res://assets/cannon/weapon_cannon.glb"
+dest_files=["res://.godot/imported/weapon_cannon.glb-ae326491696c00cd8c5b7659e2a7997c.scn"]
 
 [params]
 
