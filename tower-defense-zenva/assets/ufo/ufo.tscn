@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://u3u1k2mvex7k"]
+
+[ext_resource type="PackedScene" uid="uid://c6bjbce1a74hv" path="res://assets/ufo/enemy_ufoRed.glb" id="1_ajfq3"]
+[ext_resource type="Script" path="res://src/Enemy.cs" id="1_g851w"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qsjeb"]
+height = 0.611321
+radius = 0.534799
+
+[node name="UFO" type="PathFollow3D"]
+
+[node name="Enemy" type="CharacterBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_g851w")
+
+[node name="enemy_ufoRed2" parent="Enemy" instance=ExtResource("1_ajfq3")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34539, 0)
+shape = SubResource("CylinderShape3D_qsjeb")

@@ -1,0 +1,257 @@
+[gd_scene load_steps=14 format=3 uid="uid://c7q3tb7mcri1d"]
+
+[ext_resource type="Script" path="res://src/Main.cs" id="1_7oqad"]
+[ext_resource type="PackedScene" uid="uid://18452sllevn4" path="res://assets/tile/tile_end_round_spawn.tscn" id="1_whin4"]
+[ext_resource type="PackedScene" uid="uid://d2fgue6p3ea6s" path="res://assets/tile/tile_straight.tscn" id="2_jp6i5"]
+[ext_resource type="PackedScene" uid="uid://u3u1k2mvex7k" path="res://assets/ufo/ufo.tscn" id="2_qqs5a"]
+[ext_resource type="PackedScene" uid="uid://dkamfe6k5x7w3" path="res://assets/tile/tile_corner_square.tscn" id="3_xm0l0"]
+[ext_resource type="PackedScene" uid="uid://cq4w10bnngy0f" path="res://assets/tile/tile_end.tscn" id="4_fnk6u"]
+[ext_resource type="PackedScene" uid="uid://b5nb21ltnlcm" path="res://assets/tile/tile_grass.tscn" id="5_cihqu"]
+[ext_resource type="PackedScene" uid="uid://b5iwolu1c3uqu" path="res://assets/tile/tile_dirt.tscn" id="6_c1n8s"]
+[ext_resource type="PackedScene" uid="uid://b7ndanjy8kyjg" path="res://assets/cannon/cannon.tscn" id="9_uq0xb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ga78r"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_flj7v"]
+sky_material = SubResource("ProceduralSkyMaterial_ga78r")
+
+[sub_resource type="Environment" id="Environment_o6aly"]
+background_mode = 2
+sky = SubResource("Sky_flj7v")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Curve3D" id="Curve3D_2grl2"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.5, 0.3, 0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.3, 2.5, 0, 0, 0, 0, 0, 0, 7.5, 0.3, 2.5, 0, 0, 0, 0, 0, 0, 7.5, 0.3, 5.5, 0, 0, 0, 0, 0, 0, 0.5, 0.3, 5.5),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("path")]
+script = ExtResource("1_7oqad")
+enemyScene = ExtResource("2_qqs5a")
+path = NodePath("Path")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o6aly")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Map" type="Node3D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="TileEndRoundSpawn" parent="Map" instance=ExtResource("1_whin4")]
+
+[node name="TileStraight" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 1.5)
+
+[node name="TileStraight2" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 0, 2.5)
+
+[node name="TileStraight3" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.5, 0, 2.5)
+
+[node name="TileStraight4" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.5, 0, 2.5)
+
+[node name="TileStraight5" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.5, 0, 2.5)
+
+[node name="TileStraight6" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.5, 0, 2.5)
+
+[node name="TileStraight7" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.5, 0, 2.5)
+
+[node name="TileStraight8" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-1, -4.37114e-08, 8.74228e-08, -4.37114e-08, 1, -4.37114e-08, -8.74228e-08, -4.37114e-08, -1, 7.5, 0, 3.5)
+
+[node name="TileStraight9" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-1, -4.37114e-08, 8.74228e-08, -4.37114e-08, 1, -4.37114e-08, -8.74228e-08, -4.37114e-08, -1, 7.5, 0, 4.5)
+
+[node name="TileCornerSquare" parent="Map" instance=ExtResource("3_xm0l0")]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -1, -4.37114e-08, -4.37114e-08, 0.5, 0, 2.5)
+
+[node name="TileCornerSquare2" parent="Map" instance=ExtResource("3_xm0l0")]
+transform = Transform3D(1.28155e-07, -2.10847e-08, -1, -2.98023e-08, 1, -2.10847e-08, 1, 2.98023e-08, 1.28155e-07, 7.5, 0, 2.5)
+
+[node name="TileStraight10" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, -3.82137e-15, 1, -8.74228e-08, 1, 0, -1, -8.74228e-08, -4.37114e-08, 6.5, -5.73206e-15, 5.5)
+
+[node name="TileStraight11" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, -3.82137e-15, 1, -8.74228e-08, 1, 0, -1, -8.74228e-08, -4.37114e-08, 5.5, -1.91069e-15, 5.5)
+
+[node name="TileStraight12" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, -3.82137e-15, 1, -8.74228e-08, 1, 0, -1, -8.74228e-08, -4.37114e-08, 4.5, 1.91069e-15, 5.5)
+
+[node name="TileStraight13" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, -3.82137e-15, 1, -8.74228e-08, 1, 0, -1, -8.74228e-08, -4.37114e-08, 3.5, -1.91069e-15, 5.5)
+
+[node name="TileStraight14" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, -3.82137e-15, 1, -8.74228e-08, 1, 0, -1, -8.74228e-08, -4.37114e-08, 2.5, 1.91069e-15, 5.5)
+
+[node name="TileStraight15" parent="Map" instance=ExtResource("2_jp6i5")]
+transform = Transform3D(-4.37114e-08, -3.82137e-15, 1, -8.74228e-08, 1, 0, -1, -8.74228e-08, -4.37114e-08, 1.5, -1.91069e-15, 5.5)
+
+[node name="TileCornerSquare3" parent="Map" instance=ExtResource("3_xm0l0")]
+transform = Transform3D(-1, -7.35137e-08, -2.59289e-07, -7.35137e-08, 1, -6.47961e-08, 2.59289e-07, -6.47961e-08, -1, 7.5, 5.73206e-15, 5.5)
+
+[node name="TileEnd" parent="Map" instance=ExtResource("4_fnk6u")]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -1, -4.37114e-08, -4.37114e-08, 0.5, 0, 5.5)
+
+[node name="TileGrass" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0.5)
+
+[node name="TileGrass2" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5)
+
+[node name="TileGrass3" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 1.5)
+
+[node name="TileGrass4" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 1.5)
+
+[node name="TileGrass5" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 1.5)
+
+[node name="TileGrass6" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 1.5)
+
+[node name="TileGrass7" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 1.5)
+
+[node name="TileGrass8" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 1.5)
+
+[node name="TileGrass9" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 1.5)
+
+[node name="TileGrass10" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 2.5)
+
+[node name="TileGrass11" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 3.5)
+
+[node name="TileGrass12" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 4.5)
+
+[node name="TileGrass13" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 5.5)
+
+[node name="TileGrass14" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 6.5)
+
+[node name="TileGrass15" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 6.5)
+
+[node name="TileGrass16" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 6.5)
+
+[node name="TileGrass17" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 6.5)
+
+[node name="TileGrass18" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 6.5)
+
+[node name="TileGrass19" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 6.5)
+
+[node name="TileGrass20" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 6.5)
+
+[node name="TileGrass21" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 6.5)
+
+[node name="TileGrass22" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 6.5)
+
+[node name="TileGrass23" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 6.5)
+
+[node name="TileGrass24" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 5.5)
+
+[node name="TileGrass25" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 4.5)
+
+[node name="TileGrass26" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 3.5)
+
+[node name="TileGrass27" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 2.5)
+
+[node name="TileGrass28" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1.5)
+
+[node name="TileGrass29" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+
+[node name="TileGrass30" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+
+[node name="TileGrass31" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+
+[node name="TileGrass32" parent="Map" instance=ExtResource("5_cihqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -0.5)
+
+[node name="TileDirt" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 3.5)
+
+[node name="TileDirt2" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 3.5)
+
+[node name="TileDirt3" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 3.5)
+
+[node name="TileDirt4" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 3.5)
+
+[node name="TileDirt5" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 3.5)
+
+[node name="TileDirt6" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 3.5)
+
+[node name="TileDirt7" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 3.5)
+
+[node name="TileDirt8" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 4.5)
+
+[node name="TileDirt9" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 4.5)
+
+[node name="TileDirt10" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 4.5)
+
+[node name="TileDirt11" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 4.5)
+
+[node name="TileDirt12" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 4.5)
+
+[node name="TileDirt13" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 4.5)
+
+[node name="TileDirt14" parent="Map" instance=ExtResource("6_c1n8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 4.5)
+
+[node name="Path" type="Path3D" parent="."]
+curve = SubResource("Curve3D_2grl2")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 4.8847, 0.351224, 1.96893)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, -0.892889, -0.650621, 7.8988)
+
+[node name="Cannon" parent="." instance=ExtResource("9_uq0xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.2, 3.5)

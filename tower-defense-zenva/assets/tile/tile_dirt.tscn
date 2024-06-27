@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5iwolu1c3uqu"]
+
+[ext_resource type="ArrayMesh" uid="uid://dyan0ngtelh6e" path="res://assets/tile/tile_dirtHigh.obj" id="1_34p8d"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_501gt"]
+points = PackedVector3Array(0.507937, 0.214264, 0.507937, -0.471748, -1.38778e-17, -0.471748, -0.471748, -1.38778e-17, 0.471748, -0.507937, 0.214264, -0.507937, 0.471748, -1.38778e-17, -0.471748, -0.507937, 0.214264, 0.507937, 0.507937, 0.214264, -0.507937, 0.471748, -1.38778e-17, 0.471748)
+
+[node name="TileDirt" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_501gt")
+
+[node name="Tile" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_34p8d")
