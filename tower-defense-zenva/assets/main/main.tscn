@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7q3tb7mcri1d"]
+[gd_scene load_steps=14 format=3 uid="uid://c7q3tb7mcri1d"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_7oqad"]
 [ext_resource type="PackedScene" uid="uid://18452sllevn4" path="res://assets/tile/tile_end_round_spawn.tscn" id="1_whin4"]
@@ -9,6 +9,19 @@
 [ext_resource type="PackedScene" uid="uid://b5nb21ltnlcm" path="res://assets/tile/tile_grass.tscn" id="5_cihqu"]
 [ext_resource type="PackedScene" uid="uid://b5iwolu1c3uqu" path="res://assets/tile/tile_dirt.tscn" id="6_c1n8s"]
 [ext_resource type="PackedScene" uid="uid://b7ndanjy8kyjg" path="res://assets/cannon/cannon.tscn" id="9_uq0xb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ga78r"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_flj7v"]
+sky_material = SubResource("ProceduralSkyMaterial_ga78r")
+
+[sub_resource type="Environment" id="Environment_o6aly"]
+background_mode = 2
+sky = SubResource("Sky_flj7v")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="Curve3D" id="Curve3D_2grl2"]
 _data = {
@@ -21,6 +34,13 @@ point_count = 5
 script = ExtResource("1_7oqad")
 enemyScene = ExtResource("2_qqs5a")
 path = NodePath("Path")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o6aly")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
 
 [node name="Map" type="Node3D" parent="."]
 metadata/_edit_group_ = true

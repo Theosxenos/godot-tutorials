@@ -26,3 +26,7 @@ folder_colors={
 "res://assets/": "yellow",
 "res://src/": "green"
 }
+
+[layer_names]
+
+3d_physics/layer_3="Enemy"

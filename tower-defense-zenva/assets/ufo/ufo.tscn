@@ -10,6 +10,8 @@ radius = 0.534799
 [node name="UFO" type="PathFollow3D"]
 
 [node name="Enemy" type="CharacterBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_g851w")
 
 [node name="enemy_ufoRed2" parent="Enemy" instance=ExtResource("1_ajfq3")]

@@ -23,4 +23,14 @@ public partial class Enemy : CharacterBody3D
             pathFollow3D.QueueFree();
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            QueueFree();
+        }
+    }
 }
