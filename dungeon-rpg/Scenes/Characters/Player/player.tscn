@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://db87u58yal717" path="res://Assets/Sprites/Characters/Player/Running/Running_001.png" id="1_4ol5w"]
 [ext_resource type="Script" path="res://Scenes/Characters/Player/Player.cs" id="1_oaslo"]
-[ext_resource type="Script" path="res://Scenes/Shared/StatResource.cs" id="2_6yabj"]
 [ext_resource type="Texture2D" uid="uid://c3pssio30a7yn" path="res://Assets/Sprites/Characters/Player/Running/Running_000.png" id="2_8b81y"]
+[ext_resource type="Script" path="res://Scenes/Characters/Shared/StatResource.cs" id="2_a5s4b"]
 [ext_resource type="Texture2D" uid="uid://bcvfxfm2h6lv6" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="2_fkga7"]
 [ext_resource type="Texture2D" uid="uid://ba4jf6q4enia3" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_000.png" id="2_rnqne"]
 [ext_resource type="Texture2D" uid="uid://e4p84n1g5kct" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_002.png" id="3_rg8bv"]
@@ -67,13 +67,13 @@
 [ext_resource type="Texture2D" uid="uid://df2f8jkmwmdrv" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_011.png" id="60_548hk"]
 [ext_resource type="Script" path="res://Scenes/Characters/Player/PlayerAttackState.cs" id="65_j6p3b"]
 
-[sub_resource type="Resource" id="Resource_wwviy"]
-script = ExtResource("2_6yabj")
+[sub_resource type="Resource" id="Resource_f0yfl"]
+script = ExtResource("2_a5s4b")
 StatType = 0
 StatValue = 100.0
 
-[sub_resource type="Resource" id="Resource_c4bls"]
-script = ExtResource("2_6yabj")
+[sub_resource type="Resource" id="Resource_3px2v"]
+script = ExtResource("2_a5s4b")
 StatType = 1
 StatValue = 3.0
 
@@ -180,7 +180,7 @@ collision_mask = 5
 floor_max_angle = 1.55334
 floor_snap_length = 0.2
 script = ExtResource("1_oaslo")
-Stat = Array[Object]([SubResource("Resource_wwviy"), SubResource("Resource_c4bls")])
+Stats = Array[Object]([SubResource("Resource_f0yfl"), SubResource("Resource_3px2v")])
 Sprite = NodePath("Sprite3D")
 AnimationPlayer = NodePath("AnimationPlayer")
 StateMachine = NodePath("StateMachine")

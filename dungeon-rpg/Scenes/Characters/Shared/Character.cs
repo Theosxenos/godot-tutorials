@@ -1,3 +1,4 @@
+using System.Linq;
 using DungeonRPG.Scenes.Shared;
 using Godot;
 
@@ -5,7 +6,7 @@ namespace DungeonRPG.Scenes.Characters.Shared;
 
 public abstract partial class Character : CharacterBody3D
 {
-    [Export] public StatResource[] Stat { get; private set; }
+    [Export] public StatResource[] Stats { get; private set; }
     
     [ExportGroup("RequiredNodes")]
     [Export] public Sprite3D Sprite { get; private set; }
@@ -39,9 +40,15 @@ public abstract partial class Character : CharacterBody3D
 
         Sprite.FlipH = Direction.X < 0;
     }
+
+    public StatResource GetStatResource(Stat stat)
+    {
+        return Stats.FirstOrDefault(element => element.StatType == stat);
+    }
     
     protected virtual void HurtboxNodeOnAreaEntered(Area3D area)
     {
-        GD.Print($"{area.Name} hit");
+        StatResource health = GetStatResource(Stat.Health);
+        GD.Print(health.StatValue);
     }
 }
