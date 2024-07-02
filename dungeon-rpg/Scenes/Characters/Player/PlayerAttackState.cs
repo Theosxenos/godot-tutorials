@@ -34,6 +34,7 @@ public partial class PlayerAttackState : PlayerState
         comboCounter = Mathf.Wrap(comboCounter + 1, 1, maxComboCount + 1);
         
         CharacterNode.StateMachine.SwitchState<PlayerIdleState>();
+        CharacterNode.ToggleHitbox(true);
     }
 
     private void PerformHit()
@@ -42,5 +43,7 @@ public partial class PlayerAttackState : PlayerState
         var distanceModifier = 0.75f;
         
         CharacterNode.HitboxNode.Position = hitboxPosition * distanceModifier;
+        
+        CharacterNode.ToggleHitbox(false);
     }
 }
