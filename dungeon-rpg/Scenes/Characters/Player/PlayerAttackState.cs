@@ -38,6 +38,9 @@ public partial class PlayerAttackState : PlayerState
 
     private void PerformHit()
     {
-        GD.Print("Hit");
+        var hitboxPosition = CharacterNode.Sprite.FlipH ? Vector3.Left : Vector3.Right;
+        var distanceModifier = 0.75f;
+        
+        CharacterNode.HitboxNode.Position = hitboxPosition * distanceModifier;
     }
 }
