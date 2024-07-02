@@ -116,7 +116,7 @@ StatValue = 20.0
 [sub_resource type="Resource" id="Resource_bsrf7"]
 script = ExtResource("2_br5yd")
 StatType = 1
-StatValue = 0.0
+StatValue = 4.0
 
 [sub_resource type="Animation" id="Animation_7mtbr"]
 length = 0.001

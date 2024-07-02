@@ -5,6 +5,13 @@ namespace DungeonRPG.Scenes.Shared;
 [GlobalClass]
 public partial class StatResource : Resource
 {
-    [Export] public Stat StatType { get; private set; } 
-    [Export] public float StatValue { get; private set; } 
+    private float statValue;
+    [Export] public Stat StatType { get; private set; }
+
+    [Export]
+    public float StatValue
+    {
+        get => statValue;
+        set => statValue = Mathf.Clamp(value, 0, Mathf.Inf);
+    }
 }
