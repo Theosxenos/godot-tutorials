@@ -95,6 +95,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("37_foq7y"), ExtResource("38_6i7s0"), ExtResource("39_nxlij"), ExtResource("40_pa7um"), ExtResource("41_7nryf"), ExtResource("42_y8c8k"), ExtResource("43_1pvqv"), ExtResource("44_7a300"), ExtResource("45_oilof"), ExtResource("46_wiowl"), ExtResource("47_2w8qc"), ExtResource("48_k3mgv")]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/AttackState")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"PerformHit"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_xdx7v"]
 resource_name = "attack_slash"
@@ -110,6 +124,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("2_rnqne"), ExtResource("50_aqu8p"), ExtResource("51_6v7nt"), ExtResource("52_6xwln"), ExtResource("53_tv8a2"), ExtResource("54_00xna"), ExtResource("55_jqeun"), ExtResource("56_knkxr"), ExtResource("57_4e4ml"), ExtResource("58_omry5"), ExtResource("59_gt2p0"), ExtResource("60_548hk")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/AttackState")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"PerformHit"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_4ts4e"]
@@ -192,7 +220,7 @@ shape = SubResource("CapsuleShape3D_bgq46")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
 texture_filter = 2
-texture = ExtResource("2_rnqne")
+texture = ExtResource("53_tv8a2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
