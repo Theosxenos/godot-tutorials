@@ -1,7 +1,8 @@
-[gd_scene load_steps=74 format=3 uid="uid://5rvva4g8xdid"]
+[gd_scene load_steps=77 format=3 uid="uid://5rvva4g8xdid"]
 
 [ext_resource type="Texture2D" uid="uid://db87u58yal717" path="res://Assets/Sprites/Characters/Player/Running/Running_001.png" id="1_4ol5w"]
 [ext_resource type="Script" path="res://Scenes/Characters/Player/Player.cs" id="1_oaslo"]
+[ext_resource type="Script" path="res://Scenes/Shared/StatResource.cs" id="2_6yabj"]
 [ext_resource type="Texture2D" uid="uid://c3pssio30a7yn" path="res://Assets/Sprites/Characters/Player/Running/Running_000.png" id="2_8b81y"]
 [ext_resource type="Texture2D" uid="uid://bcvfxfm2h6lv6" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="2_fkga7"]
 [ext_resource type="Texture2D" uid="uid://ba4jf6q4enia3" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_000.png" id="2_rnqne"]
@@ -65,6 +66,16 @@
 [ext_resource type="Texture2D" uid="uid://y3w36s4lpje7" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_010.png" id="59_gt2p0"]
 [ext_resource type="Texture2D" uid="uid://df2f8jkmwmdrv" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_011.png" id="60_548hk"]
 [ext_resource type="Script" path="res://Scenes/Characters/Player/PlayerAttackState.cs" id="65_j6p3b"]
+
+[sub_resource type="Resource" id="Resource_wwviy"]
+script = ExtResource("2_6yabj")
+StatType = 0
+StatValue = 100.0
+
+[sub_resource type="Resource" id="Resource_c4bls"]
+script = ExtResource("2_6yabj")
+StatType = 1
+StatValue = 3.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bgq46"]
 height = 1.46222
@@ -169,6 +180,7 @@ collision_mask = 5
 floor_max_angle = 1.55334
 floor_snap_length = 0.2
 script = ExtResource("1_oaslo")
+Stat = Array[Object]([SubResource("Resource_wwviy"), SubResource("Resource_c4bls")])
 Sprite = NodePath("Sprite3D")
 AnimationPlayer = NodePath("AnimationPlayer")
 StateMachine = NodePath("StateMachine")

@@ -1,9 +1,12 @@
+using DungeonRPG.Scenes.Shared;
 using Godot;
 
 namespace DungeonRPG.Scenes.Characters.Shared;
 
 public abstract partial class Character : CharacterBody3D
 {
+    [Export] public StatResource[] Stat { get; private set; }
+    
     [ExportGroup("RequiredNodes")]
     [Export] public Sprite3D Sprite { get; private set; }
     [Export] public AnimationPlayer AnimationPlayer { get; private set; }
